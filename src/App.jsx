@@ -1,14 +1,13 @@
-import { Button } from "@mui/material";
 import "./index.css";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <>
-      <h1 className="text-indigo-500 text-4xl">Hello world</h1>
-      <Button variant="contained" color="primary">
-        MUI Button
-      </Button>
-    </>
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <Footer />
+    </div>
   );
 }
 
