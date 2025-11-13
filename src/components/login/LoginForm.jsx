@@ -70,7 +70,7 @@ const LoginForm = () => {
           </span>
         </label>
         <a
-          href="#"
+          href="/ForgotPassword"
           className="text-purple-600 font-medium hover:text-purple-700 transition duration-150"
         >
           {t("forgot_password")}
