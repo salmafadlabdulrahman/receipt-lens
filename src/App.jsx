@@ -5,6 +5,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import Login from "./pages/LoginPage/LoginPage.jsx";
+import ForgotPassword from "./pages/LoginPage/ForgotPasswordPage.jsx";
 import Register from "./pages/RegisterPage/RegisterPage.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
@@ -13,7 +14,7 @@ import { useEffect } from "react";
 
 const Layout = ({ children }) => {
   const location = useLocation();
-  const hideLayoutPages = ["/", "/Register"];
+  const hideLayoutPages = ["/", "/Register","/ForgotPassword"];
   const hideLayout = hideLayoutPages.includes(location.pathname);
 
   return (
@@ -38,6 +39,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/Register" element={<Register />} />
+          <Route path="/ForgotPassword" element={<ForgotPassword />} />
         </Routes>
       </Layout>
     </Router>

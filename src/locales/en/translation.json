@@ -42,5 +42,16 @@
   "feature_item_1": "Scan receipts instantly",
   "feature_item_2": "Automatic categorization",
   "feature_item_3": "Real-time sync across devices",
-  "feature_image_alt": "Smart Receipt"
+  "feature_image_alt": "Smart Receipt",
+  "forgot_password_subtitle": "Don't worry, we'll help you reset it. Enter your email address and we'll send you a reset link.",
+  "email_address": "Email address",
+  "send_reset_link": "Send Reset Link",
+  "back_to_login": " Back to Login",
+  "need_help": "Need help? Contact our",
+  "support_team": "support team",
+  "forgot_password_title": "Forgot your password?",
+
+  "sending": "Sending...",
+  "back_to_login_text": "Remember your password?",
+  "reset_link_sent": "Reset link sent to {{email}} (If email exists)."
 }
