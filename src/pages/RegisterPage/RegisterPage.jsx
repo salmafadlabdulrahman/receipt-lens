@@ -1,9 +1,9 @@
 import React from "react";
-import LoginFormSection from "../../components/login/LoginFormSection.jsx";
-import FeaturesSidebar from "../../components/login/FeaturesSidebar.jsx";
+import RegisterFormSection from "../../components/register/RegisterFormSection";
+import FeaturesSection from "../../components/register/FeaturesSection";
 import LanguageSwitcher from "../../components/common/LanguageSwitcher.jsx";
 
-const LoginPage = () => {
+const RegisterPage = () => {
   return (
     <div className="min-h-screen flex flex-col md:flex-row font-sans bg-gray-100">
       <div
@@ -13,7 +13,7 @@ const LoginPage = () => {
         <div className="absolute top-4 right-4 z-10">
           <LanguageSwitcher />
         </div>
-        <LoginFormSection />
+        <RegisterFormSection />
       </div>
 
       <div
@@ -21,10 +21,10 @@ const LoginPage = () => {
                   p-8 md:p-12 lg:p-5 text-white 
                   bg-gradient-to-br from-indigo-800 to-purple-900 shadow-2xl"
       >
-        <FeaturesSidebar />
+        <FeaturesSection />
       </div>
     </div>
   );
 };
 
-export default LoginPage;
+export default RegisterPage;

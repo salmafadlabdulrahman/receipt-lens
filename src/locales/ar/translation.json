@@ -19,6 +19,27 @@
   "feature_ai": "تحليلات مدعومة بالذكاء الاصطناعي",
   "feature_ai_desc": "احصل على تحليلات ذكية للإنفاق وتوصيات مخصصة",
   "feature_secure": "آمن وخاص",
+  "feature_secure_desc": "تشفير بمستوى البنوك يحافظ على أمان بياناتك",
+  "signup_title": "انضم إلى Spend Right",
+  "signup_subtitle": "قم بإنشاء حسابك وابدأ إدارة مصاريفك بذكاء",
+  "full_name": "الاسم الكامل",
+  "full_name_placeholder": "أدخل اسمك الكامل",
 
-  "feature_secure_desc": "تشفير بمستوى البنوك يحافظ على أمان بياناتك"
+  "confirm_password": "تأكيد كلمة المرور",
+  "confirm_password_placeholder": "أكد كلمة المرور",
+  "agree_terms": "أوافق على ",
+  "terms_of_service": "شروط الخدمة",
+  "privacy_policy": "سياسة الخصوصية",
+  "and": "و",
+  "create_account": "إنشاء حساب",
+  "already_have_account": "لديك حساب بالفعل؟",
+  "login": "تسجيل الدخول",
+  "data_protected": "بياناتك محمية بتشفير على مستوى البنوك",
+  "passwords_not_match": "كلمات المرور غير متطابقة!",
+  "feature_title": "إدارة الإيصالات الذكية",
+  "feature_description": "قم بمزامنة إيصالاتك تلقائيًا وتحويلها إلى رؤى قابلة للتنفيذ. تتبع النفقات وتصنيف الإنفاق واتخاذ قرارات مالية أذكى.",
+  "feature_item_1": "مسح الإيصالات فورًا",
+  "feature_item_2": "تصنيف تلقائي",
+  "feature_item_3": "مزامنة في الوقت الفعلي عبر الأجهزة",
+  "feature_image_alt": "إيصال ذكي"
 }

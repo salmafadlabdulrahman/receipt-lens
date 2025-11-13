@@ -18,7 +18,29 @@
   "feature_receipt_desc": "Capture and digitize receipts instantly with AI",
   "feature_ai": "AI-Powered Insights",
   "feature_ai_desc": "Get intelligent spending analysis and recommendations",
- 
+
   "feature_secure": "Secure & Private",
-  "feature_secure_desc": "Bank-level encryption keeps your data safe"
+  "feature_secure_desc": "Bank-level encryption keeps your data safe",
+
+  "signup_title": "Join Spend Right",
+  "signup_subtitle": "Create your account and start managing your expenses smarter",
+  "full_name": "Full Name",
+  "full_name_placeholder": "Enter your full name",
+  "confirm_password": "Confirm Password",
+  "confirm_password_placeholder": "Confirm your password",
+  "agree_terms": "I agree to the ",
+  "terms_of_service": "Terms of Service",
+  "privacy_policy": "Privacy Policy",
+  "and": "and",
+  "create_account": "Create Account",
+  "already_have_account": "Already have an account?",
+  "login": "Log in",
+  "data_protected": "Your data is protected with bank-level security",
+  "passwords_not_match": "Passwords do not match!",
+  "feature_title": "Smart Receipt Management",
+  "feature_description": "Automatically sync your receipts and transform them into actionable insights. Track expenses, categorize spending, and make smarter financial decisions.",
+  "feature_item_1": "Scan receipts instantly",
+  "feature_item_2": "Automatic categorization",
+  "feature_item_3": "Real-time sync across devices",
+  "feature_image_alt": "Smart Receipt"
 }

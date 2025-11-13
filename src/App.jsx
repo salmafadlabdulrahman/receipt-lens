@@ -5,6 +5,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import Login from "./pages/LoginPage/LoginPage.jsx";
+import Register from "./pages/RegisterPage/RegisterPage.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import { useTranslation } from "react-i18next";
@@ -12,7 +13,7 @@ import { useEffect } from "react";
 
 const Layout = ({ children }) => {
   const location = useLocation();
-  const hideLayoutPages = ["/"];
+  const hideLayoutPages = ["/", "/Register"];
   const hideLayout = hideLayoutPages.includes(location.pathname);
 
   return (
@@ -36,6 +37,7 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/Register" element={<Register />} />
         </Routes>
       </Layout>
     </Router>
