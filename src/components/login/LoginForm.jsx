@@ -82,7 +82,7 @@ const LoginForm = () => {
       <div className="text-center mt-6 text-gray-600">
         {t("signup_text")}
         <a
-          href="#"
+          href="/Register"
           className={`text-purple-600 font-medium hover:text-purple-700 ${
             i18n.language === "ar" ? "mr-1" : "ml-1"
           }`}
