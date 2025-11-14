@@ -13,6 +13,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 import WalletIcon from "@mui/icons-material/Wallet";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -21,7 +22,12 @@ const Navbar = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const navItems = ["Home", "About", "Pricing", "Contact"];
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Pricing", path: "/pricing" },
+    { name: "Contact", path: "/contact" },
+  ];
 
   const drawer = (
     <Box
@@ -45,8 +51,10 @@ const Navbar = () => {
       </div>
       <List>
         {navItems.map((item) => (
-          <ListItem button key={item} className="hover:text-indigo-400">
-            <ListItemText primary={item} />
+          <ListItem button key={item.name} className="hover:text-indigo-400">
+            <Link to={item.path}>
+              <ListItemText primary={item.name} />
+            </Link>
           </ListItem>
         ))}
       </List>
@@ -75,12 +83,16 @@ const Navbar = () => {
           <Box className="hidden md:flex space-x-6 gap-6">
             {navItems.map((item) => (
               <Typography
-                key={item}
+                key={item.name}
                 variant="button"
-                sx={{ textTransform: "capitalize", fontSize: "1.1em", fontWeight: "semibold" }}
+                sx={{
+                  textTransform: "capitalize",
+                  fontSize: "1.1em",
+                  fontWeight: "semibold",
+                }}
                 className="text-gray-700 cursor-pointer hover:text-indigo-400"
               >
-                {item}
+                <Link to={item.path}>{item.name}</Link>
               </Typography>
             ))}
           </Box>
