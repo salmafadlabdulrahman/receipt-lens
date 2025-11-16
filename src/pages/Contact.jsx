@@ -5,7 +5,6 @@ import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
 import LocationPinIcon from "@mui/icons-material/LocationPin";
 import { useTranslation } from "react-i18next";
-import LanguageSwitcher from "../components/common/LanguageSwitcher";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -32,9 +31,6 @@ const Contact = () => {
 
   return (
     <section className="pb-[3em]">
-      <div className="absolute top-[100px] right-4 z-10">
-        <LanguageSwitcher />
-      </div>
       <div className="contact-header bg-purple-700 text-center p-10 text-white">
         <h2 className="font-bold text-3xl">{t("contact_title")}</h2>
         <p className="mt-2">{t("contact_subtitle")}</p>
