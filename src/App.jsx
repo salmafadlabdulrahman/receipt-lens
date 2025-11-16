@@ -56,6 +56,3 @@ function App() {
 }
 
 export default App;
-
-
-//flex flex-col min-h-screen

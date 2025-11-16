@@ -4,6 +4,8 @@ import contactImg from "/src/receipt-contact-2.jpg";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
 import LocationPinIcon from "@mui/icons-material/LocationPin";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "../components/common/LanguageSwitcher";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +13,9 @@ const Contact = () => {
     email: "",
     message: "",
   });
+
+  const { t, i18n } = useTranslation();
+  const isArabic = i18n.language === "ar";
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -27,19 +32,19 @@ const Contact = () => {
 
   return (
     <section className="pb-[3em]">
+      <div className="absolute top-[100px] right-4 z-10">
+        <LanguageSwitcher />
+      </div>
       <div className="contact-header bg-purple-700 text-center p-10 text-white">
-        <h2 className="font-bold text-3xl">Get in Touch</h2>
-        <p className="mt-2">
-          We're here to help with your expenses and subscriptions.
-        </p>
+        <h2 className="font-bold text-3xl">{t("contact_title")}</h2>
+        <p className="mt-2">{t("contact_subtitle")}</p>
       </div>
 
       <section className="xl:flex xl:justify-around">
         <div className="form-container text-center mt-[1em] md:w-[60%] md:m-auto md:pb-3 md:mt-[2em] px-2 xl:shadow-md xl:w-[40%] xl:m-0 xl:mt-[3em] ">
-          <h3 className="text-2xl font-bold">Send us a message</h3>
+          <h3 className="text-2xl font-bold">{t("contact_form_title")}</h3>
           <p className="p-2 mt-[.5em] text-[#838383]">
-            Fill out the form below and we'll get back to you as soon as
-            possible.
+            {t("contact_form_desc")}
           </p>
           <div className="">
             <Box
@@ -55,14 +60,14 @@ const Contact = () => {
               }}
             >
               <TextField
-                label="Full Name"
+                label={t("contact_fullname")}
                 name="fullname"
                 value={formData.fullname}
                 onChange={handleChange}
                 fullWidth
               />
               <TextField
-                label="Email Address"
+                label={t("contact_email")}
                 name="email"
                 type="email"
                 value={formData.email}
@@ -70,7 +75,7 @@ const Contact = () => {
                 fullWidth
               />
               <TextField
-                label="Message"
+                label={t("contact_message")}
                 multiline
                 rows={4}
                 maxRows={8}
@@ -83,7 +88,7 @@ const Contact = () => {
                 variant="contained"
                 sx={{ backgroundColor: "#010c31" }}
               >
-                Send a message
+                {t("contact_send_button")}
               </Button>
             </Box>
           </div>
@@ -91,19 +96,23 @@ const Contact = () => {
 
         <section className="lg:flex justify-between mt-[2em] lg:pl-[1em] xl:flex-col xl:shadow-md">
           <div className="contact-info-wrapper text-center lg:text-left  mt-[2em] md:w-[60%] md:m-auto md:pb-3 md:mt-[2em] px-2 xl:order-2  xl:w-full xl:text-left">
-            <h3 className="text-2xl font-bold">Contact Information</h3>
+            <h3 className="text-2xl font-bold">{t("contact_info_title")}</h3>
             <div className="flex gap-[1em] text-left items-center m-auto max-w-[300px] my-[1em] lg:max-w-full xl:max-w-[300px] xl:m-0 xl:my-2 ">
               <EmailIcon />
               <div>
-                <p>Email</p>
-                <p className="">support@spendright.com</p>
+                <p className={isArabic ? "text-right" : ""}>
+                  {t("contact_email_label")}
+                </p>
+                <p>support@spendright.com</p>
               </div>
             </div>
 
             <div className="flex gap-[1em]  text-left items-center m-auto max-w-[300px] my-[1em] lg:max-w-full xl:m-0 xl:max-w-[300px] xl:my-2 ">
               <PhoneIcon />
               <div>
-                <p>Phone</p>
+                <p className={isArabic ? "text-right" : ""}>
+                  {t("contact_phone_label")}
+                </p>
                 <p>+1 (234) 567-890</p>
               </div>
             </div>
@@ -111,21 +120,28 @@ const Contact = () => {
             <div className="flex gap-[1em]  text-left items-center m-auto max-w-[300px] my-[1em] lg:max-w-full xl:m-0 xl:max-w-[300px] xl:my-2">
               <LocationPinIcon />
               <div>
-                <p>Location</p>
-                <p>123 Finance street</p>
+                <p className={isArabic ? "text-right" : ""}>
+                  {t("contact_location_label")}
+                </p>
+                <p>{t("contact_location_address")}</p>
               </div>
             </div>
 
             <div className="text-left max-w-[400px] m-auto md:w-[70%] mt-[2em] lg:w-full lg:m-0 xl:m-auto xl:mt-[2em]">
-              <p className="font-bold">Business Hours</p>
-              <p className="flex justify-between">
-                <span>Monday - Friday</span> <span>9:00 AM - 6:00 PM</span>
+              <p className={isArabic ? "text-right font-bold" : "font-bold"}>
+                {t("contact_business_hours")}
               </p>
               <p className="flex justify-between">
-                <span>Saturday</span> <span>10:00 AM - 4:00 PM</span>
+                <span>{t("contact_weekdays")}</span>{" "}
+                <span>{t("contact_weekdays_hours")}</span>
               </p>
               <p className="flex justify-between">
-                <span>Sunday</span> <span>Closed</span>
+                <span>{t("contact_saturday")}</span>{" "}
+                <span>{t("contact_saturday_hours")}</span>
+              </p>
+              <p className="flex justify-between">
+                <span>{t("contact_sunday")}</span>{" "}
+                <span>{t("contact_sunday_hours")}</span>
               </p>
             </div>
           </div>
@@ -133,7 +149,7 @@ const Contact = () => {
           <div className="md:w-[50%] m-auto mt-[3em] px-2 xl:w-[500px] xl:order-1 xl:mt-0">
             <img
               src={contactImg}
-              alt="an image of money and calculator"
+              alt={t("contact_image_alt")}
               className="w-full rounded-md"
             />
           </div>
