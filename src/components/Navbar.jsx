@@ -14,19 +14,21 @@ import MenuIcon from "@mui/icons-material/Menu";
 import WalletIcon from "@mui/icons-material/Wallet";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { t } = useTranslation();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
   const navItems = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Pricing", path: "/pricing" },
-    { name: "Contact", path: "/contact" },
+    { name: t("nav_home"), path: "/" },
+    { name: t("nav_about"), path: "/about" },
+    { name: t("nav_pricing"), path: "/pricing" },
+    { name: t("nav_contact"), path: "/contact" },
   ];
 
   const drawer = (
@@ -41,7 +43,7 @@ const Navbar = () => {
           </div>
 
           <Typography variant="h6" className="font-semibold">
-            Spend Right
+            {t("logo_title")}
           </Typography>
         </div>
 
@@ -76,7 +78,7 @@ const Navbar = () => {
             </div>
 
             <Typography variant="h6" className="font-semibold">
-              Spend Right
+              {t("logo_title")}
             </Typography>
           </div>
 

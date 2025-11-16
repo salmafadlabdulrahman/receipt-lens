@@ -52,5 +52,51 @@
 
   "sending": "جارٍ الإرسال...",
   "back_to_login_text": "هل تذكرت كلمة المرور؟",
-  "reset_link_sent": "تم إرسال رابط إعادة التعيين إلى {{email}} (إذا كان البريد موجوداً)."
+  "reset_link_sent": "تم إرسال رابط إعادة التعيين إلى {{email}} (إذا كان البريد موجوداً).",
+
+  "contact_title": "تواصل معنا",
+  "contact_subtitle": "نحن هنا لمساعدتك في ادارة نفقاتك و شؤونك المالية.",
+  "contact_form_title": "أرسل لنا رسالة",
+  "contact_form_desc": "املأ النموذج أدناه وسنعاود الاتصال بك في أقرب وقت ممكن.",
+  "contact_fullname": "الاسم الكامل",
+  "contact_email": "البريد الإلكتروني",
+  "contact_message": "رسالتك",
+  "contact_send_button": "إرسال",
+
+  "contact_info_title": "معلومات الاتصال",
+  "contact_email_label": "البريد الإلكتروني",
+  "contact_phone_label": "رقم الهاتف",
+  "contact_location_label": "الموقع",
+  "contact_location_address": "١٢٣ شارع المالية",
+
+  "contact_business_hours": "ساعات العمل",
+  "contact_weekdays": "الاثنين - الجمعة",
+  "contact_weekdays_hours": "9:00 ص - 6:00 م",
+  "contact_saturday": "السبت",
+  "contact_saturday_hours": "10:00 ص - 4:00 م",
+  "contact_sunday": "الأحد",
+  "contact_sunday_hours": "مغلق",
+
+  "contact_image_alt": "صورة مال وحاسبة",
+
+  "logo_title": "أنفق بحكمة",
+  "footer_subtitle": "شريكك الموثوق في إدارة النفقات والاشتراكات بكفاءة.",
+  "footer_quick_links": "روابط سريعة",
+  "footer_quick_links_about": "معلومات عنا",
+  "footer_quick_links_features": "سمات",
+  "footer_quick_links_pricing": "التسعير",
+  "footer_quick_links_blog": "مدونة",
+  "footer_support_links": "روابط الدعم",
+
+  "footer_help": "الدعم",
+  "footer_contact": "تواصل معنا",
+  "footer_privacy": "الخصوصية",
+  "footer_terms_of_service": "شروط الخدمة",
+  "footer_follow_us": "تابعنا",
+
+  "nav_home": "الرئيسية",
+  "nav_about": "من نحن",
+  "nav_pricing": "الإشتراك",
+  "nav_contact": "تواصل معنا"
+
 }

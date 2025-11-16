@@ -53,5 +53,50 @@
 
   "sending": "Sending...",
   "back_to_login_text": "Remember your password?",
-  "reset_link_sent": "Reset link sent to {{email}} (If email exists)."
+  "reset_link_sent": "Reset link sent to {{email}} (If email exists).",
+
+  "contact_title": "Get in Touch",
+  "contact_subtitle": "We're here to help with your expenses and subscriptions.",
+  "contact_form_title": "Send us a message",
+  "contact_form_desc": "Fill out the form below and we'll get back to you as soon as possible.",
+  "contact_fullname": "Full Name",
+  "contact_email": "Email Address",
+  "contact_message": "Message",
+  "contact_send_button": "Send a message",
+
+  "contact_info_title": "Contact Information",
+  "contact_email_label": "Email",
+  "contact_phone_label": "Phone",
+  "contact_location_label": "Location",
+  "contact_location_address": "123 Finance street",
+
+  "contact_business_hours": "Business Hours",
+  "contact_weekdays": "Monday - Friday",
+  "contact_weekdays_hours": "9:00 AM - 6:00 PM",
+  "contact_saturday": "Saturday",
+  "contact_saturday_hours": "10:00 AM - 4:00 PM",
+  "contact_sunday": "Sunday",
+  "contact_sunday_hours": "Closed",
+
+  "contact_image_alt": "money and calculator image",
+
+  "logo_title": "Spend Right",
+  "footer_subtitle": "Your trusted partner in managing expenses and subscribtions efficiently.",
+  "footer_quick_links": "Quick Links",
+  "footer_quick_links_about": "About Us",
+  "footer_quick_links_features": "Features",
+  "footer_quick_links_pricing": "Pricing",
+  "footer_quick_links_blog": "Blog",
+  "footer_support_links": "Support Links",
+
+  "footer_help": "Help",
+  "footer_contact": "Contact Us",
+  "footer_privacy": "Privacy",
+  "footer_terms_of_service": "Terms of Service",
+  "footer_follow_us": "Follow Us",
+
+  "nav_home": "Home",
+  "nav_about": " About",
+  "nav_pricing": "Pricing",
+  "nav_contact": "Contact"
 }
