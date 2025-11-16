@@ -15,13 +15,22 @@ import WalletIcon from "@mui/icons-material/Wallet";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useAppContext } from "../contexts/useAppContext";
+import LanguageSwitcher from "../components/common/LanguageSwitcher";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { theme, setTheme } = useAppContext();
   const { t } = useTranslation();
+
+  console.log(theme);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+
+  const handleThemeToggle = () => {
+    setTheme(theme === "light" ? "dark" : "light");
   };
 
   const navItems = [
@@ -53,13 +62,24 @@ const Navbar = () => {
       </div>
       <List>
         {navItems.map((item) => (
-          <ListItem button key={item.name} className="hover:text-indigo-400">
+          <ListItem key={item.name} className="hover:text-indigo-400">
             <Link to={item.path}>
               <ListItemText primary={item.name} />
             </Link>
           </ListItem>
         ))}
       </List>
+      <div className="flex items-center gap-4 mt-[2em]">
+        <LanguageSwitcher />
+        <label className="switch">
+          <input
+            type="checkbox"
+            onChange={handleThemeToggle}
+            checked={theme === "dark"}
+          />
+          <span className="slider"></span>
+        </label>
+      </div>
     </Box>
   );
 
@@ -71,7 +91,7 @@ const Navbar = () => {
         elevation={0}
         className="mt-4"
       >
-        <Toolbar className="flex justify-between">
+        <Toolbar className="flex justify-between pt-[1.2em] pb-[2em]">
           <div className="logo-wrapper flex align-items-center gap-2">
             <div className="bg-[#733ce8] text-white rounded-md py-[.3em] text-center w-10 ">
               <WalletIcon />
@@ -98,6 +118,18 @@ const Navbar = () => {
               </Typography>
             ))}
           </Box>
+
+          <div className="hidden md:flex md:items-center md:gap-2">
+            <LanguageSwitcher />
+            <label className="switch">
+              <input
+                type="checkbox"
+                onChange={handleThemeToggle}
+                checked={theme === "dark"}
+              />
+              <span className="slider"></span>
+            </label>
+          </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
