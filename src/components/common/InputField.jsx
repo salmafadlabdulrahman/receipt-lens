@@ -1,15 +1,26 @@
-import React from 'react';
-import { Mail, Lock } from 'lucide-react';
+import React from "react";
+import { Mail, Lock } from "lucide-react";
 
-
-const InputField = ({ label, type, name, value, onChange, placeholder, icon: Icon }) => (
+const InputField = ({
+  label,
+  type,
+  name,
+  value,
+  onChange,
+  placeholder,
+  icon: Icon,
+}) => (
   <div className="space-y-2">
-    <label htmlFor={name} className="text-sm font-medium text-gray-700 block">
+    <label
+      htmlFor={name}
+      className="text-sm font-medium font-700 block"
+      style={{ color: "var(--text-main)", fontFamily: "var(--font-primary)" }}
+    >
       {label}
     </label>
     <div className="relative">
       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
-        {Icon && <Icon size={20} />} 
+        {Icon && <Icon size={20} />}
       </div>
       <input
         id={name}

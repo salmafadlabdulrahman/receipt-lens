@@ -57,13 +57,17 @@ const LoginForm = () => {
       />
 
       <div className="flex items-center justify-between text-sm">
-        <label className="flex items-center text-gray-400">
+        <label className="flex items-center font-400">
           <input
             type="checkbox"
             name="rememberMe"
             checked={formData.rememberMe}
             onChange={handleChange}
-            className="w-4 h-4 text-purple-600 border-gray-300 rounded-lg focus:ring-purple-500"
+            className="w-4 h-4  border-gray-300 rounded-lg"
+            style={{
+              fontFamily: "var( --font-primary)",
+              color: "var(--text-main)",
+            }}
           />
           <span className={`${i18n.language === "ar" ? "mr-2" : "ml-2"}`}>
             {t("remember_me")}
@@ -71,7 +75,11 @@ const LoginForm = () => {
         </label>
         <a
           href="/ForgotPassword"
-          className="text-purple-600 font-medium hover:text-purple-700 transition duration-150"
+          className="transition duration-150 font-bold "
+          style={{
+            fontFamily: "var( --font-primary)",
+            color: "var(--text-main)",
+          }}
         >
           {t("forgot_password")}
         </a>
@@ -83,7 +91,11 @@ const LoginForm = () => {
         {t("signup_text")}
         <a
           href="/Register"
-          className={`text-purple-600 font-medium hover:text-purple-700 ${
+          style={{
+            fontFamily: "var( --font-primary)",
+            color: "var(--text-main)",
+          }}
+          className={`font-bold ${
             i18n.language === "ar" ? "mr-1" : "ml-1"
           }`}
         >
