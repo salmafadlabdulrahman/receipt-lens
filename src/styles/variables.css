@@ -1,0 +1,57 @@
+:root {
+  --primary: #000;
+  --primary-hover: rgb(27, 28, 31);
+
+  --secondary: #c173ff;
+  --secondary-hover: #aaebff;
+
+  --text-main: #111111;
+  --text-muted: #666666;
+  --text-inverse: #ffffff;
+
+  --bg-main: #ffffff;
+  --bg-secondary: #f5f7fa;
+  --bg-card: #ffffff;
+
+  --border-color: #e0e0e0;
+  --login-right-gradient: linear-gradient(135deg, #deb5ff, #0f2978);
+  --login-btn: #b98adf;
+  --shadow-sm: 0 2px 4px rgba(234, 107, 231, 0.371);
+  --shadow-md: 0 4px 10px rgba(177, 231, 224, 0.397);
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --font-primary: "DM Sans", sans-serif;
+  --font-secondary: "Inter", sans-serif;
+}
+.dark {
+  --primary: #ffffff;
+  --primary-hover: #f2f2f2;
+
+  --secondary: #aaebff;
+  --secondary-hover: #c173ff;
+
+  --text-main: #ffffff;
+  --text-muted: #cccccc;
+  --text-inverse: #111111;
+
+  --bg-main: #121212;
+  --bg-secondary: #1d1d1d;
+  --bg-card: #1f1f1f;
+
+  --border-color: #333333;
+
+  --login-right-gradient: linear-gradient(135deg,   #2a0d42, #0c0d1b,#050505);
+
+  --login-btn: #8b5cf6;
+
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.7);
+
+ 
+}

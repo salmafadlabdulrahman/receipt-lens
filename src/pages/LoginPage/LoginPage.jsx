@@ -18,8 +18,8 @@ const LoginPage = () => {
 
       <div
         className="w-full md:w-1/2 flex items-center justify-center 
-                  p-8 md:p-12 lg:p-5 text-white 
-                  bg-gradient-to-br from-indigo-800 to-purple-900 shadow-2xl"
+             p-8 md:p-12 lg:p-5 text-white shadow-2xl"
+        style={{ background: "var(--login-right-gradient)" }}
       >
         <FeaturesSidebar />
       </div>
