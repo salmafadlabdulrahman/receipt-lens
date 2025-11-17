@@ -26,7 +26,11 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      {!hideLayout && <Navbar />}
+      {!hideLayout && (
+        <>
+          <Navbar />
+        </>
+      )}
       <main>{children}</main>
       {!hideLayout && <Footer />}
     </>

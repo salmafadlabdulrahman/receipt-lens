@@ -99,5 +99,6 @@
   "nav_about": " About",
   "nav_pricing": "Pricing",
   "nav_contact": "Contact",
-  "home_page": "Home"
+  "home_page": "Home",
+  "login_btn": "Login"
 }
