@@ -5,7 +5,7 @@ const Hero = () => {
   const { t, i18n } = useTranslation();
   const isArabic = i18n.language === "ar";
   return (
-    <section className=" bg-linear-to-br from-[#b26eea] via-[#a09afd] to-[#ffe791] md:text-center">
+    <section className="bg-linear-to-br from-[#b26eea] via-[#a09afd] to-[#ffe791] md:text-center">
       <div className="md:w-[70%] m-auto pt-[8em] w-[90%]">
         {isArabic ? (
           <h1 className="font-semibold md:text-[3em] text-[1.9em] leading-[1.2em]">
