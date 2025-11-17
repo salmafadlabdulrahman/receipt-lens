@@ -20,7 +20,7 @@ const FeaturesSidebar = () => {
           alt={t("feature_image_alt")}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-black/5"></div>
       </div>
 
       <div className="space-y-6">

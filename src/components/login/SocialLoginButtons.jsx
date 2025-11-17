@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 const SocialLoginButtons = () => {
   const { i18n } = useTranslation();
-  const isRTL = i18n.language === "ar"; 
+  const isRTL = i18n.language === "ar";
   return (
     <div
       className={`flex ${
@@ -12,9 +12,16 @@ const SocialLoginButtons = () => {
           : "space-x-4"
       }`}
     >
-      <button className="flex items-center justify-center w-full py-2 border border-gray-300 rounded-xl text-gray-600 hover:bg-gray-50 transition duration-150">
+      <button
+        className="flex items-center justify-center w-full py-2 border border-gray-300 rounded-xl text-gray-600 hover:bg-gray-50 transition duration-150"
+        style={{ color: "var(--text-main)" }}
+      >
         <svg
           className={`w-5 h-5 ${isRTL ? "ml-2" : "mr-2"}`}
+          style={{
+            color: "var(--text-main)",
+            fontFamily: "var(--font-primary)",
+          }}
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -30,6 +37,10 @@ const SocialLoginButtons = () => {
       <button className="flex items-center justify-center w-full py-2 border border-gray-300 rounded-xl text-gray-600 hover:bg-gray-50 transition duration-150">
         <svg
           className={`w-5 h-5 ${isRTL ? "ml-2" : "mr-2"}`}
+          style={{
+            color: "var(--text-main)",
+            fontFamily: "var(--font-primary)",
+          }}
           viewBox="0 0 24 24"
           fill="currentColor"
           xmlns="http://www.w3.org/2000/svg"

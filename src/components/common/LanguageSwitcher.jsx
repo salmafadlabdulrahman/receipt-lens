@@ -19,7 +19,11 @@ const LanguageToggle = () => {
   return (
     <button
       onClick={toggleLanguage}
-      className="p-2 rounded-full bg-gray-200 dark:bg-purple-800 text-gray-800 dark:text-gray-200 flex items-center justify-center hover:scale-110 transition-transform duration-200"
+      style={{
+        background: "var(--login-right-gradient)",
+        color:"var(--text-main)"
+      }}
+      className="p-2 rounded-full  text-gray-800 dark:text-gray-200 flex items-center justify-center hover:scale-110 transition-transform duration-200"
       title={lang === "en" ? "Switch to Arabic" : "Switch to English"}
     >
       <GrLanguage size={22} />
