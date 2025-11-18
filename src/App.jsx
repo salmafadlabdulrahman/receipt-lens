@@ -1,14 +1,78 @@
-import { Button } from "@mui/material";
 import "./index.css";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 
-function App() {
+import Navbar from "./components/Navbar.jsx";
+import Footer from "./components/Footer.jsx";
+
+import Home from "./pages/Home";
+import Contact from "./pages/Contact";
+import Login from "./pages/LoginPage/LoginPage.jsx";
+import ForgotPassword from "./pages/LoginPage/ForgotPasswordPage.jsx";
+import Register from "./pages/RegisterPage/RegisterPage.jsx";
+import SuccessScreen from "./components/login/SuccessScreen.jsx";
+
+import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
+import About from "./pages/About.jsx";
+import Profile from "./pages/Profile.jsx";
+import { useAppContext } from "./contexts/useAppContext.jsx";
+
+const Layout = ({ children }) => {
+  const location = useLocation();
+  const { theme } = useAppContext();
+
+  const hideLayoutPages = [
+    "/Login",
+    "/Register",
+    "/ForgotPassword",
+    "/SuccessScreen",
+  ];
+  const hideLayout = hideLayoutPages.includes(location.pathname);
+
   return (
     <>
-      <h1 className="text-indigo-500 text-4xl">Hello world</h1>
-      <Button variant="contained" color="primary">
-        MUI Button
-      </Button>
+      {!hideLayout && (
+        <>
+          <Navbar />
+        </>
+      )}
+      <main className={`${theme === "dark" ? "bg-dark-gray" : ""}`}>
+        {children}
+        {!hideLayout && <Footer />}
+      </main>
     </>
+  );
+};
+
+function App() {
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    document.documentElement.dir = i18n.language === "ar" ? "rtl" : "ltr";
+  }, [i18n.language]);
+
+  return (
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/Register" element={<Register />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/SuccessScreen" element={<SuccessScreen />} />
+          <Route path="/Login" element={<Login />} />
+
+          <Route path="/ForgotPassword" element={<ForgotPassword />} />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </Layout>
+    </Router>
   );
 }
 
