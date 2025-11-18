@@ -19,6 +19,7 @@ import SuccessScreen from "./components/login/SuccessScreen.jsx";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import About from "./pages/About.jsx";
+import Profile from "./pages/Profile.jsx";
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -64,6 +65,7 @@ function App() {
           <Route path="/Login" element={<Login />} />
 
           <Route path="/ForgotPassword" element={<ForgotPassword />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </Layout>
     </Router>

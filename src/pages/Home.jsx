@@ -1,15 +1,15 @@
 import Hero from "../components/Hero";
+import OrganizeMoney from "../components/OrganizeMoney";
+import StayNotified from "../components/StayNotified";
 
 const Home = () => {
   return (
     <>
       <Hero />
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt,
-        itaque! Dolor, qui atque soluta tempore eius harum. Sequi, aspernatur.
-        Aut atque maxime explicabo quidem unde voluptatem. Repellat minima
-        accusamus ducimus!
-      </p>
+      <section className="md:w-[90%] m-auto">
+        <OrganizeMoney />
+        <StayNotified />
+      </section>
     </>
   );
 };

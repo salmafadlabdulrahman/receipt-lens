@@ -80,21 +80,6 @@
 
   "contact_image_alt": "money and calculator image",
 
-  "logo_title": "Spend Right",
-  "footer_subtitle": "Your trusted partner in managing expenses and subscribtions efficiently.",
-  "footer_quick_links": "Quick Links",
-  "footer_quick_links_about": "About Us",
-  "footer_quick_links_features": "Features",
-  "footer_quick_links_pricing": "Pricing",
-  "footer_quick_links_blog": "Blog",
-  "footer_support_links": "Support Links",
-
-  "footer_help": "Help",
-  "footer_contact": "Contact Us",
-  "footer_privacy": "Privacy",
-  "footer_terms_of_service": "Terms of Service",
-  "footer_follow_us": "Follow Us",
-
   "nav_home": "Home",
   "nav_about": " About",
   "nav_pricing": "Pricing",
@@ -109,4 +94,13 @@
   "success_check_email": "Please check your email to create a new password.",
   "cant_get_email": "Can't get email?",
   "resubmit": "Resubmit"
+  "start_btn": "Get Started",
+  "explore_btn": "Explore More",
+  "organize_money_header": "Organize your money the right way",
+  "organize_money_subheader": "Scan receipts instantly. Categorize expenses automatically. Set budgets that stick. All with a few taps.",
+  "notifications": "Notifications",
+  "stay_notified": "Stay Notified",
+  "notifications_subtitle": "Stay on top of your spending with smart, timely reminders.",
+  "recent_receipts_footer": "Recent Receipts"
+
 }
