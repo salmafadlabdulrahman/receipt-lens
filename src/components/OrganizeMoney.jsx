@@ -2,8 +2,12 @@ import laptopIcon from "/laptop-img.png";
 import bikeIcon from "/bike-img.png";
 import planeIcon from "/plane-img.png";
 import cameraIcon from "/camera-img.png";
+import { useTranslation } from "react-i18next";
 
 const OrganizeMoney = () => {
+  const { t, i18n } = useTranslation();
+  const isArabic = i18n.language === "ar";
+
   const goals = [
     {
       title: "New Laptop",
@@ -33,11 +37,14 @@ const OrganizeMoney = () => {
   return (
     <section className="mt-[6em] mb-[8em] px-[2em] md:px-0 md:text-center">
       <h3 className="text-[2.5em] font-semibold  ">
-        Organize your money the right way
+        {t("organize_money_header")}
       </h3>
-      <p className="mt-[1em] font-medium max-w-[500px] md:m-auto md:mt-[1em]">
-        Scan receipts instantly. Categorize expenses automatically. Set budgets
-        that stick. All with a few taps.
+      <p
+        className={`mt-[1em] font-medium max-w-[500px] md:m-auto md:mt-[1em] ${
+          isArabic ? "text-[1.5em]" : ""
+        }`}
+      >
+        {t("organize_money_subheader")}
       </p>
 
       <div className="goals-container mt-[3em] flex items-center justify-center gap-[1em] flex-wrap md:max-w-[70%] md:m-auto md:mt-[3em]">

@@ -79,21 +79,6 @@
 
   "contact_image_alt": "صورة مال وحاسبة",
 
-  "logo_title": "أنفق بحكمة",
-  "footer_subtitle": "شريكك الموثوق في إدارة النفقات والاشتراكات بكفاءة.",
-  "footer_quick_links": "روابط سريعة",
-  "footer_quick_links_about": "معلومات عنا",
-  "footer_quick_links_features": "سمات",
-  "footer_quick_links_pricing": "التسعير",
-  "footer_quick_links_blog": "مدونة",
-  "footer_support_links": "روابط الدعم",
-
-  "footer_help": "الدعم",
-  "footer_contact": "تواصل معنا",
-  "footer_privacy": "الخصوصية",
-  "footer_terms_of_service": "شروط الخدمة",
-  "footer_follow_us": "تابعنا",
-
   "nav_home": "الرئيسية",
   "nav_about": "من نحن",
   "nav_pricing": "الإشتراك",
@@ -101,6 +86,13 @@
   "home_page": "الرئيسية",
   "login_btn": "تسجيل الدخول",
   "home_header": "الحرية المالية تبدأ من هنا",
-  "home_subtitle": "شاهد أين تذهب أموالك كل شهر بدقة. أنشئ ميزانيات تعمل بالفعل وشاهد مدخراتك تنمو."
-
+  "home_subtitle": "شاهد أين تذهب أموالك كل شهر بدقة. أنشئ ميزانيات تعمل بالفعل وشاهد مدخراتك تنمو.",
+  "start_btn": "ابدأ الآن",
+  "explore_btn": "اكتشف المزيد",
+  "organize_money_header": "نظم أموالك بطريقة مثالية",
+  "organize_money_subheader": "امسح الإيصالات فورًا. صنّف نفقاتك تلقائيًا. حدّد ميزانيات ثابتة. كل ذلك ببضع خطوات.",
+  "notifications": "الإشعارات",
+  "stay_notified": "ابقى على اطلاع",
+  "notifications_subtitle": "ابقى على اطلاع دائم بنفقاتك من خلال التذكيرات الذكية وفي الوقت المناسب.",
+  "recent_receipts_footer": "الفواتير"
 }

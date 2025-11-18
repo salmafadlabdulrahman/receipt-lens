@@ -18,6 +18,7 @@ import Register from "./pages/RegisterPage/RegisterPage.jsx";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import About from "./pages/About.jsx";
+import Profile from "./pages/Profile.jsx";
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -55,6 +56,7 @@ function App() {
           <Route path="/Register" element={<Register />} />
           <Route path="/about" element={<About />} />
           <Route path="/ForgotPassword" element={<ForgotPassword />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </Layout>
     </Router>
