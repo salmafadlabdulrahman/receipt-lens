@@ -1,6 +1,5 @@
 import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
-// import contactImg from "/src/receipt-contact-2.jpg";
 import contactImg from "/contact-img.jpg";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
@@ -38,7 +37,7 @@ const Contact = () => {
         theme === "dark" ? "bg-[#111217] text-white" : ""
       } pb-[3em]`}
     >
-      <div className=" bg-linear-to-br from-[#b25ef7] via-[#8881ed] to-[#91bfff] text-center p-10 text-white">
+      <div className=" bg-linear-to-br from-purple-pastel via-light-pastel-purple to-light-blue text-center p-10 text-white">
         <h2 className="font-bold text-3xl">{t("contact_title")}</h2>
         <p className="mt-2">{t("contact_subtitle")}</p>
       </div>
@@ -46,7 +45,7 @@ const Contact = () => {
       <section className="xl:flex xl:justify-around">
         <div className="form-container text-center mt-[1em] md:w-[60%] md:m-auto md:pb-3 md:mt-[2em] px-2 xl:shadow-md xl:w-[40%] xl:m-0 xl:mt-[3em]">
           <h3 className="text-2xl font-bold">{t("contact_form_title")}</h3>
-          <p className="p-2 mt-[.5em] text-[#838383]">
+          <p className="p-2 mt-[.5em] text-warm-gray">
             {t("contact_form_desc")}
           </p>
           <div className="">

@@ -11,8 +11,8 @@ const Hero = () => {
     <section
       className={` ${
         theme === "light"
-          ? "bg-linear-to-br from-[#b26eea] via-[#a09afd] to-[#ffe791]"
-          : "bg-linear-to-r  from-[#0029FF] via-[#8960FF] via-[#AF7EFF] via-[#A661FF] to-[#EAAFFF]"
+          ? "bg-linear-to-br from-purple-soft via-purple-light to-yellow-soft"
+          : "bg-linear-to-r  from-[#0029FF] via-purple-mid via-purple-medium via-purple-warm to-pink-pastel"
       } md:text-center`}
     >
       <div className="md:w-[70%] m-auto pt-[6em] w-[90%]">

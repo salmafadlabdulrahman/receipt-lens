@@ -6,7 +6,7 @@ import { useAppContext } from "../contexts/useAppContext";
 const Home = () => {
   const {theme} = useAppContext();
   return (
-    <section className={`${theme === "light" ? "bg-white" : "bg-[#111217]" }`}>
+    <section className={`${theme === "light" ? "bg-white" : "bg-dark-gray" }`}>
       <Hero />
       <section className="md:w-[90%] m-auto">
         <OrganizeMoney />

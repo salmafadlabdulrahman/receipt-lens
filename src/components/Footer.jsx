@@ -9,12 +9,12 @@ const Footer = () => {
   return (
     <footer
       className={`text-center mt-[10em] pb-[2em] ${
-        theme === "light" ? "bg-white" : "bg-[#111217] text-white"
+        theme === "light" ? "bg-white" : "bg-dark-gray text-white"
       }`}
     >
       <span
         className={`block p-[.1px] ${
-          theme === "dark" ? "bg-[#2c2c2c]" : "bg-[#d1d1d1]"
+          theme === "dark" ? "bg-medium-gray" : "bg-light-gray"
         }`}
       ></span>
       <div className="pt-[2em]">
