@@ -1,18 +1,27 @@
 import { useTranslation } from "react-i18next";
 import phoneImg from "/phone-img.png";
+import { useAppContext } from "../contexts/useAppContext";
 
 const Hero = () => {
   const { t, i18n } = useTranslation();
+  const { theme } = useAppContext();
   const isArabic = i18n.language === "ar";
+
   return (
-    <section className="bg-linear-to-br from-[#b26eea] via-[#a09afd] to-[#ffe791] md:text-center">
-      <div className="md:w-[70%] m-auto pt-[8em] w-[90%]">
+    <section
+      className={` ${
+        theme === "light"
+          ? "bg-linear-to-br from-[#b26eea] via-[#a09afd] to-[#ffe791]"
+          : "bg-linear-to-r  from-[#0029FF] via-[#8960FF] via-[#AF7EFF] via-[#A661FF] to-[#EAAFFF]"
+      } md:text-center`}
+    >
+      <div className="md:w-[70%] m-auto pt-[6em] w-[90%]">
         {isArabic ? (
           <h1 className="font-semibold md:text-[3em] text-[2.4em] leading-[1.2em]">
             {t("home_header")}
           </h1>
         ) : (
-          <h1 className="font-semibold md:text-[3em] text-[1.9em] leading-[1.2em]">
+          <h1 className="font-semibold md:text-[3em] text-[2.2em] leading-[1.2em]">
             {t("home_header")} <br />
             {t("home_second_part")}{" "}
             <span className="text-white">{t("home_third_part")}</span>

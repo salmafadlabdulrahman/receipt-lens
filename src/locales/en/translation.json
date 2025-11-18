@@ -84,6 +84,7 @@
   "nav_about": " About",
   "nav_pricing": "Pricing",
   "nav_contact": "Contact",
+  "nav_receipts": "Receipts",
   "home_page": "Home",
   "login_btn": "Login",
   "home_header": "Where did your money go?",
@@ -97,6 +98,8 @@
   "notifications": "Notifications",
   "stay_notified": "Stay Notified",
   "notifications_subtitle": "Stay on top of your spending with smart, timely reminders.",
-  "recent_receipts_footer": "Recent Receipts"
+  "recent_receipts_footer": "Recent Receipts",
+  "account": "Account",
+  "name": "Name"
 
 }

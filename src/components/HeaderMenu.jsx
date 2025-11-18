@@ -2,11 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import LanguageThemeToggle from "./LanguageThemeToggle";
 import { useTranslation } from "react-i18next";
+import { useAppContext } from "../contexts/useAppContext";
 
 const HeaderMenu = () => {
   const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
   const { i18n } = useTranslation();
+  const { theme } = useAppContext();
   const isArabic = i18n.language === "ar";
 
   useEffect(() => {
@@ -23,9 +25,12 @@ const HeaderMenu = () => {
     <div className="relative hidden md:flex items-center" ref={menuRef}>
       <button
         onClick={() => setOpen(!open)}
-        className="p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700"
+        className={`p-2 rounded ${theme === "light" ? "hover:bg-gray-200" : "hover:bg-gray-700"}`}
       >
-        <MoreVertIcon size={22} />
+        <MoreVertIcon
+          size={22}
+          sx={{ color: theme === "light" ? "black" : "white" }}
+        />
       </button>
 
       {open && (
