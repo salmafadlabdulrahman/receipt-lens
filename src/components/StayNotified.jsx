@@ -3,13 +3,19 @@ import amazonIcon from "/amazon-icon.png";
 import googleIcon from "/google-icon.png";
 import NotificationUI from "./NotificationUI";
 import { useTranslation } from "react-i18next";
+import { useAppContext } from "../contexts/useAppContext";
 
 const StayNotified = () => {
   const { t, i18n } = useTranslation();
+  const { theme } = useAppContext();
   const isArabic = i18n.language === "ar";
 
   return (
-    <section className="mt-[6em] mb-[8em] px-[2em] md:px-0 md:flex md:gap-[3em] md:items-center md:justify-center">
+    <section
+      className={`mt-[6em] mb-[8em] px-[2em] md:px-0 md:flex md:gap-[3em] md:items-center md:justify-center ${
+        theme === "light" ? "text-black" : "bg-dark-gray text-white"
+      }`}
+    >
       <div>
         <span className="font-medium">{t("notifications")}</span>
         <h3 className="text-[2.5em] font-semibold">{t("stay_notified")}</h3>

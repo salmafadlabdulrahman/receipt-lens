@@ -82,6 +82,7 @@
   "nav_home": "الرئيسية",
   "nav_about": "من نحن",
   "nav_pricing": "الإشتراك",
+  "nav_receipts": "الفواتير",
   "nav_contact": "تواصل معنا",
   "home_page": "الرئيسية",
   "login_btn": "تسجيل الدخول",
@@ -144,4 +145,6 @@
   "perfectForStarting": "مثالي للبدء",
   "everythingInPro": "كل الميزات الموجودة في الخطة المحترفة",
   "popular": "الأكثر شيوعًا"
+  "account": "الحساب",
+  "name": "الإسم"
 }

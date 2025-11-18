@@ -84,6 +84,7 @@
   "nav_about": " About",
   "nav_pricing": "Pricing",
   "nav_contact": "Contact",
+  "nav_receipts": "Receipts",
   "home_page": "Home",
   "login_btn": "Login",
   "home_header": "Where did your money go?",
@@ -142,4 +143,6 @@
 
   "need_help_prompt": "Need help?",
   "link_contact_support": "Contact Support"
+  "account": "Account",
+  "name": "Name"
 }

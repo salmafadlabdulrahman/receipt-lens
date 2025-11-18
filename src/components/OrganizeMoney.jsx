@@ -3,9 +3,11 @@ import bikeIcon from "/bike-img.png";
 import planeIcon from "/plane-img.png";
 import cameraIcon from "/camera-img.png";
 import { useTranslation } from "react-i18next";
+import { useAppContext } from "../contexts/useAppContext";
 
 const OrganizeMoney = () => {
   const { t, i18n } = useTranslation();
+  const { theme } = useAppContext();
   const isArabic = i18n.language === "ar";
 
   const goals = [
@@ -35,21 +37,21 @@ const OrganizeMoney = () => {
     },
   ];
   return (
-    <section className="mt-[6em] mb-[8em] px-[2em] md:px-0 md:text-center">
-      <h3 className="text-[2.5em] font-semibold  ">
+    <section className={`mt-[6em] mb-[8em] px-[2em] md:px-0 md:text-center`}>
+      <h3 className={`text-[2.5em] font-semibold ${theme === "light" ? "text-black" : "text-white"}`}>
         {t("organize_money_header")}
       </h3>
       <p
         className={`mt-[1em] font-medium max-w-[500px] md:m-auto md:mt-[1em] ${
           isArabic ? "text-[1.5em]" : ""
-        }`}
+        } ${theme === "light" ? "text-black" : "text-white"}`}
       >
         {t("organize_money_subheader")}
       </p>
 
       <div className="goals-container mt-[3em] flex items-center justify-center gap-[1em] flex-wrap md:max-w-[70%] md:m-auto md:mt-[3em]">
         {goals.map((goal, i) => (
-          <div key={i} className="mb-[1em]">
+          <div key={i} className={`mb-[1em] ${theme === "light" ? "text-black" : "text-white"}`}>
             <div
               style={{ backgroundColor: goal.color }}
               className="w-[150px] h-[150px] rounded-[10px] flex flex-col items-center justify-center"
