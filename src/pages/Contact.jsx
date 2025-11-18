@@ -6,6 +6,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
 import LocationPinIcon from "@mui/icons-material/LocationPin";
 import { useTranslation } from "react-i18next";
+import { useAppContext } from "../contexts/useAppContext";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +16,7 @@ const Contact = () => {
   });
 
   const { t, i18n } = useTranslation();
+  const { theme } = useAppContext();
   const isArabic = i18n.language === "ar";
 
   const handleChange = (event) => {
@@ -31,14 +33,18 @@ const Contact = () => {
   };
 
   return (
-    <section className="pb-[3em]">
+    <section
+      className={`${
+        theme === "dark" ? "bg-[#111217] text-white" : ""
+      } pb-[3em]`}
+    >
       <div className=" bg-linear-to-br from-[#b25ef7] via-[#8881ed] to-[#91bfff] text-center p-10 text-white">
         <h2 className="font-bold text-3xl">{t("contact_title")}</h2>
         <p className="mt-2">{t("contact_subtitle")}</p>
       </div>
 
       <section className="xl:flex xl:justify-around">
-        <div className="form-container text-center mt-[1em] md:w-[60%] md:m-auto md:pb-3 md:mt-[2em] px-2 xl:shadow-md xl:w-[40%] xl:m-0 xl:mt-[3em] ">
+        <div className="form-container text-center mt-[1em] md:w-[60%] md:m-auto md:pb-3 md:mt-[2em] px-2 xl:shadow-md xl:w-[40%] xl:m-0 xl:mt-[3em]">
           <h3 className="text-2xl font-bold">{t("contact_form_title")}</h3>
           <p className="p-2 mt-[.5em] text-[#838383]">
             {t("contact_form_desc")}
@@ -62,6 +68,25 @@ const Contact = () => {
                 value={formData.fullname}
                 onChange={handleChange}
                 fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: theme === "dark" ? "#838383" : "",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: theme === "dark" ? "#838383" : "",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: theme === "dark" ? "#838383" : "",
+                    },
+                  },
+                  "& .MuiInputBase-input": {
+                    color: theme === "dark" ? "#838383" : "",
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: theme === "dark" ? "#838383" : "",
+                  },
+                }}
               />
               <TextField
                 label={t("contact_email")}
@@ -70,6 +95,25 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
                 fullWidth
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: theme === "dark" ? "#838383" : "",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: theme === "dark" ? "#838383" : "",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: theme === "dark" ? "#838383" : "",
+                    },
+                  },
+                  "& .MuiInputBase-input": {
+                    color: theme === "dark" ? "#838383" : "",
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: theme === "dark" ? "#838383" : "",
+                  },
+                }}
               />
               <TextField
                 label={t("contact_message")}
@@ -79,11 +123,31 @@ const Contact = () => {
                 variant="outlined"
                 value={formData.message}
                 onChange={handleChange}
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: theme === "dark" ? "#838383" : "",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: theme === "dark" ? "#838383" : "",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: theme === "dark" ? "#838383" : "",
+                    },
+                  },
+                  "& .MuiInputBase-input": {
+                    color: theme === "dark" ? "#838383" : "",
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: theme === "dark" ? "#838383" : "",
+                  },
+                }}
               />
               <Button
                 type="submit"
                 variant="contained"
-                sx={{ backgroundColor: "#010c31" }}
+                sx={{ backgroundColor: theme === "light" ? "#010c31" : "" }}
+                className="login-btn"
               >
                 {t("contact_send_button")}
               </Button>

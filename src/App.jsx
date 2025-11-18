@@ -20,9 +20,11 @@ import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import About from "./pages/About.jsx";
 import Profile from "./pages/Profile.jsx";
+import { useAppContext } from "./contexts/useAppContext.jsx";
 
 const Layout = ({ children }) => {
   const location = useLocation();
+  const { theme } = useAppContext();
 
   const hideLayoutPages = [
     "/Login",
@@ -39,8 +41,10 @@ const Layout = ({ children }) => {
           <Navbar />
         </>
       )}
-      <main>{children}</main>
-      {!hideLayout && <Footer />}
+      <main className={`${theme === "dark" ? "bg-[#111217]" : ""}`}>
+        {children}
+        {!hideLayout && <Footer />}
+      </main>
     </>
   );
 };

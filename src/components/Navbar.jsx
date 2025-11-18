@@ -16,11 +16,15 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import HeaderMenu from "./HeaderMenu";
 import LanguageThemeToggle from "./LanguageThemeToggle";
+import { useAppContext } from "../contexts/useAppContext";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { t, i18n } = useTranslation();
+  const { theme } = useAppContext();
+
   const isArabic = i18n.language === "ar";
+  console.log(theme);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -29,6 +33,7 @@ const Navbar = () => {
   const navItems = [
     { name: t("nav_home"), path: "/" },
     { name: t("nav_about"), path: "/about" },
+    { name: t("nav_receipts"), path: "/receipts" },
     { name: t("nav_pricing"), path: "/pricing" },
     { name: t("nav_contact"), path: "/contact" },
   ];
@@ -36,7 +41,9 @@ const Navbar = () => {
   const drawer = (
     <Box
       onClick={handleDrawerToggle}
-      className="w-64 h-full bg-white flex flex-col p-6"
+      className={`w-64 h-full flex flex-col p-6 ${
+        theme === "dark" ? "bg-[#111217] text-white" : "bg-white text-black"
+      }`}
     >
       <div className="flex justify-between items-center mb-6">
         <div className="logo-wrapper flex align-items-center gap-2">
@@ -49,7 +56,7 @@ const Navbar = () => {
         </div>
 
         <IconButton onClick={handleDrawerToggle}>
-          <CloseIcon />
+          <CloseIcon sx={{ color: theme === "light" ? "black" : "white" }} />
         </IconButton>
       </div>
       <List>
@@ -72,7 +79,7 @@ const Navbar = () => {
   );
 
   return (
-    <Box className="py-[1em]">
+    <Box className={`py-[1em] ${theme === "dark" ? "bg-[#111217]" : "bg-white"}`}>
       <AppBar position="static" color="" elevation={0}>
         <Toolbar className="flex justify-between ">
           <div className="logo-wrapper flex align-items-center gap-2">
@@ -80,7 +87,12 @@ const Navbar = () => {
               variant="p"
               className="font-semibold tracking-[-1px] text-[1.5em]"
             >
-              Spend <span className="logo-span">Right</span>
+              <span
+                className={`${theme === "light" ? "text-black" : "text-white"}`}
+              >
+                Spend
+              </span>{" "}
+              <span className="logo-span">Right</span>
             </Typography>
           </div>
 
@@ -94,7 +106,9 @@ const Navbar = () => {
                   fontSize: "1.1em",
                   fontWeight: "semibold",
                 }}
-                className="text-gray-700 cursor-pointer hover:text-indigo-400"
+                className={` cursor-pointer hover:text-indigo-400 ${
+                  theme === "light" ? "text-gray-700" : "text-white"
+                }`}
               >
                 <Link to={item.path}>{item.name}</Link>
               </Typography>
@@ -117,7 +131,10 @@ const Navbar = () => {
               onClick={handleDrawerToggle}
               className="hidden"
             >
-              <MenuIcon className="text-gray-800 md:hidden" />
+              <MenuIcon
+                className="text-gray-800 md:hidden"
+                sx={{ color: theme === "light" ? "black" : "white" }}
+              />
             </IconButton>
           </div>
         </Toolbar>
