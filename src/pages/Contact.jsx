@@ -1,6 +1,7 @@
 import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
-import contactImg from "/src/receipt-contact-2.jpg";
+// import contactImg from "/src/receipt-contact-2.jpg";
+import contactImg from "/contact-img.jpg";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
 import LocationPinIcon from "@mui/icons-material/LocationPin";
@@ -31,7 +32,7 @@ const Contact = () => {
 
   return (
     <section className="pb-[3em]">
-      <div className="contact-header bg-purple-700 text-center p-10 text-white">
+      <div className=" bg-linear-to-br from-[#b25ef7] via-[#8881ed] to-[#91bfff] text-center p-10 text-white">
         <h2 className="font-bold text-3xl">{t("contact_title")}</h2>
         <p className="mt-2">{t("contact_subtitle")}</p>
       </div>
@@ -142,11 +143,11 @@ const Contact = () => {
             </div>
           </div>
 
-          <div className="md:w-[50%] m-auto mt-[3em] px-2 xl:w-[500px] xl:order-1 xl:mt-0">
+          <div className="md:w-[50%] m-auto mt-[3em] px-2 xl:w-[500px] xl:order-1 xl:mt-0 ">
             <img
               src={contactImg}
               alt={t("contact_image_alt")}
-              className="w-full rounded-md"
+              className="w-full rounded-md "
             />
           </div>
         </section>

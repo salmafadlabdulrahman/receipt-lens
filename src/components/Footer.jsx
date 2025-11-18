@@ -1,4 +1,7 @@
+import { useTranslation } from "react-i18next";
+
 const Footer = () => {
+  const {t} = useTranslation();
   return (
     <footer className="text-center mt-[10em] pb-[2em]">
       <span className="block bg-[#d1d1d1] p-[.2px] "></span>
@@ -6,7 +9,7 @@ const Footer = () => {
         <p className="font-semibold text-[1.2em]">
           Spend <span className="logo-span">Right</span>
         </p>
-        <p className="mt-[1em]">Contact • About Us • Recent Receipts</p>
+        <p className="mt-[1em]">{t("nav_contact")} • {t("nav_about")} • {t("recent_receipts_footer")}</p>
         <p className="mt-[1.5em] font-semibold text-[.8em]">
           &copy; 2025 spendright Inc.
         </p>
