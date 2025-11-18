@@ -37,10 +37,24 @@ const RegisterFormSection = () => {
     <div className="max-w-md w-full py-4">
       <HeaderLogo />
 
-      <h2 className="text-3xl font-bold text-gray-900 mt-8 mb-2 text-center">
-        {t("signup_title")} 
+      <h2
+        className="text-3xl font-bold font-900 mt-8 mb-2 text-center"
+        style={{
+          fontFamily: "var(--font-primary)",
+          color: "var( --text-main)",
+        }}
+      >
+        {t("signup_title")}
       </h2>
-      <p className="text-gray-500 text-center mb-8">{t("signup_subtitle")}</p>
+      <p
+        className="font-500 text-center mb-8"
+        style={{
+          fontFamily: "var(--font-primary)",
+          color: "var( --text-main)",
+        }}
+      >
+        {t("signup_subtitle")}
+      </p>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <InputField
@@ -96,14 +110,22 @@ const RegisterFormSection = () => {
             {t("agree_terms")}
             <a
               href="#"
-              className="text-purple-600 hover:text-purple-700 font-medium"
+              className=" font-bold"
+              style={{
+                fontFamily: "var(--font-primary)",
+                color: "var( --text-main)",
+              }}
             >
               {t("terms_of_service")}
             </a>{" "}
             {t("and")}{" "}
             <a
               href="#"
-              className="text-purple-600 hover:text-purple-700 font-medium"
+              className=" font-bold"
+              style={{
+                fontFamily: "var(--font-primary)",
+                color: "var( --text-main)",
+              }}
             >
               {t("privacy_policy")}
             </a>
@@ -118,8 +140,12 @@ const RegisterFormSection = () => {
       <p className="mt-6 text-center text-sm text-gray-500">
         {t("already_have_account")}
         <Link
-          to="/"
-          className="text-purple-600 hover:text-purple-700 font-medium ml-1"
+          to="/login"
+          className="  ml-1 font-bold"
+          style={{
+            fontFamily: "var(--font-primary)",
+            color: "var( --text-main)",
+          }}
         >
           {t("login")}
         </Link>

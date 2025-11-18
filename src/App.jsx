@@ -14,6 +14,7 @@ import Contact from "./pages/Contact";
 import Login from "./pages/LoginPage/LoginPage.jsx";
 import ForgotPassword from "./pages/LoginPage/ForgotPasswordPage.jsx";
 import Register from "./pages/RegisterPage/RegisterPage.jsx";
+import SuccessScreen from "./components/login/SuccessScreen.jsx";
 
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
@@ -23,7 +24,12 @@ import Profile from "./pages/Profile.jsx";
 const Layout = ({ children }) => {
   const location = useLocation();
 
-  const hideLayoutPages = ["/login", "/Register", "/ForgotPassword"];
+  const hideLayoutPages = [
+    "/Login",
+    "/Register",
+    "/ForgotPassword",
+    "/SuccessScreen",
+  ];
   const hideLayout = hideLayoutPages.includes(location.pathname);
 
   return (
@@ -55,6 +61,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/about" element={<About />} />
+          <Route path="/SuccessScreen" element={<SuccessScreen />} />
+          <Route path="/Login" element={<Login />} />
+
           <Route path="/ForgotPassword" element={<ForgotPassword />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>

@@ -22,12 +22,7 @@ const ForgotPasswordForm = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-center text-gray-900 mb-5">
-        {t("forgot_password_title")}
-      </h2>
-      {/* <p className="text-sm text-center text-gray-500">
-        {t("forgot_password_subtitle")}
-      </p> */}
+   
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <InputField
@@ -48,8 +43,8 @@ const ForgotPasswordForm = () => {
       <p className="mt-4 text-center text-sm text-gray-500">
         {t("back_to_login_text")}{" "}
         <a
-          href="/"
-          className="text-purple-600 hover:text-purple-700 font-medium ml-1"
+          href="/Login"
+          className="font-700 font-bold ml-1 "style={{color:"var( --text-main)",fontFamily:"var(--font-primary)"}}
         >
           {t("back_to_login")}
         </a>
