@@ -94,7 +94,7 @@
   "success_title": "Success",
   "success_check_email": "Please check your email to create a new password.",
   "cant_get_email": "Can't get email?",
-  "resubmit": "Resubmit"
+  "resubmit": "Resubmit",
   "start_btn": "Get Started",
   "explore_btn": "Explore More",
   "organize_money_header": "Organize your money the right way",
@@ -105,5 +105,4 @@
   "recent_receipts_footer": "Recent Receipts",
   "account": "Account",
   "name": "Name"
-
 }
