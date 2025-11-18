@@ -104,6 +104,9 @@
   "home_header": "Where did your money go?",
   "home_second_part": "Finally get",
   "home_third_part": "answers.",
-  "home_subtitle": "From coffee runs to big purchases - track everything in one place. Your path to financial freedom starts with a single scan."
-  
+  "home_subtitle": "From coffee runs to big purchases - track everything in one place. Your path to financial freedom starts with a single scan.",
+  "success_title": "Success",
+  "success_check_email": "Please check your email to create a new password.",
+  "cant_get_email": "Can't get email?",
+  "resubmit": "Resubmit"
 }

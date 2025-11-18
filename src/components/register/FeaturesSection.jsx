@@ -12,26 +12,67 @@ const FeaturesSidebar = () => {
           alt={t("feature_image_alt")}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-black/10"></div>
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-2xl font-bold mb-8">{t("feature_title")}</h3>
-        <p className="text-center mb-6 max-w-sm text-purple-200">
+        <h3
+          className="text-2xl font-bold mb-8"
+          style={{
+            fontFamily: "var(--font-primary)",
+            color: "var( --text-main)",
+          }}
+        >
+          {t("feature_title")}
+        </h3>
+        <p
+          className="text-center mb-5 max-w-sm font-400"
+          style={{
+            fontFamily: "var(--font-primary)",
+            color: "var( --text-main)",
+          }}
+        >
           {t("feature_description")}
         </p>
 
-        <ul className="space-y-3 text-left w-full max-w-xs">
+        <ul
+          className="space-y-3 text-left w-full max-w-xs"
+          style={{
+            fontFamily: "var(--font-primary)",
+            color: "var( --text-main)",
+          }}
+        >
           <li className="flex items-center">
-            <FiCheckCircle className="text-purple-400 mr-3" size={20} />
+            <FiCheckCircle
+              className="font-400 mr-3"
+              style={{
+                fontFamily: "var(--font-primary)",
+                color: "var( --text-main)",
+              }}
+              size={20}
+            />
             {t("feature_item_1")}
           </li>
           <li className="flex items-center">
-            <FiCheckCircle className="text-purple-400 mr-3" size={20} />
+            <FiCheckCircle
+              className="font-400 mr-3"
+              style={{
+                fontFamily: "var(--font-primary)",
+                color: "var( --text-main)",
+              }}
+              size={20}
+            />
             {t("feature_item_2")}
           </li>
           <li className="flex items-center">
-            <FiCheckCircle className="text-purple-400 mr-3" size={20} />
+            <FiCheckCircle
+              className="font-400 mr-3 "
+              style={{
+                fontFamily: "var(--font-primary)",
+                color: "var( --text-main)",
+              }}
+              size={20}
+            />
             {t("feature_item_3")}
           </li>
         </ul>
