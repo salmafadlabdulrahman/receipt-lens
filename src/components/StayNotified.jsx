@@ -13,7 +13,7 @@ const StayNotified = () => {
   return (
     <section
       className={`mt-[6em] mb-[8em] px-[2em] md:px-0 md:flex md:gap-[3em] md:items-center md:justify-center ${
-        theme === "light" ? "text-black" : "bg-[#111217] text-white"
+        theme === "light" ? "text-black" : "bg-dark-gray text-white"
       }`}
     >
       <div>

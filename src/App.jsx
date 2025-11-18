@@ -41,7 +41,7 @@ const Layout = ({ children }) => {
           <Navbar />
         </>
       )}
-      <main className={`${theme === "dark" ? "bg-[#111217]" : ""}`}>
+      <main className={`${theme === "dark" ? "bg-dark-gray" : ""}`}>
         {children}
         {!hideLayout && <Footer />}
       </main>

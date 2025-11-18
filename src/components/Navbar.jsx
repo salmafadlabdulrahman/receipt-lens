@@ -42,7 +42,7 @@ const Navbar = () => {
     <Box
       onClick={handleDrawerToggle}
       className={`w-64 h-full flex flex-col p-6 ${
-        theme === "dark" ? "bg-[#111217] text-white" : "bg-white text-black"
+        theme === "dark" ? "bg-dark-gray text-white" : "bg-white text-black"
       }`}
     >
       <div className="flex justify-between items-center mb-6">
@@ -79,7 +79,7 @@ const Navbar = () => {
   );
 
   return (
-    <Box className={`py-[1em] ${theme === "dark" ? "bg-[#111217]" : "bg-white"}`}>
+    <Box className={`py-[1em] ${theme === "dark" ? "bg-dark-gray" : "bg-white"}`}>
       <AppBar position="static" color="" elevation={0}>
         <Toolbar className="flex justify-between ">
           <div className="logo-wrapper flex align-items-center gap-2">
