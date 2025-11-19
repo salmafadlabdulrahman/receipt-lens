@@ -66,7 +66,6 @@ const PricingCard = ({ plan, isYearly }) => {
     billingKey,
     isPopular,
     buttonTextKey,
-    buttonInfoKey,
     features,
   } = plan;
   const currentPrice = isYearly ? yearlyPrice : monthlyPrice;
@@ -111,7 +110,11 @@ const PricingCard = ({ plan, isYearly }) => {
         <Motion.h3
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-lg font-semibold uppercase tracking-wider text-gray-600"
+          className="text-lg font-semibold uppercase tracking-wider font-600"
+          style={{
+            fontFamily: "var(--font-primary)",
+            color: isProfessional ? "var(--text-inverse)" : "var(--text-main)",
+          }}
         >
           {t(type)}
         </Motion.h3>
@@ -129,7 +132,15 @@ const PricingCard = ({ plan, isYearly }) => {
         >
           {currentPrice}
         </Motion.div>
-        <p className="mt-1 text-sm text-gray-500">{t(billingKey)}</p>
+        <p
+          className="mt-1 text-sm font-500"
+          style={{
+            fontFamily: "var(--font-primary)",
+            color: isProfessional ? "var(--text-inverse)" : "var(--text-main)",
+          }}
+        >
+          {t(billingKey)}
+        </p>
       </div>
 
       <ul className={`grow px-8 pb-8 space-y-3`}>
@@ -139,13 +150,19 @@ const PricingCard = ({ plan, isYearly }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: index * 0.1 }}
-            className={`flex items-start text-sm text-gray-600 ${
+            style={{
+              fontFamily: "var(--font-secondary)",
+              color: isProfessional
+                ? "var(--text-inverse)"
+                : "var(--text-main)",
+            }}
+            className={`flex items-start text-sm font-600 ${
               isArabic ? "flex-row-reverse justify-end" : "flex-row"
             }`}
           >
             {feature.type === "check" && (
               <CheckIcon
-                className={`w-4 h-4 text-green-500 mt-0.5 ${
+                className={`w-5 h-5 text-green-500 mt-0.5 ${
                   isArabic ? "ml-2" : "mr-2"
                 }`}
               />
@@ -163,14 +180,16 @@ const PricingCard = ({ plan, isYearly }) => {
         className="p-8 pt-0"
       >
         <button
-          style={{ backgroundColor: "var(--color-dark-blue-header)" }}
-          className="w-full py-3 rounded-lg font-semibold text-white hover:bg-gray-800 transition-colors"
+          style={{
+            backgroundColor: isProfessional
+              ? "var( --color-light-gray-bg)"
+              : "var(--color-dark-blue-header)",
+            color: isProfessional ? "var(--text-main)" : "var(--text-inverse)",
+          }}
+          className="w-full py-3 rounded-lg font-semibold  hover:bg-opacity-90 transition-colors"
         >
           {t(buttonTextKey)}
         </button>
-        <p className="mt-2 text-xs text-center text-gray-400">
-          {t(buttonInfoKey)}
-        </p>
       </Motion.div>
     </Motion.div>
   );
