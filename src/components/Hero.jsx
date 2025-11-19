@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import phoneImg from "/phone-img.png";
 import { useAppContext } from "../contexts/useAppContext";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const { t, i18n } = useTranslation();
@@ -35,12 +36,17 @@ const Hero = () => {
           {t("home_subtitle")}
         </p>
         <div className="mt-[3em] justify-center flex flex-wrap gap-[1.5em]">
-          <button className="border border-black rounded-4xl py-[.8em] px-[1.9em] cursor-pointer hover:bg-white hover:text-black">
-            {t("start_btn")}
-          </button>
-          <button className="border border-black rounded-4xl py-[.8em] px-[1.9em] cursor-pointer bg-black text-white">
-            {t("explore_btn")}
-          </button>
+          <Link to={"/receipts"}>
+            <button className="border border-black rounded-4xl py-[.8em] px-[1.9em] cursor-pointer hover:bg-white hover:text-black">
+              {t("start_btn")}
+            </button>
+          </Link>
+
+          <Link to={"/about"}>
+            <button className="border border-black rounded-4xl py-[.8em] px-[1.9em] cursor-pointer bg-black text-white">
+              {t("explore_btn")}
+            </button>
+          </Link>
         </div>
       </div>
 
