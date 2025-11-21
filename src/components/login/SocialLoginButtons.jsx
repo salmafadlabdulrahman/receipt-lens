@@ -34,7 +34,8 @@ const SocialLoginButtons = () => {
         Google
       </button>
 
-      <button className="flex items-center justify-center w-full py-2 border border-gray-300 rounded-xl text-gray-600 hover:bg-gray-50 transition duration-150">
+      <button         style={{ color: "var(--text-main)" }}
+ className="flex items-center justify-center w-full py-2 border border-gray-300 rounded-xl text-gray-600 hover:bg-gray-50 transition duration-150">
         <svg
           className={`w-5 h-5 ${isRTL ? "ml-2" : "mr-2"}`}
           style={{

@@ -1,33 +1,37 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import LanguageSwitcher from "../common/LanguageSwitcher";
+import LanguageThemeToggle from "../../components/LanguageThemeToggle.jsx";
 
 const SuccessScreen = ({ onResubmit }) => {
   const { t } = useTranslation();
 
   return (
     <div
+      className="min-h-screen flex flex-col items-center justify-center p-10 sm:pt-10 transition-colors duration-300"
       style={{
-        backgroundColor: "var( --bg-main)",
+        backgroundColor: "var(--bg-main)", 
+        color: "var(--text-main)",
       }}
-      className="min-h-screen flex flex-col items-center justify-center p-10 sm:pt-10"
     >
       <div className="absolute top-4 right-4 z-10">
-        <LanguageSwitcher />
+        <LanguageThemeToggle />
       </div>
 
       <div
-        className="w-full max-w-md p-20  shadow-xl rounded-xl"
+        className="w-full max-w-md p-20 shadow-xl rounded-xl transition-colors duration-300"
         style={{
-          backgroundColor: "var( --bg-main)",
+          backgroundColor: "var(--bg-card)", 
+          color: "var(--text-main)",
         }}
       >
-        {/* Images */}
         <div className="flex justify-center mb-6 relative">
           <img
             src="/cactus-forgot.png"
             alt="Success Cactus"
             className="w-52 h-52 rounded-full"
+            style={{
+              filter: "var(--image-dark-filter)", 
+            }}
           />
           <img
             src="/stars.png"
@@ -44,7 +48,7 @@ const SuccessScreen = ({ onResubmit }) => {
         <h1
           className="text-2xl font-bold text-center font-900 mb-2"
           style={{
-            color: "var(--primary)",
+            color: "var(--text-main)",
             fontFamily: "var(--font-primary)",
           }}
         >
@@ -54,7 +58,7 @@ const SuccessScreen = ({ onResubmit }) => {
         <p
           className="text-m text-center font-600 mb-6"
           style={{
-            color: "var( --text-muted)",
+            color: "var(--text-muted)",
             fontFamily: "var(--font-secondary)",
           }}
         >
@@ -64,14 +68,13 @@ const SuccessScreen = ({ onResubmit }) => {
         <p
           className="text-m font-500 mb-8 text-center p-1"
           style={{
-            color: "var( --text-muted)",
+            color: "var(--text-muted)",
             fontFamily: "var(--font-secondary)",
           }}
         >
           {t("cant_get_email")}
-
           <span
-            className=" text-m font-bold cursor-pointer ml-1"
+            className="text-m font-bold cursor-pointer ml-1"
             style={{
               color: "var(--secondary)",
               fontFamily: "var(--font-primary)",
