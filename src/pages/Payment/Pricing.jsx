@@ -1,7 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion as Motion } from "framer-motion";
 import { CheckIcon } from "@heroicons/react/24/solid";
 import { useTranslation } from "react-i18next";
+
+const useDarkMode = () => {
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const checkDarkMode = () => {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    };
+    checkDarkMode();
+    const observer = new MutationObserver(checkDarkMode);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  return isDark;
+};
 
 const plans = [
   {
@@ -11,7 +30,6 @@ const plans = [
     billingKey: "perfectForStarting",
     isPopular: false,
     buttonTextKey: "buttonText",
-    buttonInfoKey: "buttonInfo",
     features: [
       { textKey: "track10", type: "check" },
       { textKey: "basicCategories", type: "check" },
@@ -26,7 +44,6 @@ const plans = [
     billingKey: "billingMonthly",
     isPopular: true,
     buttonTextKey: "buttonText",
-    buttonInfoKey: "buttonInfo",
     features: [
       { textKey: "unlimitedTransactions", type: "check" },
       { textKey: "advancedAnalytics", type: "check" },
@@ -43,7 +60,6 @@ const plans = [
     billingKey: "billingMonthly",
     isPopular: false,
     buttonTextKey: "buttonText",
-    buttonInfoKey: "buttonInfo",
     features: [
       { textKey: "everythingInPro", type: "check" },
       { textKey: "teamCollab", type: "check" },
@@ -58,6 +74,8 @@ const plans = [
 
 const PricingCard = ({ plan, isYearly }) => {
   const { t, i18n } = useTranslation();
+  const isArabic = i18n.language.startsWith("ar");
+  const isDarkMode = useDarkMode();
 
   const {
     type,
@@ -66,20 +84,45 @@ const PricingCard = ({ plan, isYearly }) => {
     billingKey,
     isPopular,
     buttonTextKey,
-    buttonInfoKey,
     features,
   } = plan;
   const currentPrice = isYearly ? yearlyPrice : monthlyPrice;
-  const isProfessional = type === "Pro";
 
-  const isArabic = i18n.language.startsWith("ar");
+  const isProPlan = type === "Pro";
 
-  const cardStyle = isProfessional
-    ? { background: "var(--color-dark-blue-card)", color: "white" }
-    : { background: "white" };
-  const cardBorder = isProfessional
-    ? "border-[var(--color-dark-blue-card)]"
-    : "border-[var(--color-card-border)]";
+  const isSpecialStyle = isDarkMode ? !isProPlan : isProPlan;
+  const isProInDarkMode = isDarkMode && isProPlan;
+
+  let cardBg, textColor, borderColor, headerBg, btnBg, btnText;
+
+  if (isSpecialStyle) {
+    cardBg = "var(--color-dark-blue-card)";
+    textColor = "#ffffff";
+    borderColor = "var(--color-dark-blue-card)";
+    headerBg = "var(--color-dark-blue-header)";
+
+    if (isDarkMode) {
+        btnBg = "#000000";
+        btnText = "#ffffff";
+    } else {
+        btnBg = "var(--color-light-gray-bg)";
+        btnText = "var(--text-main)";
+    }
+  } else if (isProInDarkMode) {
+    cardBg = "var(--color-light-gray-bg)";
+    textColor = "#000000";
+    borderColor = "var(--color-light-gray-bg)";
+    headerBg = "rgba(0,0,0,0.05)";
+    btnBg = "#000000";
+    btnText = "#ffffff";
+  } else {
+    cardBg = "var(--bg-card)";
+    textColor = "var(--text-main)";
+    borderColor = "var(--color-card-border)";
+    headerBg = "var(--bg-secondary)";
+    btnBg = "var(--color-dark-blue-header)";
+    btnText = "var(--text-inverse)";
+  }
 
   return (
     <Motion.div
@@ -87,67 +130,87 @@ const PricingCard = ({ plan, isYearly }) => {
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ scale: 1.03 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      style={cardStyle}
-      className={`relative flex flex-col rounded-xl border ${cardBorder} shadow-xl ${
+      style={{
+        background: cardBg,
+        color: textColor,
+      }}
+      dir={isArabic ? "rtl" : "ltr"}
+      className={`relative flex flex-col rounded-xl border shadow-xl ${
         isArabic ? "rtl" : "ltr"
       }`}
     >
+      <div
+        className="absolute inset-0 rounded-xl pointer-events-none border"
+        style={{ borderColor: borderColor }}
+      ></div>
+
       {isPopular && (
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 text-xs font-semibold rounded-full bg-yellow-300 text-black">
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 text-xs font-semibold rounded-full bg-yellow-300 text-black z-10">
           {t("popular")}
         </div>
       )}
 
       <div
-        className={`py-6 px-8 rounded-t-xl ${
-          isProfessional ? "text-white" : "text-gray-600"
-        }`}
+        className={`py-6 px-8 rounded-t-xl`}
         style={{
-          background: isProfessional
-            ? "var(--color-dark-blue-header)"
-            : "var(--bg-secondary)",
+          background: headerBg,
+          color: textColor,
         }}
       >
         <Motion.h3
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="text-lg font-semibold uppercase tracking-wider text-gray-600"
+          className="text-lg font-semibold uppercase tracking-wider font-600"
+          style={{ fontFamily: "var(--font-primary)" }}
         >
           {t(type)}
         </Motion.h3>
       </div>
 
       <div
-        className={`px-8 py-6 flex flex-col ${
-          isArabic ? "items-end text-right" : "items-start text-left"
+        className={`px-8 py-6 flex flex-col items-start ${
+          isArabic ? "text-right" : "text-left"
         }`}
       >
         <Motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="text-5xl font-extrabold"
+          style={{ color: textColor }}
         >
           {currentPrice}
         </Motion.div>
-        <p className="mt-1 text-sm text-gray-500">{t(billingKey)}</p>
+        <p
+          className="mt-1 text-sm font-500"
+          style={{
+            fontFamily: "var(--font-primary)",
+            color: textColor,
+          }}
+        >
+          {t(billingKey)}
+        </p>
       </div>
 
-      <ul className={`grow px-8 pb-8 space-y-3`}>
+      <ul className="grow px-8 pb-8 space-y-3">
         {features.map((feature, index) => (
           <Motion.li
             key={index}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: index * 0.1 }}
-            className={`flex items-start text-sm text-gray-600 ${
-              isArabic ? "flex-row-reverse justify-end" : "flex-row"
+            className={`flex items-start text-sm font-600 ${
+              isArabic ? "flex-row text-right" : "flex-row text-left"
             }`}
+            style={{
+              fontFamily: "var(--font-secondary)",
+              color: textColor,
+            }}
           >
             {feature.type === "check" && (
               <CheckIcon
-                className={`w-4 h-4 text-green-500 mt-0.5 ${
+                className={`w-5 h-5 mt-0.5 ${
                   isArabic ? "ml-2" : "mr-2"
-                }`}
+                } text-green-500`}
               />
             )}
             <span className={isArabic ? "text-right" : "text-left"}>
@@ -163,14 +226,14 @@ const PricingCard = ({ plan, isYearly }) => {
         className="p-8 pt-0"
       >
         <button
-          style={{ backgroundColor: "var(--color-dark-blue-header)" }}
-          className="w-full py-3 rounded-lg font-semibold text-white hover:bg-gray-800 transition-colors"
+          style={{
+            backgroundColor: btnBg,
+            color: btnText,
+          }}
+          className="w-full py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors"
         >
           {t(buttonTextKey)}
         </button>
-        <p className="mt-2 text-xs text-center text-gray-400">
-          {t(buttonInfoKey)}
-        </p>
       </Motion.div>
     </Motion.div>
   );
@@ -180,15 +243,20 @@ const Pricing = () => {
   const [isYearly, setIsYearly] = useState(false);
   const { t, i18n } = useTranslation();
   const isArabic = i18n.language.startsWith("ar");
+  const isDarkMode = useDarkMode();
 
   return (
     <Motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.9 }}
-      className={`min-h-screen py-16 px-4 sm:px-6 lg:px-8 font-sans ${
+      className={`min-h-screen py-16 px-4 sm:px-6 lg:px-8 font-sans transition-colors duration-300 ${
         isArabic ? "rtl" : "ltr"
       }`}
+      style={{
+        backgroundColor: isDarkMode ? "#111217" : "var(--bg-main)",
+        color: "var(--text-main)",
+      }}
     >
       <div className="max-w-7xl mx-auto">
         <Motion.div

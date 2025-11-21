@@ -1,35 +1,35 @@
 import React from "react";
 import RegisterFormSection from "../../components/register/RegisterFormSection";
-import FeaturesSection from "../../components/register/FeaturesSection";
-import LanguageSwitcher from "../../components/common/LanguageSwitcher.jsx";
+import FeaturesSidebar from "../../components/login/FeaturesSidebar.jsx";
+import LanguageThemeToggle from "../../components/LanguageThemeToggle.jsx";
 
 const RegisterPage = () => {
   return (
-    <div
-      className="min-h-screen flex flex-col md:flex-row font-sans"
-      style={{ backgroundColor: "var(--bg-main)" }}
-    >
+    <div className="min-h-screen flex flex-col md:flex-row font-sans">
       <div
         className="w-full md:w-1/2 flex flex-col items-center justify-start 
-                  p-8 md:p-12 lg:p-5  shadow-2xl md:shadow-none relative"
-        style={{ backgroundColor: "var(--bg-main)" }}
+                   p-8 md:p-12 lg:p-5 shadow-2xl md:shadow-none relative"
+        style={{
+          background: "var(--bg-main)",
+          color: "var(--text-main)",
+        }}
       >
         <div className="absolute top-4 right-4 z-10">
-          <LanguageSwitcher />
+          <LanguageThemeToggle />
         </div>
         <RegisterFormSection />
       </div>
 
       <div
         className="w-full md:w-1/2 flex items-center justify-center 
-                  p-8 md:p-12 lg:p-5 text-white 
-                  shadow-2xl"
+                   p-8 md:p-12 lg:p-5 shadow-2xl"
         style={{
           background: "var(--login-right-gradient)",
+          color: "var(--text-main)",
           fontFamily: "var(--font-primary)",
         }}
       >
-        <FeaturesSection />
+        <FeaturesSidebar />
       </div>
     </div>
   );
