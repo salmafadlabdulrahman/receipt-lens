@@ -9,18 +9,18 @@ const SuccessScreen = ({ onResubmit }) => {
     <div
       className="min-h-screen flex flex-col items-center justify-center p-10 sm:pt-10 transition-colors duration-300"
       style={{
-        backgroundColor: "var(--bg-main)", 
+        backgroundColor: "var(--bg-main)",
         color: "var(--text-main)",
       }}
     >
-      <div className="absolute top-4 right-4 z-10">
+      {/* <div className="absolute top-4 right-4 z-10">
         <LanguageThemeToggle />
-      </div>
+      </div> */}
 
       <div
         className="w-full max-w-md p-20 shadow-xl rounded-xl transition-colors duration-300"
         style={{
-          backgroundColor: "var(--bg-card)", 
+          backgroundColor: "var(--bg-card)",
           color: "var(--text-main)",
         }}
       >
@@ -30,7 +30,7 @@ const SuccessScreen = ({ onResubmit }) => {
             alt="Success Cactus"
             className="w-52 h-52 rounded-full"
             style={{
-              filter: "var(--image-dark-filter)", 
+              filter: "var(--image-dark-filter)",
             }}
           />
           <img
