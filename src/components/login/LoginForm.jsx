@@ -27,10 +27,12 @@ const LoginForm = () => {
     console.log("Login Attempt:", formData);
   };
 
+  const isArabic = i18n.language === "ar";
+
   return (
     <form
       className={`space-y-1 ${
-        i18n.language === "ar" ? "text-right" : "text-left"
+        isArabic ? "text-right" : "text-left"
       }`}
       onSubmit={handleSubmit}
     >
@@ -42,7 +44,8 @@ const LoginForm = () => {
         onChange={handleChange}
         placeholder={t("email_placeholder")}
         icon={Mail}
-        className={i18n.language === "ar" ? "text-right" : "text-left"}
+      
+        className={isArabic ? "text-right" : "text-left pl-10"}
       />
 
       <InputField
@@ -53,7 +56,7 @@ const LoginForm = () => {
         onChange={handleChange}
         placeholder={t("password_placeholder")}
         icon={Lock}
-        className={i18n.language === "ar" ? "text-right" : "text-left"}
+        className={isArabic ? "text-right" : "text-left pl-10"}
       />
 
       <div className="flex items-center justify-between text-sm">
@@ -63,21 +66,21 @@ const LoginForm = () => {
             name="rememberMe"
             checked={formData.rememberMe}
             onChange={handleChange}
-            className="w-4 h-4  border-gray-300 rounded-lg"
+            className="w-4 h-4 border-gray-300 rounded-lg"
             style={{
-              fontFamily: "var( --font-primary)",
+              fontFamily: "var(--font-primary)",
               color: "var(--text-main)",
             }}
           />
-          <span className={`${i18n.language === "ar" ? "mr-2" : "ml-2"}`}>
+          <span className={`${isArabic ? "mr-2" : "ml-2"}`}>
             {t("remember_me")}
           </span>
         </label>
         <a
           href="/ForgotPassword"
-          className="transition duration-150 font-bold "
+          className="transition duration-150 font-bold"
           style={{
-            fontFamily: "var( --font-primary)",
+            fontFamily: "var(--font-primary)",
             color: "var(--text-main)",
           }}
         >
@@ -92,11 +95,11 @@ const LoginForm = () => {
         <a
           href="/Register"
           style={{
-            fontFamily: "var( --font-primary)",
+            fontFamily: "var(--font-primary)",
             color: "var(--text-main)",
           }}
           className={`font-bold ${
-            i18n.language === "ar" ? "mr-1" : "ml-1"
+            isArabic ? "mr-1" : "ml-1"
           }`}
         >
           {t("signup_button")}

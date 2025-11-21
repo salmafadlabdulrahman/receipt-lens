@@ -4,6 +4,7 @@ import InputField from "../common/InputField.jsx";
 import PrimaryButton from "../common/PrimaryButton.jsx";
 import HeaderLogo from "../login/HeaderLogo.jsx";
 import { Link } from "react-router-dom";
+import { Mail, Lock, User } from "lucide-react";
 
 const RegisterFormSection = () => {
   const { t } = useTranslation();
@@ -41,7 +42,7 @@ const RegisterFormSection = () => {
         className="text-3xl font-bold font-900 mt-8 mb-2 text-center"
         style={{
           fontFamily: "var(--font-primary)",
-          color: "var( --text-main)",
+          color: "var(--text-main)",
         }}
       >
         {t("signup_title")}
@@ -50,7 +51,7 @@ const RegisterFormSection = () => {
         className="font-500 text-center mb-8"
         style={{
           fontFamily: "var(--font-primary)",
-          color: "var( --text-main)",
+          color: "var(--text-main)",
         }}
       >
         {t("signup_subtitle")}
@@ -64,8 +65,8 @@ const RegisterFormSection = () => {
           placeholder={t("full_name_placeholder")}
           value={formData.fullName}
           onChange={handleChange}
+          icon={User}
         />
-
         <InputField
           label={t("email")}
           type="email"
@@ -73,6 +74,7 @@ const RegisterFormSection = () => {
           placeholder={t("email_placeholder")}
           value={formData.email}
           onChange={handleChange}
+          icon={Mail}
         />
 
         <InputField
@@ -82,6 +84,7 @@ const RegisterFormSection = () => {
           placeholder={t("password_placeholder")}
           value={formData.password}
           onChange={handleChange}
+          icon={Lock}
         />
 
         <InputField
@@ -91,6 +94,7 @@ const RegisterFormSection = () => {
           placeholder={t("confirm_password_placeholder")}
           value={formData.confirmPassword}
           onChange={handleChange}
+          icon={Lock}
         />
 
         <div className="flex items-center pt-2">
@@ -100,32 +104,30 @@ const RegisterFormSection = () => {
             type="checkbox"
             checked={formData.agreeToTerms}
             onChange={handleChange}
-            className="h-4 w-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
+            className="h-4 w-4 rounded focus:ring-2 focus:ring-[var(--secondary)] border-[var(--border-color)] bg-[var(--bg-card)]"
             required
           />
           <label
             htmlFor="agreeToTerms"
-            className="ml-2 block text-sm text-gray-900"
+            className="ml-2 block text-sm"
+            style={{
+              fontFamily: "var(--font-primary)",
+              color: "var(--text-main)",
+            }}
           >
             {t("agree_terms")}
             <a
               href="#"
-              className=" font-bold"
-              style={{
-                fontFamily: "var(--font-primary)",
-                color: "var( --text-main)",
-              }}
+              className="font-bold ml-1"
+              style={{ color: "var(--text-main)" }}
             >
               {t("terms_of_service")}
             </a>{" "}
             {t("and")}{" "}
             <a
               href="#"
-              className=" font-bold"
-              style={{
-                fontFamily: "var(--font-primary)",
-                color: "var( --text-main)",
-              }}
+              className="font-bold ml-1"
+              style={{ color: "var(--text-main)" }}
             >
               {t("privacy_policy")}
             </a>
@@ -137,22 +139,31 @@ const RegisterFormSection = () => {
         </PrimaryButton>
       </form>
 
-      <p className="mt-6 text-center text-sm text-gray-500">
+      <p
+        className="mt-6 text-center text-sm"
+        style={{
+          color: "var(--text-muted)",
+          fontFamily: "var(--font-primary)",
+        }}
+      >
         {t("already_have_account")}
         <Link
           to="/login"
-          className="  ml-1 font-bold"
-          style={{
-            fontFamily: "var(--font-primary)",
-            color: "var( --text-main)",
-          }}
+          className="ml-1 font-bold"
+          style={{ color: "var(--text-main)" }}
         >
           {t("login")}
         </Link>
       </p>
 
-      <p className="mt-4 text-center text-xs text-gray-400 flex items-center justify-center">
-        <span className="mr-1"></span> {t("data_protected")}
+      <p
+        className="mt-4 text-center text-xs flex items-center justify-center"
+        style={{
+          color: "var(--text-muted)",
+          fontFamily: "var(--font-primary)",
+        }}
+      >
+        {t("data_protected")}
       </p>
     </div>
   );
