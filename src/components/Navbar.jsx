@@ -79,7 +79,9 @@ const Navbar = () => {
   );
 
   return (
-    <Box className={`py-[1em] ${theme === "dark" ? "bg-dark-gray" : "bg-white"}`}>
+    <Box
+      className={`py-[1em] ${theme === "dark" ? "bg-dark-gray" : "bg-white"}`}
+    >
       <AppBar position="static" color="" elevation={0}>
         <Toolbar className="flex justify-between ">
           <div className="logo-wrapper flex align-items-center gap-2">
@@ -117,9 +119,9 @@ const Navbar = () => {
 
           <div className="hidden md:flex items-center gap-[.5em]">
             <button className="login-btn text-white text-[1em] font-semibold py-[.4em] px-[1.7em] rounded-[7px] cursor-pointer">
-              {t("login_btn")}
+              <a href="/Login"> {t("login_btn")}</a>
             </button>
-            <HeaderMenu />
+            {/* <HeaderMenu /> */}
           </div>
 
           {/* Mobile Menu Button */}

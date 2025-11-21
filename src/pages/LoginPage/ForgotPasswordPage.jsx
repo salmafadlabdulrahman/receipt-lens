@@ -14,9 +14,9 @@ const ForgotPasswordPage = () => {
         color: "var(--text-main)",
       }}
     >
-      <div className="absolute top-4 right-4 z-10">
+      {/* <div className="absolute top-4 right-4 z-10">
         <LanguageThemeToggle />
-      </div>
+      </div> */}
 
       <div
         className="w-full max-w-md p-8 shadow-xl rounded-xl transition-colors duration-300"

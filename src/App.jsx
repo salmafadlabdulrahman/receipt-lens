@@ -16,6 +16,8 @@ import ForgotPassword from "./pages/LoginPage/ForgotPasswordPage.jsx";
 import Register from "./pages/RegisterPage/RegisterPage.jsx";
 import SuccessScreen from "./components/login/SuccessScreen.jsx";
 import Pricing from "./pages/Payment/Pricing.jsx";
+import FloatingToggleBox from "./components/FloatingToggleBox";
+
 import PaymentSuccessPage from "./pages/Payment/PaymentSuccessPage.jsx";
 
 import { useTranslation } from "react-i18next";
@@ -29,7 +31,7 @@ const Layout = ({ children }) => {
   const { theme } = useAppContext();
 
   const hideLayoutPages = [
-    "/login",
+    "/Login",
     "/Register",
     "/ForgotPassword",
     "/SuccessScreen",
@@ -38,11 +40,10 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      {!hideLayout && (
-        <>
-          <Navbar />
-        </>
-      )}
+      {!hideLayout && <Navbar />}
+
+      {!hideLayout && <FloatingToggleBox />}
+
       <main className={`${theme === "dark" ? "bg-dark-gray" : ""}`}>
         {children}
         {!hideLayout && <Footer />}
