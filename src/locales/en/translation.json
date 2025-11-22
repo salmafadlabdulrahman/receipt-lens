@@ -144,5 +144,20 @@
   "need_help_prompt": "Need help?",
   "link_contact_support": "Contact Support",
   "account": "Account",
-  "name": "Name"
+  "name": "Name",
+  "faq_title": "Frequently Asked Questions",
+  "question1": "How do I upload a new receipt?",
+  "answer1": "Go to the Add New Receipt page, click the Upload button or drag & drop your image/PDF file, fill in the receipt details (Vendor, Amount, Date, Category, Notes), then click Submit.",
+  "question2": "How do I edit a receipt after uploading it?",
+  "answer2": "Open the Receipt Details page, click Edit, update the necessary information, and click Save to update the receipt.",
+  "question3": "Can I delete a receipt?",
+  "answer3": "Yes. From the Receipt Details page or the receipt table, click Delete, and confirm the deletion to remove the receipt permanently.",
+  "question4": "What file formats are supported for receipts?",
+  "answer4": "The system supports JPG / PNG / PDF files. Make sure the file size is under 5MB for a successful upload.",
+  "question5": "Can I export my receipts?",
+  "answer5": "Yes. Click the Export button on the Receipts List page and select PDF / CSV / Excel to download your receipts.",
+  "question6": "How do I change my password?",
+  "answer6": "Go to Profile Settings, click Change Password, and follow the steps to enter your old and new password.",
+  "question7": "What do the receipt statuses (Pending / Approved / Rejected) mean?",
+  "answer7": "Pending: The receipt has been uploaded but not reviewed yet. Approved: The receipt has been verified and approved. Rejected: The receipt was rejected due to incomplete details or unclear image."
 }
