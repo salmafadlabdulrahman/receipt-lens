@@ -11,6 +11,15 @@ export default {
         light: "#f1f1f1",
         gold: "#FFD700",
       },
+      keyframes: {
+        float: {
+          "0%, 100%": { transform: "rotate(-1deg) translateY(0px)" },
+          "50%": { transform: "rotate(1deg) translateY(-8px)" },
+        },
+      },
+      animation: {
+        float: "float 4s ease-in-out infinite",
+      },
     },
   },
   plugins: [],

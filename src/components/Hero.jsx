@@ -1,7 +1,9 @@
 import { useTranslation } from "react-i18next";
-import phoneImg from "/phone-img.png";
+import phoneImgLg from "/app-3.png";
+import phoneImgSm from "/phone-img.png";
 import { useAppContext } from "../contexts/useAppContext";
 import { Link } from "react-router-dom";
+import { motion as Motion } from "framer-motion";
 
 const Hero = () => {
   const { t, i18n } = useTranslation();
@@ -10,32 +12,32 @@ const Hero = () => {
 
   return (
     <section
-      className={` ${
+      className={`px-[1em] lg:text-left pt-[5em] lg:flex justify-center items-center gap-[10em] lg:px-[3em] lg:pb-[6em] ${
         theme === "light"
-          ? "bg-linear-to-br from-purple-soft via-purple-light to-yellow-soft"
+          ? "bg-linear-to-br from-purple-soft via-purple-light via-pink-pastel to-yellow-soft"
           : "bg-linear-to-r  from-[#0029FF] via-purple-mid via-purple-medium via-purple-warm to-pink-pastel"
-      } md:text-center`}
+      } `}
     >
-      <div className="md:w-[70%] m-auto pt-[6em] w-[90%]">
+      <div className="text-center lg:text-left">
         {isArabic ? (
           <h1 className="font-semibold md:text-[3em] text-[2.4em] leading-[1.2em]">
             {t("home_header")}
           </h1>
         ) : (
-          <h1 className="font-semibold md:text-[3em] text-[2.2em] leading-[1.2em]">
+          <h1 className="font-semibold md:text-[3em] text-[2.2em] leading-[1.2em] lg:text-[3.5em]">
             {t("home_header")} <br />
             {t("home_second_part")}{" "}
             <span className="text-white">{t("home_third_part")}</span>
           </h1>
         )}
         <p
-          className={`md:m-auto md:mt-[2em] mt-[2em] font-medium md:text-[1.2em] leading-[1.5em] max-w-[600px] ${
+          className={`mt-[1.5em] max-w-[500px] m-auto font-medium lg:m-0 lg:mt-[1.5em] lg:text-[1.2em] lg:max-w-[550px] ${
             isArabic ? "text-[1.5em] md:text-[2em]" : ""
           }`}
         >
           {t("home_subtitle")}
         </p>
-        <div className="mt-[3em] justify-center flex flex-wrap gap-[1.5em]">
+        <div className="my-[3em] flex flex-wrap justify-center gap-[1.5em] lg:justify-start">
           <Link to={"/receipts"}>
             <button className="border border-black rounded-4xl py-[.8em] px-[1.9em] cursor-pointer hover:bg-white hover:text-black">
               {t("start_btn")}
@@ -50,8 +52,22 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="flex justify-center mt-[5em]">
-        <img src={phoneImg} alt="an image of a phone" />
+      <Motion.img
+        src={phoneImgLg}
+        alt="App"
+        className="hidden lg:block w-[300px]"
+        initial={{ y: 0 }}
+        animate={{ y: -15 }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          repeatType: "reverse",
+          ease: "easeInOut",
+        }}
+      />
+
+      <div className="flex justify-center mt-[5em] lg:hidden">
+        <img src={phoneImgSm} alt="an image of a phone" />
       </div>
     </section>
   );
