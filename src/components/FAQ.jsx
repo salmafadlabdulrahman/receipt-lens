@@ -41,7 +41,7 @@ const FAQ = () => {
   };
 
   return (
-    <section className="relative py-16 px-8 max-w-5xl mx-auto overflow-hidden">
+    <section className="relative py-16 px-8 max-w-3xl mx-auto overflow-hidden">
       <Motion.div
         variants={floatingShape}
         animate="animate"
@@ -51,7 +51,7 @@ const FAQ = () => {
         animate={{ y: [0, 15, 0], rotate: [45, 55, 45] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
         className="absolute bottom-20 -left-6 w-16 h-16 bg-[#9F55FF] z-0 opacity-80"
-        style={{ backgroundColor: "var(--secondary)" }}
+        // style={{ backgroundColor: "var(--secondary)" }}
       />
       <Motion.div
         animate={{ y: [0, -10, 0], x: [0, 5, 0] }}
@@ -94,10 +94,10 @@ const FAQ = () => {
               key={index}
               variants={itemVariants}
               style={{
-                background:
-                  theme === "dark" ? "var(--color-dark-blue-card)" : "#F9F5F2",
+                background: theme === "dark" ? "#111217" : "#fff",
+                border: theme === "dark" ? "1px solid #fff" : "1px solid #000",
               }}
-              className={`rounded-lg overflow-hidden border border-transparent hover:border-gray-200 transition-all duration-300 
+              className={`rounded-lg overflow-hidden hover:border-gray-200 transition-all duration-300 
     ${openIndex === index ? "shadow-md" : ""}
     text-black dark:text-white
   `}

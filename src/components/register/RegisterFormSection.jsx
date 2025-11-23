@@ -148,7 +148,7 @@ const RegisterFormSection = () => {
       >
         {t("already_have_account")}
         <Link
-          to="/login"
+          to="/ "
           className="ml-1 font-bold"
           style={{ color: "var(--text-main)" }}
         >

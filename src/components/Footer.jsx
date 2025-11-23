@@ -8,7 +8,7 @@ const Footer = () => {
 
   return (
     <footer
-      className={`text-center mt-[10em] pb-[2em] ${
+      className={`text-center mt-[6em] pb-[2em] ${
         theme === "light" ? "bg-white" : "bg-dark-gray text-white"
       }`}
     >

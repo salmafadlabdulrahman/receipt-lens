@@ -20,8 +20,8 @@ const Profile = () => {
 
   return (
     <section
-      className={`min-h-screen  py-5 px-4 transition-colors duration-300 ${
-        isDark ? "bg-[#111217]" : "bg-white"
+      className={`min-h-screen  py-5 px-4 pt-[10em] transition-colors duration-300 ${
+        isDark ? "bg-dark-gray" : "bg-white"
       }`}
     >
       {" "}
@@ -35,7 +35,7 @@ const Profile = () => {
           className={`relative rounded-3xl overflow-hidden shadow-2xl transition-all duration-300 border 
           ${
             isDark
-              ? "bg-[#111217] border-white/10 shadow-purple-900/20"
+              ? "bg-dark-gray border-white/10 shadow-purple-900/20"
               : "bg-[linear-gradient(to right, #b550d0, #7f00ff)] border-gray-100 shadow-xl"
           }`}
         >
@@ -54,7 +54,7 @@ const Profile = () => {
                   className={`w-32 h-32 rounded-full flex items-center justify-center text-4xl font-bold border-4 shadow-lg
                   ${
                     isDark
-                      ? "bg-[#111217] border-[#111217] text-white"
+                      ? "bg-dark-gray border-dark-gray text-white"
                       : "bg-white border-white text-gray-800"
                   }`}
                 >

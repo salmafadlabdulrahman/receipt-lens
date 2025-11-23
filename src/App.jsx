@@ -14,7 +14,7 @@ import Contact from "./pages/Contact";
 import Login from "./pages/LoginPage/LoginPage.jsx";
 import ForgotPassword from "./pages/LoginPage/ForgotPasswordPage.jsx";
 import Register from "./pages/RegisterPage/RegisterPage.jsx";
-import SuccessScreen from "./components/login/SuccessScreen.jsx";
+import ForgotPasswordSuccess from "./components/login/ForgotPasswordSuccess.jsx";
 import Pricing from "./pages/Payment/Pricing.jsx";
 import FloatingToggleBox from "./components/FloatingToggleBox";
 
@@ -31,10 +31,10 @@ const Layout = ({ children }) => {
   const { theme } = useAppContext();
 
   const hideLayoutPages = [
-    "/Login",
+    "/login",
     "/Register",
     "/ForgotPassword",
-    "/SuccessScreen",
+    "/ForgotPasswordSuccess",
   ];
   const hideLayout = hideLayoutPages.includes(location.pathname);
 
@@ -42,7 +42,7 @@ const Layout = ({ children }) => {
     <>
       {!hideLayout && <Navbar />}
 
-      {!hideLayout && <FloatingToggleBox />}
+      {<FloatingToggleBox />}
 
       <main className={`${theme === "dark" ? "bg-dark-gray" : ""}`}>
         {children}
@@ -68,7 +68,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/about" element={<About />} />
-          <Route path="/successScreen" element={<SuccessScreen />} />
+          <Route path="/ForgotPasswordSuccess" element={<ForgotPasswordSuccess />} />
           <Route path="/login" element={<Login />} />
           <Route path="/Pricing" element={<Pricing />} />
           <Route path="/PaymentSuccessPage" element={<PaymentSuccessPage />} />

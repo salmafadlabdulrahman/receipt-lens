@@ -12,7 +12,7 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import HeaderMenu from "./HeaderMenu";
 import LanguageThemeToggle from "./LanguageThemeToggle";
@@ -22,9 +22,9 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { t, i18n } = useTranslation();
   const { theme } = useAppContext();
+  const location = useLocation();
 
   const isArabic = i18n.language === "ar";
-  console.log(theme);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -80,21 +80,18 @@ const Navbar = () => {
 
   return (
     <Box
-      className={`py-[1em] ${theme === "dark" ? "bg-dark-gray" : "bg-white"}`}
+      className={`fixed w-full z-50 bg-white  py-[1em]  ${
+        theme === "dark" ? "bg-dark-gray" : "bg-white"
+      }`}
     >
-      <AppBar position="static" color="" elevation={0}>
+      <AppBar position="" color="" elevation={0} className="">
         <Toolbar className="flex justify-between ">
           <div className="logo-wrapper flex align-items-center gap-2">
             <Typography
               variant="p"
               className="font-semibold tracking-[-1px] text-[1.5em]"
             >
-              <span
-                className={`${theme === "light" ? "text-black" : "text-white"}`}
-              >
-                Spend
-              </span>{" "}
-              <span className="logo-span">Right</span>
+              <span>Spend</span> <span className="logo-span">Right</span>
             </Typography>
           </div>
 
@@ -108,9 +105,9 @@ const Navbar = () => {
                   fontSize: "1.1em",
                   fontWeight: "semibold",
                 }}
-                className={` cursor-pointer hover:text-indigo-400 ${
-                  theme === "light" ? "text-gray-700" : "text-white"
-                }`}
+                className={`cursor-pointer hover:text-indigo-400 text-gray-700 ${
+                  location.pathname === item.path ? "text-indigo-500 font-semibold after:content-['']" : ""
+                } `}
               >
                 <Link to={item.path}>{item.name}</Link>
               </Typography>
@@ -133,10 +130,7 @@ const Navbar = () => {
               onClick={handleDrawerToggle}
               className="hidden"
             >
-              <MenuIcon
-                className="text-gray-800 md:hidden"
-                sx={{ color: theme === "light" ? "black" : "white" }}
-              />
+              <MenuIcon className="text-gray-800 md:hidden" />
             </IconButton>
           </div>
         </Toolbar>

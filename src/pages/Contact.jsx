@@ -33,7 +33,7 @@ const Contact = () => {
 
   return (
     <section
-      className={`${
+      className={` pt-[6em] ${
         theme === "dark" ? "bg-dark-gray text-white" : ""
       } pb-[3em]`}
     >

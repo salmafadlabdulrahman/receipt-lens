@@ -69,6 +69,7 @@
   --login-right-gradient: linear-gradient(135deg, #402557, #0c0d1b, #050505);
 --feature-card-bg: linear-gradient(135deg, #402557, #0c0d1b, #050505);
   --login-btn: #8b5cf6;
+
   --feature-img-brightness: 0.7; 
   --feature-img-overlay: rgba(0, 0, 0, 0.3);
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.5);
