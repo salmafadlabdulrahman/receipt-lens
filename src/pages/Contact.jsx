@@ -34,7 +34,7 @@ const Contact = () => {
   return (
     <section
       className={`${
-        theme === "dark" ? "bg-[#111217] text-white" : ""
+        theme === "dark" ? "bg-dark-gray text-white" : ""
       } pb-[3em]`}
     >
       <div className=" bg-linear-to-br from-purple-pastel via-light-pastel-purple to-light-blue text-center p-10 text-white">
