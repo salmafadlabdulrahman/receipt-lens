@@ -159,5 +159,10 @@
   "question6": "How do I change my password?",
   "answer6": "Go to Profile Settings, click Change Password, and follow the steps to enter your old and new password.",
   "question7": "What do the receipt statuses (Pending / Approved / Rejected) mean?",
-  "answer7": "Pending: The receipt has been uploaded but not reviewed yet. Approved: The receipt has been verified and approved. Rejected: The receipt was rejected due to incomplete details or unclear image."
+  "answer7": "Pending: The receipt has been uploaded but not reviewed yet. Approved: The receipt has been verified and approved. Rejected: The receipt was rejected due to incomplete details or unclear image.",
+  "check_your_email_title": "Check Your Email!",
+  "check_your_email_subtitle": "We've sent a password reset link to your email address. Please check your inbox (and spam folder).",
+  "email_not_received_prompt": "Didn't receive the email?",
+  "resend_link": "Resend link",
+  "back_to_login_button": "Back to Login"
 }

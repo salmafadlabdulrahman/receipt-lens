@@ -1,7 +1,7 @@
 import React from "react";
 import RegisterFormSection from "../../components/register/RegisterFormSection";
 import FeaturesSidebar from "../../components/login/FeaturesSidebar.jsx";
-import LanguageThemeToggle from "../../components/LanguageThemeToggle.jsx";
+// import LanguageThemeToggle from "../../components/LanguageThemeToggle.jsx";
 
 const RegisterPage = () => {
   return (

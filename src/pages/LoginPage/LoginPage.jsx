@@ -1,7 +1,7 @@
 import React from "react";
 import LoginFormSection from "../../components/login/LoginFormSection.jsx";
 import FeaturesSidebar from "../../components/login/FeaturesSidebar.jsx";
-import LanguageThemeToggle from "../../components/LanguageThemeToggle.jsx";
+// import LanguageThemeToggle from "../../components/LanguageThemeToggle.jsx";
 
 const LoginPage = () => {
   return (
