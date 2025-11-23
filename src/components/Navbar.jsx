@@ -116,7 +116,7 @@ const Navbar = () => {
 
           <div className="hidden md:flex items-center gap-[.5em]">
             <button className="login-btn text-white text-[1em] font-semibold py-[.4em] px-[1.7em] rounded-[7px] cursor-pointer">
-              <a href="/Login"> {t("login_btn")}</a>
+              <a href="/login"> {t("login_btn")}</a>
             </button>
             {/* <HeaderMenu /> */}
           </div>
