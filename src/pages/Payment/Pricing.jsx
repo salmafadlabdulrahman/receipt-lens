@@ -102,11 +102,11 @@ const PricingCard = ({ plan, isYearly }) => {
     headerBg = "var(--color-dark-blue-header)";
 
     if (isDarkMode) {
-        btnBg = "#000000";
-        btnText = "#ffffff";
+      btnBg = "#000000";
+      btnText = "#ffffff";
     } else {
-        btnBg = "var(--color-light-gray-bg)";
-        btnText = "var(--text-main)";
+      btnBg = "var(--color-light-gray-bg)";
+      btnText = "var(--text-main)";
     }
   } else if (isProInDarkMode) {
     cardBg = "var(--color-light-gray-bg)";
@@ -125,117 +125,118 @@ const PricingCard = ({ plan, isYearly }) => {
   }
 
   return (
-    <Motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{ scale: 1.03 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      style={{
-        background: cardBg,
-        color: textColor,
-      }}
-      dir={isArabic ? "rtl" : "ltr"}
-      className={`relative flex flex-col rounded-xl border shadow-xl ${
-        isArabic ? "rtl" : "ltr"
-      }`}
-    >
-      <div
-        className="absolute inset-0 rounded-xl pointer-events-none border"
-        style={{ borderColor: borderColor }}
-      ></div>
-
-      {isPopular && (
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 text-xs font-semibold rounded-full bg-yellow-300 text-black z-10">
-          {t("popular")}
-        </div>
-      )}
-
-      <div
-        className={`py-6 px-8 rounded-t-xl`}
+    <>
+      <Motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        whileHover={{ scale: 1.03 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
         style={{
-          background: headerBg,
+          background: cardBg,
           color: textColor,
         }}
-      >
-        <Motion.h3
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-lg font-semibold uppercase tracking-wider font-600"
-          style={{ fontFamily: "var(--font-primary)" }}
-        >
-          {t(type)}
-        </Motion.h3>
-      </div>
-
-      <div
-        className={`px-8 py-6 flex flex-col items-start ${
-          isArabic ? "text-right" : "text-left"
+        dir={isArabic ? "rtl" : "ltr"}
+        className={`relative flex flex-col rounded-xl border shadow-xl ${
+          isArabic ? "rtl" : "ltr"
         }`}
       >
-        <Motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="text-5xl font-extrabold"
-          style={{ color: textColor }}
-        >
-          {currentPrice}
-        </Motion.div>
-        <p
-          className="mt-1 text-sm font-500"
+        <div
+          className="absolute inset-0 rounded-xl pointer-events-none border"
+          style={{ borderColor: borderColor }}
+        ></div>
+        {isPopular && (
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 text-xs font-semibold rounded-full bg-yellow-300 text-black z-10">
+            {t("popular")}
+          </div>
+        )}
+
+        <div
+          className={`py-6 px-8 rounded-t-xl`}
           style={{
-            fontFamily: "var(--font-primary)",
+            background: headerBg,
             color: textColor,
           }}
         >
-          {t(billingKey)}
-        </p>
-      </div>
-
-      <ul className="grow px-8 pb-8 space-y-3">
-        {features.map((feature, index) => (
-          <Motion.li
-            key={index}
+          <Motion.h3
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: index * 0.1 }}
-            className={`flex items-start text-sm font-600 ${
-              isArabic ? "flex-row text-right" : "flex-row text-left"
-            }`}
+            className="text-lg font-semibold uppercase tracking-wider font-600"
+            style={{ fontFamily: "var(--font-primary)" }}
+          >
+            {t(type)}
+          </Motion.h3>
+        </div>
+
+        <div
+          className={`px-8 py-6 flex flex-col items-start ${
+            isArabic ? "text-right" : "text-left"
+          }`}
+        >
+          <Motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-5xl font-extrabold"
+            style={{ color: textColor }}
+          >
+            {currentPrice}
+          </Motion.div>
+          <p
+            className="mt-1 text-sm font-500"
             style={{
-              fontFamily: "var(--font-secondary)",
+              fontFamily: "var(--font-primary)",
               color: textColor,
             }}
           >
-            {feature.type === "check" && (
-              <CheckIcon
-                className={`w-5 h-5 mt-0.5 ${
-                  isArabic ? "ml-2" : "mr-2"
-                } text-green-500`}
-              />
-            )}
-            <span className={isArabic ? "text-right" : "text-left"}>
-              {t(feature.textKey)}
-            </span>
-          </Motion.li>
-        ))}
-      </ul>
+            {t(billingKey)}
+          </p>
+        </div>
 
-      <Motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="p-8 pt-0"
-      >
-        <button
-          style={{
-            backgroundColor: btnBg,
-            color: btnText,
-          }}
-          className="w-full py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors"
+        <ul className="grow px-8 pb-8 space-y-3">
+          {features.map((feature, index) => (
+            <Motion.li
+              key={index}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: index * 0.1 }}
+              className={`flex items-start text-sm font-600 ${
+                isArabic ? "flex-row text-right" : "flex-row text-left"
+              }`}
+              style={{
+                fontFamily: "var(--font-secondary)",
+                color: textColor,
+              }}
+            >
+              {feature.type === "check" && (
+                <CheckIcon
+                  className={`w-5 h-5 mt-0.5 ${
+                    isArabic ? "ml-2" : "mr-2"
+                  } text-green-500`}
+                />
+              )}
+              <span className={isArabic ? "text-right" : "text-left"}>
+                {t(feature.textKey)}
+              </span>
+            </Motion.li>
+          ))}
+        </ul>
+
+        <Motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="p-8 pt-0"
         >
-          {t(buttonTextKey)}
-        </button>
+          <button
+            style={{
+              backgroundColor: btnBg,
+              color: btnText,
+            }}
+            className="w-full py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors"
+          >
+            {t(buttonTextKey)}
+          </button>
+        </Motion.div>
       </Motion.div>
-    </Motion.div>
+    </>
   );
 };
 
@@ -258,6 +259,18 @@ const Pricing = () => {
         color: "var(--text-main)",
       }}
     >
+      <h1
+        className="text-center mb-8 text-4xl"
+        style={{ fontFamily: "var(--font-primary)", color: "var( --primary)" }}
+      >
+        Choose Your Spend Right Plan
+      </h1>
+      <p
+        className="text-center mb-8 text-xl"
+        style={{ fontFamily: "var(--font-secondary)", color: "var(--text-muted)" }}
+      >
+        start managing your finances smarter.Upgrade anytimes as your needs <br /> grow.
+      </p>
       <div className="max-w-7xl mx-auto">
         <Motion.div
           initial={{ scale: 0.8, opacity: 0 }}
@@ -313,5 +326,4 @@ const Pricing = () => {
     </Motion.div>
   );
 };
-
 export default Pricing;
