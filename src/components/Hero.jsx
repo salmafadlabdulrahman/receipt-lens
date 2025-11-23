@@ -12,7 +12,7 @@ const Hero = () => {
 
   return (
     <section
-      className={`px-[1em] lg:text-left pt-[5em] lg:flex justify-center items-center gap-[10em] lg:px-[3em] lg:pb-[6em] ${
+      className={`px-[1em] pt-[12em] lg:text-left lg:flex justify-center items-center gap-[10em] lg:px-[3em] lg:pb-[6em] ${
         theme === "light"
           ? "bg-linear-to-br from-purple-soft via-purple-light via-pink-pastel to-yellow-soft"
           : "bg-linear-to-r  from-[#0029FF] via-purple-mid via-purple-medium via-purple-warm to-pink-pastel"
@@ -20,7 +20,7 @@ const Hero = () => {
     >
       <div className="text-center lg:text-left">
         {isArabic ? (
-          <h1 className="font-semibold md:text-[3em] text-[2.4em] leading-[1.2em]">
+          <h1 className="font-semibold md:text-[3em] text-[2.4em] leading-[1.2em] lg:text-right lg:text-[3em]">
             {t("home_header")}
           </h1>
         ) : (
@@ -32,7 +32,7 @@ const Hero = () => {
         )}
         <p
           className={`mt-[1.5em] max-w-[500px] m-auto font-medium lg:m-0 lg:mt-[1.5em] lg:text-[1.2em] lg:max-w-[550px] ${
-            isArabic ? "text-[1.5em] md:text-[2em]" : ""
+            isArabic ? "text-[1.5em] md:text-[2em] lg:text-right lg:text-[2em]" : ""
           }`}
         >
           {t("home_subtitle")}
