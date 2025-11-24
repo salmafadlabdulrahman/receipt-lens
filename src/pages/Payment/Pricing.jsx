@@ -251,7 +251,7 @@ const Pricing = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.9 }}
-      className={`min-h-screen py-[10em] px-4 sm:px-6 lg:px-8 font-sans transition-colors duration-300 ${
+      className={`min-h-screen py-40 px-4 sm:px-6 lg:px-8 font-sans transition-colors duration-300 ${
         isArabic ? "rtl" : "ltr"
       }`}
       style={{
@@ -267,9 +267,13 @@ const Pricing = () => {
       </h1>
       <p
         className="text-center mb-8 text-xl"
-        style={{ fontFamily: "var(--font-secondary)", color: "var(--text-muted)" }}
+        style={{
+          fontFamily: "var(--font-secondary)",
+          color: "var(--text-muted)",
+        }}
       >
-        start managing your finances smarter.Upgrade anytimes as your needs <br /> grow.
+        start managing your finances smarter.Upgrade anytimes as your needs{" "}
+        <br /> grow.
       </p>
       <div className="max-w-7xl mx-auto">
         <Motion.div
