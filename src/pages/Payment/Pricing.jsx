@@ -251,7 +251,7 @@ const Pricing = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.9 }}
-      className={`min-h-screen py-16 px-4 sm:px-6 lg:px-8 font-sans transition-colors duration-300 ${
+      className={`min-h-screen py-[10em] px-4 sm:px-6 lg:px-8 font-sans transition-colors duration-300 ${
         isArabic ? "rtl" : "ltr"
       }`}
       style={{
