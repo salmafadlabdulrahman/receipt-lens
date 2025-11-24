@@ -164,21 +164,22 @@
   "problem": "The problem",
   "problem_title": "Receipts are a nightmare for millions",
   "problem_subtitle": "From last paper receipts to missed reimbursements, managing expenses shouldn't be this hard.",
+  "cards": {
+    "clutter_title": "Clutter & Disorganization",
+    "clutter_desc": "Receipts scattered across emails, wallets, and drawers. Physical receipts fade, get lost, or become unreadable when you need them most.",
 
-  "clutter_title": "Clutter & Disorganization",
-  "clutter_desc": "Receipts scattered across emails, wallets, and drawers. Physical receipts fade, get lost, or become unreadable when you need them most.",
+    "missed_title": "Missed Reimbursements",
+    "missed_desc": "Employees lose thousands annually by failing to claim business expenses. Missed placed receipts mean lost money. and frustrated finance teams.",
 
-  "missed_title": "Missed Reimbursements",
-  "missed_desc": "Employees lose thousands annually by failing to claim business expenses. Missed placed receipts mean lost money. and frustrated finance teams.",
+    "stress_title": "Financial Stress",
+    "stress_desc": "Manual tracking makes budgeting impossible. Tax season becomes a scramble to find deductible expense, leading to overpaid taxes.",
 
-  "stress_title": "Financial Stress",
-  "stress_desc": "Manual tracking makes budgeting impossible. Tax season becomes a scramble to find deductible expense, leading to overpaid taxes.",
+    "storage_title": "Storage Issues",
+    "storage_desc": "Physical receipts takes up space and make it difficult to find purchases when you need them - for returns, warranties, or records.",
 
-  "storage_title": "Storage Issues",
-  "storage_desc": "Physical receipts takes up space and make it difficult to find purchases when you need them - for returns, warranties, or records.",
-
-  "environment_title": "Environmental Waste",
-  "environment_desc": "Billions of paper receipts contribute to deforestation and waste. Most receipts contain harmful chemicals that are not eco-friendly and can't be recycled.",
+    "environment_title": "Environmental Waste",
+    "environment_desc": "Billions of paper receipts contribute to deforestation and waste. Most receipts contain harmful chemicals that are not eco-friendly and can't be recycled."
+  },
   "check_your_email_title": "Check Your Email!",
   "check_your_email_subtitle": "We've sent a password reset link to your email address. Please check your inbox (and spam folder).",
   "email_not_received_prompt": "Didn't receive the email?",
