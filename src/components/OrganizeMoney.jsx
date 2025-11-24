@@ -37,7 +37,7 @@ const OrganizeMoney = () => {
     },
   ];
   return (
-    <section className={`mt-[8em] mb-[10em] px-[2em] md:px-0 md:text-center`}>
+    <section className={`mt-[8em] mb-[5em] px-[2em] md:px-0 md:text-center`}>
       <h3 className={`text-[2.5em] font-semibold ${theme === "light" ? "text-black" : "text-white"}`}>
         {t("organize_money_header")}
       </h3>
