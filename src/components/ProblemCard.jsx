@@ -4,7 +4,7 @@ import { useAppContext } from "../contexts/useAppContext";
 const ProblemCard = ({ title, description, icon }) => {
   const { theme } = useAppContext();
   const { i18n } = useTranslation();
-    const isArabic = i18n.language === "ar";
+  const isArabic = i18n.language === "ar";
 
   return (
     <div
@@ -28,9 +28,15 @@ const ProblemCard = ({ title, description, icon }) => {
     >
       <div className={`${isArabic ? "" : ""}`}>{icon}</div>
 
-      <div className={`max-w-[400px] ${isArabic ? "text-right" : ""}`}>
-        <p className={`font-semibold ${isArabic ? "text-[1.5em]" : ""}`}>{title}</p>
-        <p className={`mt-[.5em] text-[.9em] ${isArabic ? "text-[1.1em]" : ""}`}>{description}</p>
+      <div className={`h-[170px]  ${isArabic ? "text-right" : ""}`}>
+        <p className={`font-semibold ${isArabic ? "text-[1.5em]" : ""}`}>
+          {title}
+        </p>
+        <p
+          className={`mt-[.5em] text-[.9em] ${isArabic ? "text-[1.1em]" : ""}`}
+        >
+          {description}
+        </p>
       </div>
     </div>
   );
