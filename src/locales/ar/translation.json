@@ -192,5 +192,13 @@
   "check_your_email_subtitle": "لقد أرسلنا رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني. تحقق من صندوق الوارد (وأيضًا مجلد الرسائل غير المرغوب فيها).",
   "email_not_received_prompt": "لم يصلك البريد؟",
   "resend_link": "إعادة إرسال الرابط",
-  "back_to_login_button": "العودة لتسجيل الدخول"
+  "back_to_login_button": "العودة لتسجيل الدخول",
+  "contact_firstname_label": "الاسم الأول",
+  "contact_lastname_label": "اسم العائلة",
+  
+
+  "contact_receive_other_messages": "أوافق على استلام التحديثات والنشرات وأي رسائل تواصل أخرى من SpendRight.",
+  "contact_consent_storage": "أوافق على قيام SpendRight بتخزين ومعالجة بياناتي الشخصية وفقًا لسياسة الخصوصية الخاصة بهم.",
+  
+  "contact_follow_us": "تابعنا على"
 }
