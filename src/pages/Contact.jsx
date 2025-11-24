@@ -1,6 +1,6 @@
 import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
-import contactImg from "/contact-img.jpg";
+import contactImg from "/images-4.jpg";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
 import LocationPinIcon from "@mui/icons-material/LocationPin";
@@ -42,7 +42,7 @@ const Contact = () => {
         <p className="mt-2">{t("contact_subtitle")}</p>
       </div>
 
-      <section className="xl:flex xl:justify-around">
+      <section className="xl:flex xl:justify-center xl:gap-[5em]">
         <div className="form-container text-center mt-[1em] md:w-[60%] md:m-auto md:pb-3 md:mt-[2em] px-2 xl:shadow-md xl:w-[40%] xl:m-0 xl:mt-[3em]">
           <h3 className="text-2xl font-bold">{t("contact_form_title")}</h3>
           <p className="p-2 mt-[.5em] text-warm-gray">
