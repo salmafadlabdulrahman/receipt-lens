@@ -77,20 +77,28 @@ const Contact = () => {
       <div className="bg-linear-to-br from-purple-pastel via-light-pastel-purple to-light-blue text-center py-18 text-black">
         <h2
           style={{ fontFamily: "var(--font-primary)" }}
-          className="font-bold text-3xl"
+          className={`${
+            theme === "dark" ? "text-white" : ""
+          } font-bold text-4xl`}
         >
           {t("contact_title")}
         </h2>
-        <p style={{ fontFamily: "var(--font-secondary)" }} className="mt-2">
+        <p
+          style={{ fontFamily: "var(--font-secondary)" }}
+          className={`mt-2 text-[1.1em] ${
+            theme === "dark" ? "text-white" : ""
+          }`}
+        >
           {t("contact_subtitle")}
         </p>
       </div>
 
-      <section className="xl:flex xl:justify-center xl:gap-[5em] xl:max-w-7xl xl:m-auto">
+      <section className="lg:flex lg:justify-center lg:gap-[5em] lg:max-w-7xl lg:m-auto  ">
         <div
-          className={`form-container text-center mt-[1em] md:w-[60%] md:m-auto md:pb-3 md:mt-[2em] px-2 xl:shadow-md xl:w-[45%] xl:m-0 xl:mt-[3em] xl:p-8 ${
-            isArabic ? "text-right" : "text-left"
-          }`}
+          className={`form-container max-w-[500px] md:w-full m-auto text-center mt-[3em] md:m-auto md:pb-3 md:mt-[2em]
+            lg:pl-[2em] px-2 xl:shadow-md xl:w-[45%] xl:m-0 xl:mt-[3em] xl:p-8 ${
+              isArabic ? "text-right" : "text-left"
+            }`}
         >
           <h3
             style={{ fontFamily: "var(--font-primary)" }}
@@ -231,8 +239,11 @@ const Contact = () => {
           </div>
         </div>
 
-        <section className="lg:flex justify-between mt-[2em] lg:pl-[1em] xl:flex-col xl:w-[45%] xl:shadow-md xl:mt-[3em] xl:p-8">
-          <div className="md:w-[50%] m-auto mt-[3em] px-2 xl:w-full xl:mt-0">
+        <section
+          className=" mt-[2em] sm:max-w-[500px] m-auto md:w-full
+        lg:pl-[1em] xl:flex-col xl:w-[45%] xl:shadow-md xl:p-8 lg:m-0 lg:pr-[2em]"
+        >
+          <div className="m-auto mt-[3em] px-2 xl:w-full lg:m-0 lg:p-0">
             <img
               src={contactImg}
               alt={t("contact_image_alt")}
@@ -241,9 +252,10 @@ const Contact = () => {
           </div>
 
           <div
-            className={`contact-info-wrapper text-center lg:text-left mt-[2em] md:w-[60%] md:m-auto md:pb-3 py-3 xl:w-full xl:text-left ${
-              isArabic ? "xl:text-right" : "xl:text-left"
-            }`}
+            className={` contact-info-wrapper
+              text-center lg:text-left mt-[2em] md:m-auto md:pb-3 py-[3em] xl:w-full xl:text-left ${
+                isArabic ? "xl:text-right" : "xl:text-left"
+              }`}
           >
             <h3
               className={`text-2xl font-bold ${
@@ -256,7 +268,7 @@ const Contact = () => {
 
             <div
               style={{ fontFamily: "var(--font-secondary)" }}
-              className={`flex gap-[1em] items-center m-auto max-w-[300px] my-[1em] lg:max-w-full xl:m-0 py-3 ${
+              className={`flex gap-[1em] items-center m-auto max-w-[300px] my-[1em] py-[1em] lg:max-w-full xl:m-0  ${
                 isArabic ? "flex-row" : "flex-row"
               }`}
             >
@@ -271,7 +283,7 @@ const Contact = () => {
 
             <div
               style={{ fontFamily: "var(--font-secondary)" }}
-              className={`flex gap-[1em] items-center m-auto max-w-[300px] my-[1em] lg:max-w-full xl:m-0 py-3 ${
+              className={`flex gap-[1em] items-center m-auto max-w-[300px] my-[1em] py-[1em] lg:max-w-full xl:m-0  ${
                 isArabic ? "flex-row" : "flex-row"
               }`}
             >
@@ -286,7 +298,7 @@ const Contact = () => {
 
             <div
               style={{ fontFamily: "var(--font-secondary)" }}
-              className={`flex gap-[1em] items-start m-auto max-w-[300px] my-[1em] lg:max-w-full xl:m-0 py-4 ${
+              className={`flex gap-[1em] items-start m-auto max-w-[300px] my-[1em] py-[1em] lg:max-w-full xl:m-0  ${
                 isArabic ? "flex-row" : "flex-row"
               }`}
             >
