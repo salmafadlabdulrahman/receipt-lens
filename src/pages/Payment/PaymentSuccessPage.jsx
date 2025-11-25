@@ -48,13 +48,13 @@ const PaymentSuccessPage = () => {
 
   return (
     <div
-      className={`min-h-screen flex flex-col items-center justify-center  font-sans transition-colors duration-300 ${textDirectionClass}`}
+      className={`min-h-screen flex flex-col items-center justify-center py-40   font-sans transition-colors duration-300 ${textDirectionClass}`}
       style={{
         backgroundColor: isDarkMode ? "#111217" : "var(--bg-main)",
       }}
     >
       <div
-        className="max-w-md w-full mx-auto rounded-xl shadow-2xl py-12 px-5 transition-colors duration-300"
+        className="max-w-xl w-full mx-auto rounded-xl shadow-2xl py-12 px-5 transition-colors duration-300"
         style={{
           backgroundColor: isDarkMode ? "#111827" : "var(--bg-card)",
           border: isDarkMode ? "1px solid #1f2937" : "none",

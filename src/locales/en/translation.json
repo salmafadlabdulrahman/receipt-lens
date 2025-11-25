@@ -164,7 +164,6 @@
   "problem": "The problem",
   "problem_title": "Receipts are a nightmare for millions",
   "problem_subtitle": "From last paper receipts to missed reimbursements, managing expenses shouldn't be this hard.",
-
   "cards": {
     "clutter_title": "Clutter & Disorganization",
     "clutter_desc": "Receipts scattered across emails, wallets, and drawers. Physical receipts fade, get lost, or become unreadable when you need them most.",
@@ -181,10 +180,17 @@
     "environment_title": "Environmental Waste",
     "environment_desc": "Billions of paper receipts contribute to deforestation and waste. Most receipts contain harmful chemicals that are not eco-friendly and can't be recycled."
   },
-  
   "check_your_email_title": "Check Your Email!",
   "check_your_email_subtitle": "We've sent a password reset link to your email address. Please check your inbox (and spam folder).",
   "email_not_received_prompt": "Didn't receive the email?",
   "resend_link": "Resend link",
-  "back_to_login_button": "Back to Login"
+  "back_to_login_button": "Back to Login",
+
+  "contact_firstname_label": "First Name",
+  "contact_lastname_label": "Last Name",
+
+  "contact_receive_other_messages": "I agree to receive updates, newsletters, and other communication messages from SpendRight.",
+  "contact_consent_storage": "I give my consent to SpendRight to store and process my personal data in accordance with its policies.",
+
+  "contact_follow_us": "Follow us"
 }

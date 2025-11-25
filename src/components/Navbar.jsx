@@ -80,7 +80,7 @@ const Navbar = () => {
 
   return (
     <Box
-      className={`fixed w-full z-50 bg-white  py-[1em]  ${
+      className={`fixed w-full z-50 py-[1em]  ${
         theme === "dark" ? "bg-dark-gray" : "bg-white"
       }`}
     >
@@ -91,7 +91,10 @@ const Navbar = () => {
               variant="p"
               className="font-semibold tracking-[-1px] text-[1.5em]"
             >
-              <span>Spend</span> <span className="logo-span">Right</span>
+              <span className={`${theme === "dark" ? "text-white" : ""}`}>
+                Spend
+              </span>{" "}
+              <span className="logo-span">Right</span>
             </Typography>
           </div>
 
@@ -105,18 +108,30 @@ const Navbar = () => {
                   fontSize: "1.1em",
                   fontWeight: "semibold",
                 }}
-                className={`cursor-pointer hover:text-indigo-400 text-gray-700 ${
-                  location.pathname === item.path ? "text-indigo-500 font-semibold after:content-['']" : ""
-                } `}
+                className="cursor-pointer"
               >
-                <Link to={item.path}>{item.name}</Link>
+                <Link
+                  to={item.path}
+                  className={`
+      hover:text-indigo-400
+      ${
+        location.pathname === item.path
+          ? "text-indigo-500 font-semibold"
+          : theme === "dark"
+          ? "text-light-gray"
+          : "text-gray-700"
+      }
+    `}
+                >
+                  {item.name}
+                </Link>
               </Typography>
             ))}
           </Box>
 
           <div className="hidden md:flex items-center gap-[.5em]">
             <button className="login-btn text-white text-[1em] font-semibold py-[.4em] px-[1.7em] rounded-[7px] cursor-pointer">
-              <a href="/Login"> {t("login_btn")}</a>
+              <a href="/login"> {t("login_btn")}</a>
             </button>
             {/* <HeaderMenu /> */}
           </div>
