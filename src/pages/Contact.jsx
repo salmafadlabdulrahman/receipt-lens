@@ -93,10 +93,10 @@ const Contact = () => {
         </p>
       </div>
 
-      <section className="lg:flex lg:justify-center lg:gap-[5em] lg:max-w-7xl lg:m-auto  ">
+      <section className="lg:flex lg:justify-center lg:gap-[5em] lg:max-w-7xl lg:m-auto lg:mt-[2em]  ">
         <div
           className={`form-container max-w-[500px] md:w-full m-auto text-center mt-[3em] md:m-auto md:pb-3 md:mt-[2em]
-            lg:pl-[2em] px-2 xl:shadow-md xl:w-[45%] xl:m-0 xl:mt-[3em] xl:p-8 ${
+            lg:pl-[2em] px-2 xl:shadow-md xl:w-[45%] xl:m-0 xl:p-8 ${
               isArabic ? "text-right" : "text-left"
             }`}
         >
