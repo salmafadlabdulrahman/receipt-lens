@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 const CheckoutPage = () => {
   const isDarkMode = useDarkMode();
   const { search } = useLocation();
-const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const query = new URLSearchParams(search);
 
@@ -26,20 +26,22 @@ const { t, i18n } = useTranslation();
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="min-h-screen font-sans transition-colors duration-300 py-30"
+      className="min-h-screen font-sans transition-colors duration-300 pb-[3em] pt-[6em] py-30"
       style={{ backgroundColor: isDarkMode ? "#111217" : "var(--bg-main)" }}
     >
       <div
-        className={`h-32 w-full flex items-center justify-center 
+        className={`h-42  py-18 w-full flex items-center justify-center 
     ${
       isDarkMode
         ? "bg-gradient-to-r from-[#0029FF] via-purple-600 to-pink-400"
-        : "bg-gradient-to-br from-purple-300 via-purple-200 to-yellow-200"
+        : "bg-linear-to-br from-purple-pastel via-light-pastel-purple to-light-blue "
     }
   `}
       >
         <h2
-          className="font-bold text-4xl"
+          className={`font-bold text-4xl ${
+            isDarkMode ? "text-white" : " text-black"
+          }`}
           style={{ fontFamily: "var(--font-primary)" }}
         >
           {t("checkout")}
@@ -92,8 +94,7 @@ const { t, i18n } = useTranslation();
               ))}
             </ul>
 
-            {/* Plan Summary */}
-            <div className="mt-6 p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
+            <div className="mt-6 p-4 border border-gray-200 dark:border-gray-700 rounded-lg ">
               <h3
                 className="font-semibold mb-2"
                 style={{ fontFamily: "var(--font-primary)" }}
