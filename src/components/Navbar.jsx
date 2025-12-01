@@ -87,15 +87,17 @@ const Navbar = () => {
       <AppBar position="" color="" elevation={0} className="">
         <Toolbar className="flex justify-between ">
           <div className="logo-wrapper flex align-items-center gap-2">
-            <Typography
-              variant="p"
-              className="font-semibold tracking-[-1px] text-[1.5em]"
-            >
-              <span className={`${theme === "dark" ? "text-white" : ""}`}>
-                Spend
-              </span>{" "}
-              <span className="logo-span">Right</span>
-            </Typography>
+            <Link to={"/"}>
+              <Typography
+                variant="p"
+                className="font-semibold tracking-[-1px] text-[1.5em]"
+              >
+                <span className={`${theme === "dark" ? "text-white" : ""}`}>
+                  Spend
+                </span>{" "}
+                <span className="logo-span">Right</span>
+              </Typography>
+            </Link>
           </div>
 
           <Box className="hidden md:flex space-x-6 gap-6">
