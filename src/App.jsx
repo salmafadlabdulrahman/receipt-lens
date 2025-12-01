@@ -26,6 +26,7 @@ import About from "./pages/About.jsx";
 import Profile from "./pages/Profile.jsx";
 import { useAppContext } from "./contexts/useAppContext.jsx";
 import Checkout from "./pages/Checkout.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -64,6 +65,7 @@ function App() {
   return (
     <Router>
       <Layout>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
