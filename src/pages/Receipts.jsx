@@ -1,5 +1,7 @@
 import React, { useMemo, useState, useRef } from "react";
 import SmartFinancilelAdvisor from "../components/SmartFinancialAdvisor.jsx";
+import { useAppContext } from "../contexts/useAppContext";
+import { useTranslation } from "react-i18next";
 // Receipts.jsx - Functional TailwindCSS page
 // Self-contained mock implementation with filtering, pagination and computed stats.
 
@@ -110,6 +112,41 @@ export default function Receipts() {
   const [page, setPage] = useState(1);
   const pageSize = 6;
   const fileInputRef = useRef(null);
+  const { theme } = useAppContext();
+  const { t, i18n } = useTranslation();
+  const isArabic = i18n.language === "ar";
+
+  const categoryLabel = (c) => {
+    switch (c) {
+      case "All Categories":
+        return t("all_categories");
+      case "Food & Dining":
+        return t("cat_food");
+      case "Transport":
+        return t("cat_transport");
+      case "Shopping":
+        return t("cat_shopping");
+      case "Entertainment":
+        return t("cat_entertainment");
+      default:
+        return c;
+    }
+  };
+
+  const dateRangeLabel = (d) => {
+    switch (d) {
+      case "Last 7 Days":
+        return t("range_7");
+      case "Last 30 Days":
+        return t("range_30");
+      case "Last 90 Days":
+        return t("range_90");
+      case "All Time":
+        return t("range_all");
+      default:
+        return d;
+    }
+  };
 
   // compute date cutoff based on dateRange selection
   const cutoffDate = useMemo(() => {
@@ -234,12 +271,28 @@ ID: ${receipt.id}`);
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
+    <div
+      className={`min-h-screen p-8 ${
+        theme === "dark" ? "bg-dark-gray text-white" : "bg-gray-50 text-black"
+      }`}
+    >
       <div className="max-w-6xl mx-auto">
         <header className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-3xl font-bold">My Receipts</h1>
-            <p className="text-gray-500">Track and manage all your expenses</p>
+            <h1
+              className={`text-3xl font-bold ${
+                theme === "dark" ? "text-white" : "text-black"
+              }`}
+            >
+              {t("my_receipts")}
+            </h1>
+            <p
+              className={`${
+                theme === "dark" ? "text-gray-300" : "text-gray-500"
+              }`}
+            >
+              {t("receipts_subtitle")}
+            </p>
           </div>
           <div className="flex items-center gap-4">
             <button
@@ -260,7 +313,7 @@ ID: ${receipt.id}`);
                   d="M12 5v14m7-7H5"
                 />
               </svg>
-              Upload Receipt
+              {t("upload_receipt")}
             </button>
             <input
               ref={fileInputRef}
@@ -272,47 +325,85 @@ ID: ${receipt.id}`);
         </header>
 
         {/* Filters */}
-        <div className="bg-white rounded-lg shadow p-4 mb-6">
+        <div
+          className={`rounded-lg shadow p-4 mb-6 ${
+            theme === "dark" ? "bg-medium-gray" : "bg-white"
+          }`}
+        >
           <div className="grid grid-cols-3 gap-4">
             <div>
-              <label className="text-sm text-gray-600">Search</label>
+              <label
+                className={`${
+                  isArabic ? "text-right block" : "text-sm text-gray-600"
+                }`}
+              >
+                {t("search_label")}
+              </label>
               <input
                 value={search}
                 onChange={(e) => {
                   setSearch(e.target.value);
                   setPage(1);
                 }}
-                placeholder="Search by merchant or category..."
-                className="mt-2 w-full border rounded px-3 py-2 text-sm"
+                placeholder={t("search_placeholder")}
+                className={`mt-2 w-full border rounded px-3 py-2 text-sm ${
+                  theme === "dark"
+                    ? "bg-transparent text-white border-gray-600"
+                    : "bg-white text-black"
+                }`}
               />
             </div>
             <div>
-              <label className="text-sm text-gray-600">Date Range</label>
+              <label
+                className={`${
+                  isArabic ? "text-right block" : "text-sm text-gray-600"
+                }`}
+              >
+                {t("date_range_label")}
+              </label>
               <select
                 value={dateRange}
                 onChange={(e) => {
                   setDateRange(e.target.value);
                   setPage(1);
                 }}
-                className="mt-2 w-full border rounded px-3 py-2 text-sm"
+                className={`mt-2 w-full border rounded px-3 py-2 text-sm ${
+                  theme === "dark"
+                    ? "bg-transparent text-white border-gray-600"
+                    : "bg-white text-black"
+                }`}
               >
                 {DATE_RANGES.map((d) => (
-                  <option key={d}>{d}</option>
+                  <option key={d} value={d}>
+                    {dateRangeLabel(d)}
+                  </option>
                 ))}
               </select>
             </div>
             <div>
-              <label className="text-sm text-gray-600">Category</label>
+              <label
+                className={`${
+                  isArabic ? "text-right block" : "text-sm text-gray-600"
+                }`}
+              >
+                {t("category_label")}
+              </label>
               <select
                 value={category}
                 onChange={(e) => {
                   setCategory(e.target.value);
                   setPage(1);
                 }}
-                className="mt-2 w-full border rounded px-3 py-2 text-sm"
+                className={`mt-2 w-full border rounded px-3 py-2 text-sm ${
+                  theme === "dark"
+                    ? "bg-transparent text-white border-gray-600"
+                    : "bg-white text-black"
+                }`}
               >
                 {CATEGORIES.map((c) => (
-                  <option key={c}>{c}</option>
+                  <option key={c} value={c}>
+                    {categoryLabel(c)}
+                  </option>
                 ))}
               </select>
             </div>
@@ -320,32 +411,72 @@ ID: ${receipt.id}`);
         </div>
 
         {/* Table */}
-        <div className="bg-white rounded-lg shadow overflow-hidden">
+        <div
+          className={`${
+            theme === "dark" ? "bg-medium-gray" : "bg-white"
+          } rounded-lg shadow overflow-hidden`}
+        >
           <table className="min-w-full table-auto">
-            <thead className="bg-gray-50">
-              <tr className="text-left text-xs text-gray-600">
-                <th className="p-4">Merchant</th>
-                <th className="p-4">Date</th>
-                <th className="p-4">Total</th>
-                <th className="p-4">Category</th>
-                <th className="p-4">Actions</th>
+            <thead
+              className={theme === "dark" ? "bg-medium-gray" : "bg-gray-50"}
+            >
+              <tr
+                className={`${isArabic ? "text-right" : "text-left"} text-xs ${
+                  theme === "dark" ? "text-gray-300" : "text-gray-600"
+                }`}
+              >
+                <th className="p-4">{t("merchant_label")}</th>
+                <th className="p-4">{t("date_label")}</th>
+                <th className="p-4">{t("total_label")}</th>
+                <th className="p-4">{t("category_label")}</th>
+                <th className="p-4">{t("actions_label")}</th>
               </tr>
             </thead>
             <tbody>
               {pageData.map((r) => (
                 <tr key={r.id} className="border-t">
                   <td className="p-4">
-                    <div className="font-medium">{r.merchant}</div>
-                    <div className="text-xs text-gray-500">{r.desc}</div>
+                    <div
+                      className={`font-medium ${
+                        theme === "dark" ? "text-white" : "text-black"
+                      }`}
+                    >
+                      {r.merchant}
+                    </div>
+                    <div
+                      className={`${
+                        theme === "dark"
+                          ? "text-gray-300"
+                          : "text-xs text-gray-500"
+                      }`}
+                    >
+                      {r.desc}
+                    </div>
                   </td>
-                  <td className="p-4 text-gray-600">
+                  <td
+                    className={`${
+                      theme === "dark"
+                        ? "p-4 text-gray-300"
+                        : "p-4 text-gray-600"
+                    }`}
+                  >
                     {new Date(r.date).toLocaleDateString()}
                   </td>
-                  <td className="p-4 font-semibold">
+                  <td
+                    className={`p-4 font-semibold ${
+                      theme === "dark" ? "text-white" : "text-black"
+                    }`}
+                  >
                     {formatCurrency(r.total)}
                   </td>
                   <td className="p-4">
-                    <span className="inline-block px-3 py-1 text-sm rounded-full bg-indigo-50 text-indigo-700">
+                    <span
+                      className={`${
+                        theme === "dark"
+                          ? "inline-block px-3 py-1 text-sm rounded-full bg-gray-700 text-gray-200"
+                          : "inline-block px-3 py-1 text-sm rounded-full bg-indigo-50 text-indigo-700"
+                      }`}
+                    >
                       {r.category}
                     </span>
                   </td>
@@ -418,19 +549,29 @@ ID: ${receipt.id}`);
             </tbody>
           </table>
 
-          <div className="p-4 flex items-center justify-between">
-            <div className="text-sm text-gray-500">
-              Showing {Math.min(filtered.length, (page - 1) * pageSize + 1)}-
-              {Math.min(filtered.length, page * pageSize)} of {filtered.length}{" "}
-              receipts
+          <div
+            className={`p-4 flex items-center justify-between ${
+              theme === "dark" ? "text-gray-300" : "text-gray-500"
+            }`}
+          >
+            <div className="text-sm">
+              {t("showing_receipts", {
+                start: Math.min(filtered.length, (page - 1) * pageSize + 1),
+                end: Math.min(filtered.length, page * pageSize),
+                total: filtered.length,
+              })}
             </div>
             <div className="flex items-center gap-2">
               <button
                 onClick={() => gotoPage(page - 1)}
                 disabled={page === 1}
-                className="px-3 py-1 border rounded disabled:opacity-50"
+                className={`px-3 py-1 border rounded disabled:opacity-50 ${
+                  theme === "dark"
+                    ? "bg-transparent text-gray-300 border-gray-600"
+                    : ""
+                }`}
               >
-                Previous
+                {t("previous")}
               </button>
               <div className="inline-flex items-center border rounded overflow-hidden">
                 {Array.from({ length: totalPages }).map((_, i) => (
@@ -450,9 +591,13 @@ ID: ${receipt.id}`);
               <button
                 onClick={() => gotoPage(page + 1)}
                 disabled={page === totalPages}
-                className="px-3 py-1 border rounded disabled:opacity-50"
+                className={`px-3 py-1 border rounded disabled:opacity-50 ${
+                  theme === "dark"
+                    ? "bg-transparent text-gray-300 border-gray-600"
+                    : ""
+                }`}
               >
-                Next
+                {t("next")}
               </button>
             </div>
           </div>
@@ -460,26 +605,72 @@ ID: ${receipt.id}`);
 
         {/* Quick stats */}
         <div className="grid grid-cols-4 gap-4 mt-6">
-          <div className="bg-white rounded-lg p-4 shadow">
-            <div className="text-xs text-gray-500">
-              Total Receipts this Month
+          <div
+            className={`${
+              theme === "dark"
+                ? "bg-medium-gray text-white"
+                : "bg-white text-black"
+            } rounded-lg p-4 shadow`}
+          >
+            <div
+              className={`${
+                theme === "dark" ? "text-gray-300" : "text-xs text-gray-500"
+              }`}
+            >
+              {t("total_receipts_this_month")}
             </div>
             <div className="text-2xl font-bold mt-2">
               {stats.receiptsThisMonth}
             </div>
           </div>
-          <div className="bg-white rounded-lg p-4 shadow">
-            <div className="text-xs text-gray-500">Total Spent</div>
+          <div
+            className={`${
+              theme === "dark"
+                ? "bg-medium-gray text-white"
+                : "bg-white text-black"
+            } rounded-lg p-4 shadow`}
+          >
+            <div
+              className={`${
+                theme === "dark" ? "text-gray-300" : "text-xs text-gray-500"
+              }`}
+            >
+              {t("total_spent")}
+            </div>
             <div className="text-2xl font-bold mt-2">
               {formatCurrency(stats.totalSpent)}
             </div>
           </div>
-          <div className="bg-white rounded-lg p-4 shadow">
-            <div className="text-xs text-gray-500">Top Spending Category</div>
+          <div
+            className={`${
+              theme === "dark"
+                ? "bg-medium-gray text-white"
+                : "bg-white text-black"
+            } rounded-lg p-4 shadow`}
+          >
+            <div
+              className={`${
+                theme === "dark" ? "text-gray-300" : "text-xs text-gray-500"
+              }`}
+            >
+              {t("top_spending_category")}
+            </div>
             <div className="text-2xl font-bold mt-2">{stats.topCategory}</div>
           </div>
-          <div className="bg-white rounded-lg p-4 shadow">
-            <div className="text-xs text-gray-500">Average per Day</div>
+          <div
+            className={`${
+              theme === "dark"
+                ? "bg-medium-gray text-white"
+                : "bg-white text-black"
+            } rounded-lg p-4 shadow`}
+          >
+            <div
+              className={`${
+                theme === "dark" ? "text-gray-300" : "text-xs text-gray-500"
+              }`}
+            >
+              {t("average_per_day")}
+            </div>
             <div className="text-2xl font-bold mt-2">
               {formatCurrency(stats.avgPerDay)}
             </div>
@@ -490,51 +681,60 @@ ID: ${receipt.id}`);
         <div className="mt-6 bg-gradient-to-r from-purple-700 to-purple-500 text-white rounded-2xl p-6 shadow-lg">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h2 className="text-xl font-bold">Smart Financial Advisor</h2>
-              <div className="text-sm opacity-90">
-                AI-powered insights for better spending
-              </div>
+              <h2 className="text-xl font-bold">
+                {t("smart_financial_advisor")}
+              </h2>
+              <div className="text-sm opacity-90">{t("advisor_summary")}</div>
             </div>
-            <div className="text-sm opacity-90">Summary</div>
+            <div className="text-sm opacity-90">{t("advisor_summary")}</div>
           </div>
 
           <div className="space-y-3">
-            <div className="bg-white bg-opacity-10 p-3 rounded">
-              <div className="font-semibold">Transport Spending Alert</div>
-              <div className="text-sm opacity-90">
-                You spent {advisor.topCategoryPct}% on {advisor.topCategory}{" "}
-                this period. Consider setting a travel limit or using public
-                transportation to save money.
-              </div>
+            <div className="bg-white/10 backdrop-blur-lg p-4 rounded-lg border border-white/20">
+              <p className="text-sm font-medium text-white">
+                🚗 Transport Spending Alert
+              </p>
+              <p className="text-xs text-purple-100 mt-1">
+                {t("advisor_transport_spending", {
+                  pct: advisor.topCategoryPct,
+                  category: advisor.topCategory,
+                })}
+              </p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-lg p-4 rounded-lg border border-white/20">
+              <p className="text-sm font-medium text-white">
+                🥗 Food Budget Optimization
+              </p>
+              <p className="text-xs text-purple-100 mt-1">
+                {t("advisor_food_budget", {
+                  delta:
+                    advisor.diningDelta >= 0
+                      ? formatCurrency(advisor.diningDelta)
+                      : formatCurrency(-advisor.diningDelta),
+                  belowAbove: t(
+                    advisor.diningDelta >= 0 ? "budget_below" : "budget_above"
+                  ),
+                })}
+              </p>
             </div>
 
-            <div className="bg-white bg-opacity-10 p-3 rounded">
-              <div className="font-semibold">Food Budget Optimization</div>
-              <div className="text-sm opacity-90">
-                Your dining expenses are{" "}
-                {advisor.diningDelta >= 0
-                  ? `${formatCurrency(advisor.diningDelta)} below`
-                  : `${formatCurrency(-advisor.diningDelta)} above`}{" "}
-                budget this month. Great job! You could allocate these savings
-                to your emergency fund.
-              </div>
+            <div className="bg-white/10 backdrop-blur-lg p-4 rounded-lg border border-white/20">
+              <p className="text-sm font-medium text-white">
+                🔔 Subscription Review Reminder
+              </p>
+              <p className="text-xs text-purple-100 mt-1">
+                {t("advisor_subscription_review", {
+                  count: advisor.recurringCount,
+                  total: formatCurrency(advisor.recurringTotal),
+                })}
+              </p>
             </div>
-
-            <div className="bg-white bg-opacity-10 p-3 rounded">
-              <div className="font-semibold">Subscription Review Reminder</div>
-              <div className="text-sm opacity-90">
-                You have {advisor.recurringCount} recurring subscriptions
-                totaling {formatCurrency(advisor.recurringTotal)}/month. Review
-                them to ensure you're using all services actively.
-              </div>
-            </div>
-
-            <div className="flex gap-3 mt-4">
-              <button className="flex-1 bg-white text-purple-700 rounded px-4 py-2 font-semibold">
-                View Full Report
+            <div className="flex flex-col md:flex-row gap-4 mt-8">
+              <button className="w-full md:w-1/2 bg-white text-purple-600 py-3 rounded-lg font-medium hover:opacity-90 transition">
+                {t("view_full_report")}
               </button>
-              <button className="flex-1 border border-white bg-transparent rounded px-4 py-2 font-semibold">
-                Set Budget Goals
+              <button className="w-full md:w-1/2 border border-white py-3 rounded-lg font-medium hover:bg-white/10 transition">
+                {t("set_budget_goals")}
               </button>
             </div>
           </div>
