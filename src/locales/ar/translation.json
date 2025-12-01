@@ -195,10 +195,35 @@
   "back_to_login_button": "العودة لتسجيل الدخول",
   "contact_firstname_label": "الاسم الأول",
   "contact_lastname_label": "اسم العائلة",
-  
 
   "contact_receive_other_messages": "أوافق على استلام التحديثات والنشرات وأي رسائل تواصل أخرى من SpendRight.",
   "contact_consent_storage": "أوافق على قيام SpendRight بتخزين ومعالجة بياناتي الشخصية وفقًا لسياسة الخصوصية الخاصة بهم.",
-  
-  "contact_follow_us": "تابعنا على"
+
+  "contact_follow_us": "تابعنا على",
+  "choosePlan": "اختر خطة Spend Right الخاصة بك",
+  "startManaging": "ابدأ إدارة أموالك بذكاء. قم بالترقية في أي وقت حسب احتياجاتك.",
+  "checkoutTitle": "الدفع / تفاصيل الدفع",
+  "planSummary": "ملخص الخطة",
+  "planType": "نوع الخطة",
+  "billingPeriod": "مدة الاشتراك",
+  "totalPrice": "الإجمالي",
+  "cardHolder": "اسم حامل البطاقة",
+  "cardNumber": "رقم البطاقة",
+  "expiryDate": "تاريخ الانتهاء",
+  "cvv": "CVV",
+  "payNow": "ادفع الآن",
+
+  "countryRegion": "Country / Region",
+
+  "checkout": "الدفع",
+  "plan": "الخطة",
+  "total": "الإجمالي",
+  "billingDetails": "معلومات الفوترة",
+  "firstName": "الاسم الأول",
+  "lastName": "اسم العائلة",
+  "country": "الدولة / المنطقة",
+  "phone": "رقم الهاتف",
+  "emailAddress": "البريد الإلكتروني",
+  "subscribeNow": "اشترك الآن",
+  "subscriptionProcessedFor": "تم معالجة الاشتراك لـ"
 }

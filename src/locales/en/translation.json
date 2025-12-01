@@ -192,5 +192,34 @@
   "contact_receive_other_messages": "I agree to receive updates, newsletters, and other communication messages from SpendRight.",
   "contact_consent_storage": "I give my consent to SpendRight to store and process my personal data in accordance with its policies.",
 
-  "contact_follow_us": "Follow us"
+  "contact_follow_us": "Follow us",
+  "choosePlan": "Choose Your Spend Right Plan",
+  "startManaging": "Start managing your finances smarter. Upgrade anytime as your needs grow.",
+  "checkoutTitle": "Checkout / Payment Details",
+  "planSummary": "Plan Summary",
+  "planType": "Plan Type",
+  "billingPeriod": "Billing Period",
+  "totalPrice": "Total Price",
+  "cardHolder": "Card Holder Name",
+  "cardNumber": "Card Number",
+  "expiryDate": "Expiry Date",
+  "cvv": "CVV",
+  "payNow": "Pay Now",
+  "monthly": "Monthly",
+  "yearly": "Yearly",
+  "billingDetails": "Billing Details",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "countryRegion": "Country / Region",
+
+  "checkout": "Checkout",
+  "plan": "Plan",
+  "total": "Total",
+  "perfectForStarting": "Perfect for getting started",
+
+  "country": "Country / Region",
+  "phone": "Phone Number",
+  "emailAddress": "Email Address",
+  "subscribeNow": "Subscribe Now",
+  "subscriptionProcessedFor": "Subscription processed for"
 }

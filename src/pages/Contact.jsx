@@ -46,24 +46,10 @@ const Contact = () => {
       },
     },
     "& .MuiInputBase-input": {
-      color: theme === "dark" ? "#fff" : "",
-      textAlign: isArabic ? "right" : "left",
+      color: theme === "dark" ? "#838383" : "",
     },
     "& .MuiInputLabel-root": {
-      color: theme === "dark" ? "#ccc" : "",
-
-      right: isArabic ? "14px" : "unset",
-      left: isArabic ? "unset" : "14px",
-      transformOrigin: isArabic ? "right" : "left",
-    },
-    "& .MuiInputLabel-shrink": {
-      transformOrigin: isArabic ? "top right" : "top left",
-      transform: isArabic
-        ? "translate(14px, -9px) scale(0.75)"
-        : "translate(14px, -9px) scale(0.75)",
-    },
-    "& .MuiFormHelperText-root": {
-      textAlign: isArabic ? "right" : "left",
+      color: theme === "dark" ? "#838383" : "",
     },
   });
 
@@ -125,8 +111,10 @@ const Contact = () => {
                 display: "flex",
                 flexDirection: "column",
                 gap: 2,
+                direction: isArabic ? "rtl" : "ltr",
                 marginTop: "2em",
               }}
+              dir={isArabic ? "rtl" : "ltr"}
             >
               <Box sx={{ display: "flex", gap: 2 }}>
                 <TextField

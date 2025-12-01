@@ -25,6 +25,8 @@ import { useEffect } from "react";
 import About from "./pages/About.jsx";
 import Profile from "./pages/Profile.jsx";
 import { useAppContext } from "./contexts/useAppContext.jsx";
+import Checkout from "./pages/Checkout.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -32,6 +34,7 @@ const Layout = ({ children }) => {
 
   const hideLayoutPages = [
     "/login",
+    "/Login",
     "/Register",
     "/ForgotPassword",
     "/ForgotPasswordSuccess",
@@ -62,18 +65,22 @@ function App() {
   return (
     <Router>
       <Layout>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/about" element={<About />} />
-          <Route path="/ForgotPasswordSuccess" element={<ForgotPasswordSuccess />} />
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/ForgotPasswordSuccess"
+            element={<ForgotPasswordSuccess />}
+          />
           <Route path="/Pricing" element={<Pricing />} />
           <Route path="/PaymentSuccessPage" element={<PaymentSuccessPage />} />
           <Route path="/forgotPassword" element={<ForgotPassword />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/Checkout" element={<Checkout />} />
         </Routes>
       </Layout>
     </Router>
