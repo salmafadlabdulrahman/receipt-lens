@@ -4,6 +4,7 @@ import phoneImgSm from "/phone-img.png";
 import { useAppContext } from "../contexts/useAppContext";
 import { Link } from "react-router-dom";
 import { motion as Motion } from "framer-motion";
+import { PointerHighlight } from "./ui/pointer-highlight";
 
 const Hero = () => {
   const { t, i18n } = useTranslation();
@@ -24,28 +25,44 @@ const Hero = () => {
             {t("home_header")}
           </h1>
         ) : (
-          <h1 className="font-semibold md:text-[3em] text-[2.2em] leading-[1.2em] lg:text-[3.5em]">
+          <h1
+            className={`font-semibold md:text-[3em] text-[2.2em] leading-[1.2em] lg:text-[3.5em] ${
+              theme === "light" ? "text-black" : "text-white"
+            }`}
+          >
             {t("home_header")} <br />
             {t("home_second_part")}{" "}
-            <span className="text-white">{t("home_third_part")}</span>
+            <span className="inline-block">
+              <PointerHighlight>
+                <span
+                  className={`${
+                    theme === "light" ? "text-white" : "text-black"
+                  }`}
+                >
+                  {t("home_third_part")}
+                </span>
+              </PointerHighlight>
+            </span>
           </h1>
         )}
         <p
           className={`mt-[1.5em] max-w-[500px] m-auto font-medium lg:m-0 lg:mt-[1.5em] lg:text-[1.2em] lg:max-w-[550px] ${
-            isArabic ? "text-[1.5em] md:text-[2em] lg:text-right lg:text-[2em]" : ""
+            isArabic
+              ? "text-[1.5em] md:text-[2em] lg:text-right lg:text-[2em]"
+              : `${theme === "light" ? "text-black" : "text-white"}`
           }`}
         >
           {t("home_subtitle")}
         </p>
         <div className="my-[3em] flex flex-wrap justify-center gap-[1.5em] lg:justify-start">
           <Link to={"/receipts"}>
-            <button className="border border-black rounded-4xl py-[.8em] px-[1.9em] cursor-pointer hover:bg-white hover:text-black">
+            <button className="w-40 py-[.8em] px-[1.9em] cursor-pointer rounded-md border-2 border-black uppercase bg-white text-black transition duration-200 text-sm shadow-[1px_1px_rgba(0,0,0),2px_2px_rgba(0,0,0),3px_3px_rgba(0,0,0),4px_4px_rgba(0,0,0),5px_5px_0px_0px_rgba(0,0,0)]">
               {t("start_btn")}
             </button>
           </Link>
 
           <Link to={"/about"}>
-            <button className="border border-black rounded-4xl py-[.8em] px-[1.9em] cursor-pointer bg-black text-white">
+            <button className="w-40 py-[.8em] px-[1.9em] cursor-pointer rounded-md border-2 border-black uppercase text-black transition duration-200 text-sm shadow-[1px_1px_rgba(0,0,0),2px_2px_rgba(0,0,0),3px_3px_rgba(0,0,0),4px_4px_rgba(0,0,0),5px_5px_0px_0px_rgba(0,0,0)]">
               {t("explore_btn")}
             </button>
           </Link>
