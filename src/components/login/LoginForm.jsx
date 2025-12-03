@@ -7,12 +7,12 @@ import i18n from "../../i18n.js";
 
 const LoginForm = () => {
   const { t } = useTranslation();
-
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     rememberMe: true,
   });
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -22,18 +22,30 @@ const LoginForm = () => {
     });
   };
 
+  const validate = () => {
+    const tempErrors = {};
+    if (!formData.email) tempErrors.email = t("email_required");
+    else if (!/\S+@\S+\.\S+/.test(formData.email))
+      tempErrors.email = t("email_invalid");
+
+    if (!formData.password) tempErrors.password = t("password_required");
+
+    setErrors(tempErrors);
+    return Object.keys(tempErrors).length === 0;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Login Attempt:", formData);
+    if (validate()) {
+      console.log(formData);
+    }
   };
 
   const isArabic = i18n.language === "ar";
 
   return (
     <form
-      className={`space-y-1 ${
-        isArabic ? "text-right" : "text-left"
-      }`}
+      className={`space-y-4 ${isArabic ? "text-right" : "text-left"}`}
       onSubmit={handleSubmit}
     >
       <InputField
@@ -44,9 +56,11 @@ const LoginForm = () => {
         onChange={handleChange}
         placeholder={t("email_placeholder")}
         icon={Mail}
-      
         className={isArabic ? "text-right" : "text-left pl-10"}
       />
+      {errors.email && (
+        <p className="text-red-500 text-sm">{errors.email}</p>
+      )}
 
       <InputField
         label={t("password")}
@@ -58,6 +72,9 @@ const LoginForm = () => {
         icon={Lock}
         className={isArabic ? "text-right" : "text-left pl-10"}
       />
+      {errors.password && (
+        <p className="text-red-500 text-sm">{errors.password}</p>
+      )}
 
       <div className="flex items-center justify-between text-sm">
         <label className="flex items-center font-400">
@@ -67,10 +84,6 @@ const LoginForm = () => {
             checked={formData.rememberMe}
             onChange={handleChange}
             className="w-4 h-4 border-gray-300 rounded-lg"
-            style={{
-              fontFamily: "var(--font-primary)",
-              color: "var(--text-main)",
-            }}
           />
           <span className={`${isArabic ? "mr-2" : "ml-2"}`}>
             {t("remember_me")}
@@ -79,10 +92,6 @@ const LoginForm = () => {
         <a
           href="/ForgotPassword"
           className="transition duration-150 font-bold"
-          style={{
-            fontFamily: "var(--font-primary)",
-            color: "var(--text-main)",
-          }}
         >
           {t("forgot_password")}
         </a>
@@ -94,13 +103,7 @@ const LoginForm = () => {
         {t("signup_text")}
         <a
           href="/Register"
-          style={{
-            fontFamily: "var(--font-primary)",
-            color: "var(--text-main)",
-          }}
-          className={`font-bold ${
-            isArabic ? "mr-1" : "ml-1"
-          }`}
+          className={`font-bold ${isArabic ? "mr-1" : "ml-1"}`}
         >
           {t("signup_button")}
         </a>
