@@ -1,13 +1,24 @@
 import { Sparkles } from "lucide-react";
 import { Card } from "./ui/card";
+import { useTranslation } from "react-i18next";
 
 const AIInsightCard = () => {
+  const { t } = useTranslation();
+
   return (
     <Card className="bg-gradient-to-r from-accent to-purple-500 border-0 p-6 text-accent-foreground">
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-2 mb-3">
           <Sparkles className="h-5 w-5" />
-          <h3 className="font-semibold">AI Insight</h3>
+          <h2
+            className="font-semibold"
+            style={{
+              color: "var(--text-main)",
+              fontFamily: "var(--font-primary)",
+            }}
+          >
+            {t("aiInsightTitle")}
+          </h2>
         </div>
         <button className="text-accent-foreground/80 hover:text-accent-foreground">
           <svg
@@ -26,11 +37,23 @@ const AIInsightCard = () => {
           </svg>
         </button>
       </div>
-      <p className="text-lg mb-1">
-        You spent 30% more on dining this month compared to last month.
+      <p
+        className="text-lg mb-1"
+        style={{
+          color: "var(--text-main)",
+          fontFamily: "var(--font-secondary)",
+        }}
+      >
+        {t("aiInsightMessage1")}
       </p>
-      <p className="text-sm text-accent-foreground/90">
-        Consider setting a dining budget to better manage your expenses.
+      <p
+        className="text-m text-accent-foreground/90"
+        style={{
+          color: "var(--text-main)",
+          fontFamily: "var(--font-secondary)",
+        }}
+      >
+        {t("aiInsightMessage2")}
       </p>
     </Card>
   );
