@@ -228,7 +228,7 @@ const Contact = () => {
         </div>
 
         <section
-          className=" mt-[2em] sm:max-w-[500px] m-auto md:w-full
+          className="mt-[2em] sm:max-w-[500px] m-auto md:w-full
         lg:pl-[1em] xl:flex-col xl:w-[45%] xl:shadow-md xl:p-8 lg:m-0 lg:pr-[2em]"
         >
           <div className="m-auto mt-[3em] px-2 xl:w-full lg:m-0 lg:p-0">
@@ -240,8 +240,8 @@ const Contact = () => {
           </div>
 
           <div
-            className={` contact-info-wrapper
-              text-center lg:text-left mt-[2em] md:m-auto md:pb-3 py-[3em] xl:w-full xl:text-left ${
+            className={`contact-info-wrapper
+              text-center lg:text-left mt-[2em] md:m-auto md:pb-3 py-[3em] px-[1.5em] md:px-0 xl:w-full xl:text-left ${
                 isArabic ? "xl:text-right" : "xl:text-left"
               }`}
           >
@@ -254,62 +254,64 @@ const Contact = () => {
               {t("contact_info_title")}
             </h3>
 
-            <div
-              style={{ fontFamily: "var(--font-secondary)" }}
-              className={`flex gap-[1em] items-center m-auto max-w-[300px] my-[1em] py-[1em] lg:max-w-full xl:m-0  ${
-                isArabic ? "flex-row" : "flex-row"
-              }`}
-            >
-              <EmailIcon className="text-blue-600" />
-              <div className={isArabic ? "text-right grow" : "text-left"}>
-                <p className="text-sm text-gray-500">
-                  {t("contact_email_label")}
-                </p>
-                <p className="font-semibold">support@spendright.com</p>
+            <div className="mt-[1em] p-2">
+              <div
+                style={{ fontFamily: "var(--font-secondary)" }}
+                className={`flex gap-[1em] items-center mb-[1em]  ${
+                  isArabic ? "flex-row" : "flex-row"
+                }`}
+              >
+                <EmailIcon className="text-blue-600" />
+                <div className={isArabic ? "text-right grow" : "text-left"}>
+                  <p className="text-sm text-gray-500">
+                    {t("contact_email_label")}
+                  </p>
+                  <p className="font-semibold">support@spendright.com</p>
+                </div>
               </div>
-            </div>
 
-            <div
-              style={{ fontFamily: "var(--font-secondary)" }}
-              className={`flex gap-[1em] items-center m-auto max-w-[300px] my-[1em] py-[1em] lg:max-w-full xl:m-0  ${
-                isArabic ? "flex-row" : "flex-row"
-              }`}
-            >
-              <PhoneIcon className="text-blue-600" />
-              <div className={isArabic ? "text-right grow" : "text-left"}>
-                <p className="text-sm text-gray-500">
-                  {t("contact_phone_label")}
-                </p>
-                <p className="font-semibold">+1 (234) 567-890</p>
+              <div
+                style={{ fontFamily: "var(--font-secondary)" }}
+                className={`flex gap-[1em] items-center mb-[1em]  ${
+                  isArabic ? "flex-row" : "flex-row"
+                }`}
+              >
+                <PhoneIcon className="text-blue-600" />
+                <div className={isArabic ? "text-right grow" : "text-left"}>
+                  <p className="text-sm text-gray-500">
+                    {t("contact_phone_label")}
+                  </p>
+                  <p className="font-semibold">+1 (234) 567-890</p>
+                </div>
               </div>
-            </div>
 
-            <div
-              style={{ fontFamily: "var(--font-secondary)" }}
-              className={`flex gap-[1em] items-start m-auto max-w-[300px] my-[1em] py-[1em] lg:max-w-full xl:m-0  ${
-                isArabic ? "flex-row" : "flex-row"
-              }`}
-            >
-              <LocationOnIcon className="text-blue-600" />
-              <div className={isArabic ? "text-right grow" : "text-left"}>
-                <p className="text-sm text-gray-500">
-                  {t("contact_business_hours")}
-                </p>
+              <div
+                style={{ fontFamily: "var(--font-secondary)" }}
+                className={`flex gap-[1em] items-start mb-[1em]   ${
+                  isArabic ? "flex-row" : "flex-row"
+                }`}
+              >
+                <LocationOnIcon className="text-blue-600" />
+                <div className={isArabic ? "text-right grow" : "text-left"}>
+                  <p className="text-sm text-gray-500">
+                    {t("contact_business_hours")}
+                  </p>
 
-                <p className="flex justify-between gap-6 font-semibold">
-                  <span>{t("contact_weekdays")} </span>
-                  <span>{t("contact_weekdays_hours")}</span>
-                </p>
+                  <p className="flex justify-between gap-6 font-semibold">
+                    <span>{t("contact_weekdays")} </span>
+                    <span>{t("contact_weekdays_hours")}</span>
+                  </p>
 
-                <p className="flex justify-between font-semibold">
-                  <span>{t("contact_saturday")}</span>
-                  <span>{t("contact_saturday_hours")}</span>
-                </p>
+                  <p className="flex justify-between font-semibold">
+                    <span>{t("contact_saturday")}</span>
+                    <span>{t("contact_saturday_hours")}</span>
+                  </p>
 
-                <p className="flex justify-between font-semibold">
-                  <span>{t("contact_sunday")}</span>
-                  <span>{t("contact_sunday_hours")}</span>
-                </p>
+                  <p className="flex justify-between font-semibold">
+                    <span>{t("contact_sunday")}</span>
+                    <span>{t("contact_sunday_hours")}</span>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -320,3 +322,5 @@ const Contact = () => {
 };
 
 export default Contact;
+
+// m-auto max-w-[300px] my-[1em] py-[1em] lg:max-w-full xl:m-0
