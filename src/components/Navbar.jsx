@@ -146,7 +146,7 @@ const Navbar = () => {
               <a href="/login"> {t("login_btn")}</a>
             </button>
             <div
-              className="bg-purple-pastel rounded-full w-[35px] h-[35px] text-center relative"
+              className="bg-purple-pastel rounded-full w-[35px] h-[35px] text-center relative cursor-pointer"
               onClick={handleNotficicationToggle}
             >
               <NotificationsIcon
@@ -171,7 +171,7 @@ const Navbar = () => {
               <MenuIcon className="text-gray-800 md:hidden" />
             </IconButton>
             <div
-              className="bg-purple-pastel rounded-full w-[35px] h-[35px] text-center relative"
+              className="bg-purple-pastel rounded-full w-[35px] h-[35px] text-center relative cursor-pointer"
               onClick={handleNotficicationToggle}
             >
               <NotificationsIcon
