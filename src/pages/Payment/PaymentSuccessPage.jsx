@@ -27,7 +27,7 @@ const useDarkMode = () => {
 
 const PaymentSuccessPage = () => {
   const { t, i18n } = useTranslation();
-  const isDarkMode = useDarkMode(); 
+  const isDarkMode = useDarkMode();
 
   const isArabic = i18n.language.startsWith("ar");
   const textDirectionClass = isArabic ? "rtl" : "ltr";
@@ -64,7 +64,9 @@ const PaymentSuccessPage = () => {
           <div
             className="relative w-24 h-24 rounded-full flex items-center justify-center shadow-lg"
             style={{
-              backgroundColor: isDarkMode ? "#065f46" : "var(--color-success-green)", 
+              backgroundColor: isDarkMode
+                ? "#065f46"
+                : "var(--color-success-green)",
             }}
           >
             <CheckIcon className="w-12 h-12 text-white" />
@@ -93,7 +95,9 @@ const PaymentSuccessPage = () => {
         <div
           className="border rounded-xl p-6 mb-8 shadow-sm transition-colors duration-300"
           style={{
-            borderColor: isDarkMode ? "#4c1d95" : "var(--color-secondary-purple)",
+            borderColor: isDarkMode
+              ? "#4c1d95"
+              : "var(--color-secondary-purple)",
             backgroundColor: isDarkMode ? "#030712" : "var(--bg-main)",
           }}
         >
