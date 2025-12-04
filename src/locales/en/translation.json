@@ -281,5 +281,13 @@
   "phone": "Phone Number",
   "emailAddress": "Email Address",
   "subscribeNow": "Subscribe Now",
-  "subscriptionProcessedFor": "Subscription processed for"
+  "subscriptionProcessedFor": "Subscription processed for",
+
+  "welcome_notification": "Welcome to our website!",
+  "welcome_notify_subtext": "We're excited to have you here",
+  "welcome_notify_link": "Get Started",
+
+  "receipt_uploaded_notification": "You've just uploaded a new receipt!",
+  "receipt_uploaded_notify_subtext": "Processing will take a few moments",
+  "receipt_uploaded_notify_link": "View Receipt"
 }

@@ -1,8 +1,10 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import useDarkMode from "../pricing/useDarkMode.js";
 
 const SocialLoginButtons = () => {
   const { i18n } = useTranslation();
+  const isDarkMode = useDarkMode();
   const isRTL = i18n.language === "ar";
   return (
     <div
@@ -13,8 +15,8 @@ const SocialLoginButtons = () => {
       }`}
     >
       <button
-        className="flex cursor-pointer items-center justify-center w-full py-2 border border-gray-300 rounded-xl text-gray-600 hover:bg-gray-50 transition duration-150"
-        style={{ color: "var(--text-main)" }}
+        className="flex cursor-pointer items-center justify-center w-full py-2 border border-gray-300 rounded-xl text-gray-600  transition duration-150"
+        style={{ color: isDarkMode ? "white" : "var(--text-main)" }}
       >
         <svg
           className={`w-5 h-5 ${isRTL ? "ml-2" : "mr-2"}`}
@@ -33,8 +35,6 @@ const SocialLoginButtons = () => {
         </svg>
         Google
       </button>
-
-     
     </div>
   );
 };

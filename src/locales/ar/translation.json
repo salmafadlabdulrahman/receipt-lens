@@ -285,5 +285,13 @@
   "about_cta_learn": "تعرف أكثر",
   "about_ai_sub": "توصيات ذكية ومخصصة تناسبك",
   "about_sync_sub": "الوصول إلى بياناتك في أي مكان",
-  "about_analytics_dashboard": "لوحة تحليلات"
+  "about_analytics_dashboard": "لوحة تحليلات",
+
+  "welcome_notification": "أهلاً بكم في موقعنا!",
+  "welcome_notify_subtext": "يسعدنا وجودكم هنا",
+  "welcome_notify_link": "ابدأ",
+
+  "receipt_uploaded_notification": "لقد اضفت للتو إيصالًا جديدًا!",
+  "receipt_uploaded_notify_subtext": "ستستغرق المعالجة بضع لحظات.",
+  "receipt_uploaded_notify_link": "عرض الإيصال"
 }

@@ -1,7 +1,6 @@
 import React from "react";
 import LoginFormSection from "../../components/login/LoginFormSection.jsx";
 import FeaturesSidebar from "../../components/login/FeaturesSidebar.jsx";
-// import LanguageThemeToggle from "../../components/LanguageThemeToggle.jsx";
 
 const LoginPage = () => {
   return (
@@ -15,9 +14,7 @@ const LoginPage = () => {
           color: "var(--text-main)",
         }}
       >
-        {/* <div className="absolute top-4 right-4 z-10">
-          <LanguageThemeToggle />
-        </div> */}
+        
         <LoginFormSection />
       </div>
 
