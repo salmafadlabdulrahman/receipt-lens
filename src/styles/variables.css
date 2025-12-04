@@ -13,7 +13,6 @@
   --bg-secondary: #f5f7fa;
   --bg-card: #ffffff;
   --feature-card-bg: linear-gradient(135deg, #deb5ff, #0f2978);
-  --login-btn: #b98adf;
   --border-color: #e0e0e0;
   --login-right-gradient: linear-gradient(135deg, #deb5ff, #0f2978);
   --login-btn: #b98adf;
@@ -53,7 +52,7 @@
   --primary: #ffffff;
   --primary-hover: #f2f2f2;
 
-  --secondary: #aaebff; 
+  --secondary: #aaebff;
   --secondary-hover: #c173ff;
 
   --text-main: #ffffff;
@@ -67,11 +66,9 @@
   --border-color: #333333;
 
   --login-right-gradient: linear-gradient(135deg, #402557, #0c0d1b, #050505);
---feature-card-bg: linear-gradient(135deg, #402557, #0c0d1b, #050505);
-  --login-btn: #8b5cf6;
-    --login-btn: #fff6fe;
+  --feature-card-bg: linear-gradient(135deg, #402557, #0c0d1b, #050505);
 
-  --feature-img-brightness: 0.7; 
+  --feature-img-brightness: 0.7;
   --feature-img-overlay: rgba(0, 0, 0, 0.3);
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.5);
   --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.7);
