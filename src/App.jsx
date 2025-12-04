@@ -28,6 +28,10 @@ import { useAppContext } from "./contexts/useAppContext.jsx";
 import Checkout from "./pages/Checkout.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import Receipts from "./pages/receipts.jsx";
+import Dashboard from "./pages/dashboard.jsx";
+
+// ✅ إضافة داشبورد الأدمن
+import AdminDashboard from "./pages/admindashboard.jsx";
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -45,9 +49,7 @@ const Layout = ({ children }) => {
   return (
     <>
       {!hideLayout && <Navbar />}
-
-      {<FloatingToggleBox />}
-
+      <FloatingToggleBox />
       <main className={`${theme === "dark" ? "bg-dark-gray" : ""}`}>
         {children}
         {!hideLayout && <Footer />}
@@ -83,6 +85,10 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/Checkout" element={<Checkout />} />
           <Route path="/receipts" element={<Receipts />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+
+          {/* ✅ مسار داشبورد الأدمن */}
+          <Route path="/admindashboard" element={<AdminDashboard />} />
         </Routes>
       </Layout>
     </Router>
