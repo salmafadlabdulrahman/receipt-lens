@@ -11,15 +11,17 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import HeaderMenu from "./HeaderMenu";
 import LanguageThemeToggle from "./LanguageThemeToggle";
 import { useAppContext } from "../contexts/useAppContext";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import NotificationsMenu from "./NotificationsMenu";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [notificationsList, setNotificationsList] = useState(false);
   const { t, i18n } = useTranslation();
   const { theme } = useAppContext();
   const location = useLocation();
@@ -29,6 +31,14 @@ const Navbar = () => {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const handleNotficicationToggle = () => {
+    setNotificationsList(!notificationsList);
+  };
+
+  useEffect(() => {
+    setNotificationsList(false);
+  }, [location.pathname])
 
   const navItems = [
     { name: t("nav_home"), path: "/" },
@@ -135,11 +145,22 @@ const Navbar = () => {
             <button className="login-btn text-white text-[1em] font-semibold py-[.4em] px-[1.7em] rounded-[7px] cursor-pointer">
               <a href="/login"> {t("login_btn")}</a>
             </button>
-            {/* <HeaderMenu /> */}
+            <div
+              className="bg-purple-pastel rounded-full w-[35px] h-[35px] text-center relative cursor-pointer"
+              onClick={handleNotficicationToggle}
+            >
+              <NotificationsIcon
+                sx={{ color: "white" }}
+                className="mt-[.2em]"
+              />
+              <span className="absolute bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center -top-1 -right-1">
+                1
+              </span>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-[1em]">
             <IconButton
               edge="end"
               color="inherit"
@@ -149,6 +170,18 @@ const Navbar = () => {
             >
               <MenuIcon className="text-gray-800 md:hidden" />
             </IconButton>
+            <div
+              className="bg-purple-pastel rounded-full w-[35px] h-[35px] text-center relative cursor-pointer"
+              onClick={handleNotficicationToggle}
+            >
+              <NotificationsIcon
+                sx={{ color: "white" }}
+                className="mt-[.2em]"
+              />
+              <span className="absolute bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center -top-1 -right-1">
+                1
+              </span>
+            </div>
           </div>
         </Toolbar>
       </AppBar>
@@ -161,6 +194,8 @@ const Navbar = () => {
       >
         {drawer}
       </Drawer>
+
+      {notificationsList && <NotificationsMenu />}
     </Box>
   );
 };
