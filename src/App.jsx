@@ -27,6 +27,7 @@ import Profile from "./pages/Profile.jsx";
 import { useAppContext } from "./contexts/useAppContext.jsx";
 import Checkout from "./pages/Checkout.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
+import Receipts from "./pages/receipts.jsx";
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -81,6 +82,7 @@ function App() {
           <Route path="/forgotPassword" element={<ForgotPassword />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/Checkout" element={<Checkout />} />
+          <Route path="/receipts" element={<Receipts />} />
         </Routes>
       </Layout>
     </Router>

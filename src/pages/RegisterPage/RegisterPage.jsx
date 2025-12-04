@@ -1,7 +1,6 @@
 import React from "react";
 import RegisterFormSection from "../../components/register/RegisterFormSection";
 import FeaturesSidebar from "../../components/login/FeaturesSidebar.jsx";
-// import LanguageThemeToggle from "../../components/LanguageThemeToggle.jsx";
 
 const RegisterPage = () => {
   return (
@@ -14,9 +13,7 @@ const RegisterPage = () => {
           color: "var(--text-main)",
         }}
       >
-        {/* <div className="absolute top-4 right-4 z-10">
-          <LanguageThemeToggle />
-        </div> */}
+
         <RegisterFormSection />
       </div>
 
