@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense } from "react";
 import {
   DollarSign,
   TrendingUp,
@@ -26,7 +26,7 @@ const CategoryDistributionChart = React.lazy(() =>
 );
 
 export default function Dashboard() {
-  const [showNotifications, setShowNotifications] = useState(false);
+  // const [showNotifications, setShowNotifications] = useState(false);
   const { theme } = useAppContext();
   const isDark = theme === "dark";
 
@@ -77,7 +77,7 @@ export default function Dashboard() {
         isDark ? "bg-dark-gray text-white" : "bg-white text-black"
       }`}
     >
-      <header
+      {/* <header
         className={`sticky top-0 z-40 border-b ${
           isDark ? "border-gray-700 bg-dark-gray" : "border-slate-200 bg-white"
         }`}
@@ -112,10 +112,10 @@ export default function Dashboard() {
             </Avatar>
           </div>
         </div>
-      </header>
+      </header> */}
 
       {/* Main content */}
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 flex-1 max-w-7xl py-8">
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 flex-1 max-w-7xl py-8 mt-[6em]">
         {/* Page title */}
         <div className="mb-6">
           <h1 className="text-2xl sm:text-3xl font-bold">{t("dashboard")}</h1>

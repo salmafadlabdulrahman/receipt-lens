@@ -78,11 +78,10 @@ const Navbar = () => {
           </ListItem>
         ))}
 
-        <button className="login-btn text-white text-[1em] font-semibold py-[.4em] px-[1.7em] rounded-[7px] cursor-pointer mt-[2em]">
-          {t("login_btn")}
-        </button>
-
-        <div className="mt-[1.5em]">
+        <div className="flex items-center mt-[1em]">
+          <button className="login-btn text-white text-[1em] font-semibold py-[.4em] px-[1.7em] rounded-[7px] cursor-pointer ">
+            {t("login_btn")}
+          </button>
           <ListItem className="hover:text-indigo-400">
             <Link to="/dashboard" className="flex items-center gap-2">
               <LayoutDashboard className="w-6 h-6 text-purple-500" />
@@ -148,15 +147,15 @@ const Navbar = () => {
           </Box>
 
           <div className="hidden md:flex items-center gap-[.5em]">
+            <button className="login-btn text-white text-[1em] font-semibold py-[.4em] px-[1.7em] rounded-[7px] cursor-pointer">
+              <a href="/login"> {t("login_btn")}</a>
+            </button>
             <Link
               to="/dashboard"
               className="p-2 rounded-full hover:bg-gray-200"
             >
               <LayoutDashboard className="w-6 h-6 text-purple-500" />
             </Link>
-            <button className="login-btn text-white text-[1em] font-semibold py-[.4em] px-[1.7em] rounded-[7px] cursor-pointer">
-              <a href="/login"> {t("login_btn")}</a>
-            </button>
             <div
               className="bg-purple-pastel rounded-full w-[35px] h-[35px] text-center relative cursor-pointer"
               onClick={handleNotficicationToggle}
@@ -178,10 +177,15 @@ const Navbar = () => {
               color="inherit"
               aria-label="menu"
               onClick={handleDrawerToggle}
-              className="hidden"
+              className="hidden "
             >
-              <MenuIcon className="text-gray-800 md:hidden" />
+              <MenuIcon
+                className={`md:hidden ${
+                  theme === "light" ? "text-gray-800" : "text-white"
+                } `}
+              />
             </IconButton>
+
             <div
               className="bg-purple-pastel rounded-full w-[35px] h-[35px] text-center relative cursor-pointer"
               onClick={handleNotficicationToggle}

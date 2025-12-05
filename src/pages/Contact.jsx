@@ -322,5 +322,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
-// m-auto max-w-[300px] my-[1em] py-[1em] lg:max-w-full xl:m-0

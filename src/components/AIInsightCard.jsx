@@ -1,12 +1,21 @@
 import { Sparkles } from "lucide-react";
 import { Card } from "./ui/card";
 import { useTranslation } from "react-i18next";
+import { useAppContext } from "@/contexts/useAppContext";
 
 const AIInsightCard = () => {
   const { t } = useTranslation();
+  const { theme } = useAppContext();
 
+  //bg-gradient-to-r from-accent to-purple-500
   return (
-    <Card className="bg-gradient-to-r from-accent to-purple-500 border-0 p-6 text-accent-foreground">
+    <Card
+      className={`${
+        theme === "light"
+          ? "bg-linear-to-br from-purple-soft to-purple-light"
+          : "bg-linear-to-r  from-[#0029FF] via-purple-warm to-pink-pastel"
+      }  border-0 p-6 text-accent-foreground`}
+    >
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-2 mb-3">
           <Sparkles className="h-5 w-5" />
