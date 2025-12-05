@@ -9,63 +9,12 @@ import { ConfirmDialog, DetailModal, EditModal } from "@/components/Modals";
 import { useAppContext } from "../contexts/useAppContext";
 import { useTranslation } from "react-i18next";
 
-/**
- * Note:
- * - Kept both receipts arrays from feature/admindashboard and dev branches
- *   and merged them into `mergedReceipts` so nothing is removed.
- * - The status comparison checks both raw strings (e.g. "Processed") and
- *   translated strings (t("processed")) to remain compatible with both sets.
- */
-
-const receiptsFeature = [
-  {
-    merchant: "Starbucks Coffee",
-    date: "Dec 15, 2024",
-    category: "Dining",
-    amount: "$12.45",
-    status: "Processed",
-    icon: "S",
-    iconBg: "bg-red-100 text-red-700",
-    categoryColor: "bg-orange-50 text-orange-600",
-  },
-  {
-    merchant: "Shell Gas Station",
-    date: "Dec 14, 2024",
-    category: "Transportation",
-    amount: "$45.20",
-    status: "Processed",
-    icon: "S",
-    iconBg: "bg-blue-100 text-blue-700",
-    categoryColor: "bg-cyan-50 text-cyan-600",
-  },
-  {
-    merchant: "Amazon Purchase",
-    date: "Dec 13, 2024",
-    category: "Shopping",
-    amount: "$89.99",
-    status: "Processing",
-    icon: "A",
-    iconBg: "bg-emerald-100 text-emerald-700",
-    categoryColor: "bg-purple-50 text-purple-600",
-  },
-  {
-    merchant: "Office Supplies Co",
-    date: "Dec 12, 2024",
-    category: "Business",
-    amount: "$156.78",
-    status: "Processed",
-    icon: "O",
-    iconBg: "bg-purple-100 text-purple-700",
-    categoryColor: "bg-indigo-50 text-indigo-600",
-  },
-];
-
 const receiptsDev = [
   {
     merchant: "Starbucks Coffee",
     date: "Dec 15, 2024",
     categoryKey: "dining",
-    category: "Dining", // fallback for non-translated view
+    category: "Dining",
     amount: "$12.45",
     statusKey: "processed",
     status: "Processed",
@@ -112,206 +61,183 @@ const receiptsDev = [
 ];
 
 const RecentReceiptsTable = () => {
-  // from feature branch
   const { toasts, showToast, removeToast } = useToast();
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const [selectedReceipt, setSelectedReceipt] = useState(null);
 
-  // from dev branch
   const { theme } = useAppContext();
   const { t, i18n } = useTranslation();
-  const isRTL =
-    i18n.language && i18n.language.startsWith && i18n.language.startsWith("ar");
+  const isRTL = i18n.language.startsWith("ar");
+  const isDark = theme === "dark";
 
-  // merge both arrays without deleting anything (feature first, then dev)
-  // This preserves all original entries. If there are duplicates, they will appear twice.
-  const mergedReceipts = [...receiptsFeature, ...receiptsDev];
+  const mergedReceipts = [...receiptsDev];
+
+  const formatCurrency = (amount) => {
+    const number = parseFloat(amount.replace(/[^0-9.-]+/g, ""));
+    return new Intl.NumberFormat(i18n.language, {
+      style: "currency",
+      currency: "USD",
+    }).format(number);
+  };
+
+  const getCategoryLabel = (r) =>
+    r.categoryKey && t ? t(r.categoryKey) : r.category;
+  const getStatusLabel = (r) => (r.statusKey && t ? t(r.statusKey) : r.status);
+  const isStatusProcessed = (r) => {
+    const label = getStatusLabel(r);
+    return label === t?.("processed") || label === "Processed";
+  };
 
   const handleView = (receipt) => {
-    console.log("View receipt:", receipt);
     setSelectedReceipt(receipt);
     setShowDetailModal(true);
   };
-
   const handleEdit = (receipt) => {
-    console.log("Edit receipt:", receipt);
     setSelectedReceipt(receipt);
     setShowEditModal(true);
   };
-
   const handleSaveEdit = (formData) => {
-    console.log("Save receipt:", formData);
-    showToast(`Receipt from ${formData.merchant} updated`, "success", 3000);
+    showToast(
+      `${formData.merchant} ${t("updated") || "updated"}`,
+      "success",
+      3000
+    );
     setShowEditModal(false);
     setSelectedReceipt(null);
-    // TODO: When backend is ready:
-    // fetch(`/api/receipts/${selectedReceipt.id}`, { method: 'PUT', body: JSON.stringify(formData) })
-    //   .then(() => refreshReceiptsList())
   };
-
   const handleDelete = (receipt) => {
     setSelectedReceipt(receipt);
     setShowConfirmDialog(true);
   };
-
   const confirmDelete = () => {
-    console.log("Delete receipt:", selectedReceipt);
     showToast(
-      `Receipt from ${selectedReceipt?.merchant} deleted`,
+      `${selectedReceipt?.merchant} ${t("deleted") || "deleted"}`,
       "delete",
       4000
     );
     setShowConfirmDialog(false);
     setSelectedReceipt(null);
   };
-
   const handleViewAll = () => {
-    console.log("View all receipts clicked");
     showToast(
-      t
-        ? t("navigatingToAllReceipts") || "Navigating to all receipts..."
-        : "Navigating to all receipts...",
+      t("navigatingToAllReceipts") || "Navigating to all receipts...",
       "info"
     );
   };
 
-  // helper to determine translated labels where dev branch used t()
-  const getCategoryLabel = (r) => {
-    if (r.categoryKey && t) return t(r.categoryKey);
-    return r.category || r.category; // fallback
-  };
-
-  const getStatusLabel = (r) => {
-    if (r.statusKey && t) return t(r.statusKey);
-    return r.status || r.status;
-  };
-
-  const isStatusProcessed = (r) => {
-    const label = getStatusLabel(r);
-    return label === "Processed" || label === t?.("processed");
-  };
+  const headers = [
+    { key: "merchant", label: t("merchant") || "Merchant" },
+    { key: "date", label: t("date") || "Date" },
+    { key: "category", label: t("category") || "Category" },
+    { key: "amount", label: t("amount") || "Amount" },
+    { key: "status", label: t("statusUser") || "Status" },
+    { key: "actions", label: t("actionsUser") || "Actions" },
+  ];
 
   return (
     <>
-      {/* Toasts (feature branch) */}
-      {toasts &&
-        toasts.map((toast) => (
-          <Toast
-            key={toast.id}
-            message={toast.message}
-            type={toast.type}
-            onClose={() => removeToast(toast.id)}
-            duration={toast.duration}
-          />
-        ))}
+      {toasts.map((toast) => (
+        <Toast
+          key={toast.id}
+          message={toast.message}
+          type={toast.type}
+          onClose={() => removeToast(toast.id)}
+          duration={toast.duration}
+        />
+      ))}
 
-      {/* Detail Modal */}
       {showDetailModal && selectedReceipt && (
         <DetailModal
-          title={
-            t ? t("receiptDetails") || "Receipt Details" : "Receipt Details"
-          }
+          title={t("receiptDetails") || "Receipt Details"}
           details={[
             {
-              label: t ? t("merchant") || "Merchant" : "Merchant",
+              label: t("merchant") || "Merchant",
               value: selectedReceipt.merchant,
             },
             {
-              label: t ? t("amount") || "Amount" : "Amount",
-              value: selectedReceipt.amount,
+              label: t("amount") || "Amount",
+              value: formatCurrency(selectedReceipt.amount),
             },
             {
-              label: t ? t("category") || "Category" : "Category",
+              label: t("category") || "Category",
               value: getCategoryLabel(selectedReceipt),
             },
+            { label: t("date") || "Date", value: selectedReceipt.date },
             {
-              label: t ? t("date") || "Date" : "Date",
-              value: selectedReceipt.date,
-            },
-            {
-              label: t ? t("status") || "Status" : "Status",
+              label: t("status") || "Status",
               value: getStatusLabel(selectedReceipt),
             },
           ]}
-          onClose={() => {
-            setShowDetailModal(false);
-            setSelectedReceipt(null);
-          }}
+          onClose={() => setShowDetailModal(false)}
         />
       )}
 
-      {/* Edit Modal */}
       {showEditModal && selectedReceipt && (
         <EditModal
-          title={t ? t("editReceipt") || "Edit Receipt" : "Edit Receipt"}
+          title={t("editReceipt") || "Edit Receipt"}
           fields={[
             {
               name: "merchant",
-              label: "Merchant",
+              label: t("merchant") || "Merchant",
               value: selectedReceipt.merchant,
               type: "text",
               required: true,
             },
             {
               name: "amount",
-              label: "Amount",
+              label: t("amount") || "Amount",
               value: selectedReceipt.amount,
               type: "text",
               required: true,
             },
             {
               name: "category",
-              label: "Category",
-              value:
-                selectedReceipt.category || getCategoryLabel(selectedReceipt),
+              label: t("category") || "Category",
+              value: getCategoryLabel(selectedReceipt),
               type: "select",
               options: [
-                t ? t("dining") || "Dining" : "Dining",
-                t ? t("transportation") || "Transportation" : "Transportation",
-                t ? t("shopping") || "Shopping" : "Shopping",
-                t ? t("business") || "Business" : "Business",
+                t("dining") || "Dining",
+                t("transportation") || "Transportation",
+                t("shopping") || "Shopping",
+                t("business") || "Business",
               ],
               required: true,
             },
             {
               name: "date",
-              label: "Date",
+              label: t("date") || "Date",
               value: selectedReceipt.date,
               type: "text",
               required: true,
             },
             {
               name: "status",
-              label: "Status",
-              value: selectedReceipt.status || getStatusLabel(selectedReceipt),
+              label: t("status") || "Status",
+              value: getStatusLabel(selectedReceipt),
               type: "select",
               options: [
-                t ? t("processed") || "Processed" : "Processed",
-                t ? t("processing") || "Processing" : "Processing",
+                t("processed") || "Processed",
+                t("processing") || "Processing",
                 "Pending",
               ],
               required: true,
             },
           ]}
           onSave={handleSaveEdit}
-          onClose={() => {
-            setShowEditModal(false);
-            setSelectedReceipt(null);
-          }}
+          onClose={() => setShowEditModal(false)}
         />
       )}
 
-      {/* Confirm Delete */}
       {showConfirmDialog && selectedReceipt && (
         <ConfirmDialog
-          message={`Are you sure you want to delete the receipt from ${selectedReceipt.merchant} (${selectedReceipt.amount})? This action cannot be undone.`}
+          message={`${
+            t("confirmDeleteReceipt") ||
+            "Are you sure you want to delete this receipt?"
+          } (${selectedReceipt.merchant})`}
           onConfirm={confirmDelete}
-          onCancel={() => {
-            setShowConfirmDialog(false);
-            setSelectedReceipt(null);
-          }}
+          onCancel={() => setShowConfirmDialog(false)}
         />
       )}
 
@@ -325,16 +251,14 @@ const RecentReceiptsTable = () => {
       >
         <div className="flex items-center justify-between mb-6">
           <h3 className="text-lg font-semibold text-foreground">
-            {t ? t("recentReceipts") || "Recent Receipts" : "Recent Receipts"}
+            {t("recentReceipts") || "Recent Receipts"}
           </h3>
           <div className="flex items-center gap-2">
             <button
               onClick={handleViewAll}
               className="text-sm text-primary hover:text-primary/80"
             >
-              {t
-                ? t("viewAllReceipts") || "View All Receipts"
-                : "View All Receipts"}
+                 {t("viewAllReceipts") || "View All Receipts"}
             </button>
             <button className="p-2 rounded-md hover:bg-muted/50">
               <MoreHorizontal className="h-5 w-5" />
@@ -390,7 +314,6 @@ const RecentReceiptsTable = () => {
                 ))}
               </tr>
             </thead>
-
             <tbody>
               {mergedReceipts.map((receipt, index) => (
                 <tr
@@ -454,8 +377,6 @@ const RecentReceiptsTable = () => {
                       {getStatusLabel(receipt)}
                     </Badge>
                   </td>
-
-                  {/* Actions */}
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-1 whitespace-nowrap">
                       <Button

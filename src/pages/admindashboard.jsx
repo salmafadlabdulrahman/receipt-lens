@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 // Component imports
 import AdminCards from "@/components/AdminCards";
@@ -35,7 +36,10 @@ const AdminUserCategoriesChart = React.lazy(() =>
 );
 
 export default function AdminDashboard() {
-  const { theme } = useAppContext();
+  const [showNotifications, setShowNotifications] = useState(false);
+  const { t } = useTranslation();
+
+ const { theme } = useAppContext();
   return (
     <div
       className={`${
@@ -44,8 +48,46 @@ export default function AdminDashboard() {
           : "bg-dark-gray text-white"
       } min-h-screen flex flex-col font-sans pt-[5em] md:pt-[8em]`}
     >
+      {/* Top header */}
+      <header className="sticky top-0 z-40 bg-white border-b border-slate-200">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-4 sm:gap-6">
+            <div className="bg-indigo-600 p-2 rounded-lg">
+              <Receipt className="h-5 w-5 text-white" />
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 sm:gap-4">
+            <Button className="bg-indigo-700 hover:bg-indigo-800 text-white gap-1 sm:gap-2 shadow-sm">
+              <Plus className="h-4 w-4" />
+              {t("uploadReceipt")}
+            </Button>
+
+            <div className="relative">
+              <button
+                onClick={() => setShowNotifications(!showNotifications)}
+                className="p-2 rounded-full hover:bg-slate-100 text-slate-500 transition-colors relative"
+              >
+                <Bell className="h-5 w-5" />
+                <span className="absolute top-1.5 right-1.5 h-2 w-2 bg-red-500 rounded-full border-2 border-white"></span>
+              </button>
+              {showNotifications && (
+                <div className="absolute right-0 top-full mt-2 z-50 w-72 sm:w-80">
+                  <NotificationsMenu />
+                </div>
+              )}
+            </div>
+
+            <Avatar className="h-9 w-9 border border-slate-200 cursor-pointer">
+              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+          </div>
+        </div>
+      </header>
+
       {/* Main content */}
-      <main className="container mx-auto px-6 py-8 flex-1 max-w-7xl">
+      <main className="container mx-auto px-4 sm:px-6 md:px-8 py-8 flex-1 max-w-7xl">
         {/* Page title */}
         <AdminDashboardHeader />
 
@@ -55,7 +97,9 @@ export default function AdminDashboard() {
         </div>
 
         {/* Admin Stats Cards */}
-        <AdminCards />
+        <section className=" mb-8">
+          <AdminCards />
+        </section>
 
         {/* Charts row */}
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
@@ -79,41 +123,41 @@ export default function AdminDashboard() {
           </div>
         </section>
 
-        {/* Recent receipts table */}
-        <section className="mb-8">
+        {/* Users Table */}
+        <section className="mb-8 overflow-x-auto">
           <UsersTable />
         </section>
 
         {/* Four big action cards */}
         <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           <AdminAction
-            title="Manage Users"
-            description="View and manage all user accounts"
-            buttonText="Open Users"
+            title={t("adminDashboard.manageUsers.title")}
+            description={t("adminDashboard.manageUsers.description")}
+            buttonText={t("adminDashboard.manageUsers.buttonText")}
             icon={Users}
             bgColor="bg-violet-600"
           />
 
           <AdminAction
-            title="View Analytics"
-            description="Get AI-powered spending insights"
-            buttonText="View Reports"
+            title={t("adminDashboard.viewAnalytics.title")}
+            description={t("adminDashboard.viewAnalytics.description")}
+            buttonText={t("adminDashboard.viewAnalytics.buttonText")}
             icon={BarChart3}
             bgColor="bg-emerald-500"
           />
 
           <AdminAction
-            title="Export Data"
-            description="Download receipts and reports"
-            buttonText="Export Now"
+            title={t("adminDashboard.exportData.title")}
+            description={t("adminDashboard.exportData.description")}
+            buttonText={t("adminDashboard.exportData.buttonText")}
             icon={Download}
             bgColor="bg-amber-500"
           />
 
           <AdminAction
-            title="Add New Admin"
-            description="Create new administrator account"
-            buttonText="Add Admin"
+            title={t("adminDashboard.addAdmin.title")}
+            description={t("adminDashboard.addAdmin.description")}
+            buttonText={t("adminDashboard.addAdmin.buttonText")}
             icon={UserPlus}
             bgColor="bg-sky-500"
           />

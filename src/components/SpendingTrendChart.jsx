@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import {
   LineChart,
   Line,
@@ -24,12 +25,6 @@ import { ChevronDown } from "lucide-react";
 import { useAppContext } from "../contexts/useAppContext";
 import { useTranslation } from "react-i18next";
 
-/**
- * Merged: kept all imports (including LineChart & aliases) to avoid deleting anything.
- * - Uses both period dropdown (feature) and theme/translation (dev).
- * - Preserves visual choices from both branches and computes a safe Y domain.
- */
-
 const data = [
   { date: "Dec 9", amount: 45 },
   { date: "Dec 10", amount: 120 },
@@ -43,22 +38,23 @@ const data = [
 const periods = ["Last 7 days", "Last 14 days", "Last 30 days", "Last 90 days"];
 
 const SpendingTrendChart = () => {
-  // feature branch states (period dropdown)
-  const [selectedPeriod, setSelectedPeriod] = useState("Last 7 days");
+  const [selectedPeriod, setSelectedPeriod] = useState(periods[0]);
   const [isOpen, setIsOpen] = useState(false);
 
-  // dev branch context & translation
   const { theme } = useAppContext();
   const isDark = theme === "dark";
-  const { t } = useTranslation();
 
-  // compute a safe Y domain that preserves both branch choices (240 and 300)
+  const { t, i18n } = useTranslation();
+
   const dataMax = Math.max(...data.map((d) => d.amount), 0);
-  const suggestedMax = Math.max(240, 300); // both branches had 240 and 300
+  const suggestedMax = 300; 
   const yMax = Math.max(dataMax, suggestedMax);
-
-  // choose height - prefer the larger to preserve both branches' visual intents
   const containerHeight = 350;
+
+  // دالة لتنسيق الأرقام حسب اللغة
+  const formatNumber = (value) => {
+    return new Intl.NumberFormat(i18n.language, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(value);
+  };
 
   return (
     <Card
@@ -69,9 +65,7 @@ const SpendingTrendChart = () => {
       }`}
     >
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-semibold">
-          {t ? t("spendingTrend") || "Spending Trend" : "Spending Trend"}
-        </h3>
+        <h3 className="text-lg font-semibold">{t("spendingTrend")}</h3>
 
         {/* Combined controls: dev had simple button, feature had dropdown with Chevron */}
         <div className="relative flex items-center flex-wrap justify-end gap-3">
@@ -80,7 +74,7 @@ const SpendingTrendChart = () => {
               isDark ? "text-gray-300" : "text-muted-foreground"
             }`}
           >
-            {t ? t("last7Days") || selectedPeriod : selectedPeriod}
+            {t(selectedPeriod)}
           </button>
 
           <div className="relative">
@@ -88,7 +82,7 @@ const SpendingTrendChart = () => {
               onClick={() => setIsOpen(!isOpen)}
               className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-slate-600 bg-slate-100 rounded-lg hover:bg-slate-200 transition-colors"
             >
-              {selectedPeriod}
+              {t(selectedPeriod)}
               <ChevronDown
                 className={`h-4 w-4 transition-transform ${
                   isOpen ? "rotate-180" : ""
@@ -111,7 +105,7 @@ const SpendingTrendChart = () => {
                         : "text-slate-700"
                     }`}
                   >
-                    {t ? t(period) || period : period}
+                    {t(period)}
                   </button>
                 ))}
               </div>
@@ -128,24 +122,12 @@ const SpendingTrendChart = () => {
         >
           <defs>
             <linearGradient id="colorAmount" x1="0" y1="0" x2="0" y2="1">
-              <stop
-                offset="5%"
-                stopColor={isDark ? "#7c3aed" : "#8B5CF6"}
-                stopOpacity={0.2}
-              />
-              <stop
-                offset="95%"
-                stopColor={isDark ? "#7c3aed" : "#8B5CF6"}
-                stopOpacity={0}
-              />
+              <stop offset="5%" stopColor={isDark ? "#7c3aed" : "#8B5CF6"} stopOpacity={0.2} />
+              <stop offset="95%" stopColor={isDark ? "#7c3aed" : "#8B5CF6"} stopOpacity={0} />
             </linearGradient>
           </defs>
 
-          <CartesianGrid
-            strokeDasharray="3 3"
-            stroke={isDark ? "#555" : "hsl(var(--border))"}
-            vertical={false}
-          />
+          <CartesianGrid strokeDasharray="3 3" stroke={isDark ? "#555" : "hsl(var(--border))"} vertical={false} />
 
           <XAxis
             dataKey="date"
@@ -161,7 +143,7 @@ const SpendingTrendChart = () => {
             fontSize={12}
             tickLine={false}
             axisLine={false}
-            tickFormatter={(value) => `$${value}`}
+            tickFormatter={formatNumber}
             domain={[0, yMax]}
             ticks={[
               0,
@@ -179,19 +161,10 @@ const SpendingTrendChart = () => {
               borderRadius: "8px",
               color: isDark ? "#fff" : "#000",
             }}
-            formatter={(value) => [
-              `$${value}`,
-              t ? t("amount") || "Amount" : "Amount",
-            ]}
+            formatter={(value) => [formatNumber(value), t("amount")]}
           />
 
-          <Area
-            type="monotone"
-            dataKey="amount"
-            stroke={isDark ? "#fff" : "#8B5CF6"}
-            strokeWidth={3}
-            fill="url(#colorAmount)"
-          />
+          <Area type="monotone" dataKey="amount" stroke={isDark ? "#fff" : "#8B5CF6"} strokeWidth={3} fill="url(#colorAmount)" />
         </AreaChart>
       </ResponsiveContainer>
     </Card>

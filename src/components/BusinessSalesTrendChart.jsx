@@ -9,6 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { ChevronDown } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/contexts/useAppContext";
 
 const data = [
@@ -21,10 +22,16 @@ const data = [
   { name: "Dec 15", sales: 9600 },
 ];
 
-const periods = ["Last 7 days", "Last 14 days", "Last 30 days", "Last 90 days"];
-
 export function SalesTrendChart() {
-  const [selectedPeriod, setSelectedPeriod] = useState("Last 7 days");
+  const { t } = useTranslation();
+  
+  const periods = t("businessDashboard.salesTrend.periods", {
+    returnObjects: true,
+  }) || []; 
+
+  const defaultPeriod = periods.length > 0 ? periods[0] : t("Last 7 days");
+  
+  const [selectedPeriod, setSelectedPeriod] = useState(defaultPeriod);
   const [isOpen, setIsOpen] = useState(false);
   const { theme } = useAppContext();
 
@@ -37,12 +44,13 @@ export function SalesTrendChart() {
       } rounded-xl p-5 border  shadow-sm`}
     >
       <div className="flex items-center justify-between mb-6">
+
         <h3
           className={`${
             theme === "light" ? "text-slate-900" : "text-white"
           } text-lg font-semibold `}
         >
-          Sales Trend
+          {t("businessDashboard.salesTrend.title")}
         </h3>
         <div className="relative">
           <button
@@ -66,6 +74,7 @@ export function SalesTrendChart() {
                     setSelectedPeriod(period);
                     setIsOpen(false);
                   }}
+
                   className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors first:rounded-t-lg last:rounded-b-lg ${
                     selectedPeriod === period
                       ? "bg-indigo-50 text-indigo-600 font-medium"
@@ -79,6 +88,7 @@ export function SalesTrendChart() {
           )}
         </div>
       </div>
+
       <div className="h-[280px]">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>
@@ -102,7 +112,10 @@ export function SalesTrendChart() {
                 borderRadius: "8px",
                 boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
               }}
-              formatter={(value) => [`$${value.toLocaleString()}`, "Sales"]}
+              formatter={(value) => [
+                `$${value.toLocaleString()}`,
+                t("businessDashboard.salesTrend.title"),
+              ]}
             />
             <Line
               type="monotone"

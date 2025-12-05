@@ -1,3 +1,5 @@
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
+import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/contexts/useAppContext";
 import {
   PieChart,
@@ -7,17 +9,18 @@ import {
   Legend,
   Tooltip,
 } from "recharts";
-
-const data = [
-  { name: "Electronics", value: 35, color: "#6366f1" },
-  { name: "Clothing", value: 25, color: "#10b981" },
-  { name: "Home & Garden", value: 20, color: "#f59e0b" },
-  { name: "Sports", value: 12, color: "#8b5cf6" },
-  { name: "Other", value: 8, color: "#64748b" },
-];
-
 export function ProductDistributionChart() {
+  const { t } = useTranslation();
   const { theme } = useAppContext();
+
+  const data = [
+    { name: t("productDistribution.categories.electronics"), value: 35, color: "#6366f1" },
+    { name: t("productDistribution.categories.clothing"), value: 25, color: "#10b981" },
+    { name: t("productDistribution.categories.homeGarden"), value: 20, color: "#f59e0b" },
+    { name: t("productDistribution.categories.sports"), value: 12, color: "#8b5cf6" },
+    { name: t("productDistribution.categories.other"), value: 8, color: "#64748b" },
+  ];
+
 
   return (
     <div
@@ -28,15 +31,15 @@ export function ProductDistributionChart() {
       }  rounded-xl p-5  shadow-sm`}
     >
       <div className="flex items-center justify-between mb-4">
+
         <h3
           className={`${
             theme === "light" ? "text-slate-900" : "text-white"
           } text-lg font-semibold text-slate-900`}
         >
-          Product Distribution
-        </h3>
+{t("productDistribution.title")}        </h3>
         <button className="text-sm text-indigo-600 hover:text-indigo-700 font-medium">
-          View All
+          {t("productDistribution.viewAll")}
         </button>
       </div>
       <div className="h-[280px]">
@@ -61,7 +64,7 @@ export function ProductDistributionChart() {
                 border: "1px solid #e2e8f0",
                 borderRadius: "8px",
               }}
-              formatter={(value) => [`${value}%`, "Share"]}
+              formatter={(value) => [`${value}%`, t("productDistribution.share")]}
             />
             <Legend
               verticalAlign="bottom"

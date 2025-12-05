@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useToast } from "@/hooks/useToast";
 import Toast from "@/components/Toast";
 import { ConfirmDialog, DetailModal, EditModal } from "@/components/Modals";
+import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/contexts/useAppContext";
 
 const users = [
@@ -79,26 +80,27 @@ export default function UsersTable() {
   const [selectedUser, setSelectedUser] = useState(null);
   const { theme } = useAppContext();
 
+  const { t, i18n } = useTranslation();
+  const isArabic = i18n.language.startsWith("ar");
+
   const handleView = (user) => {
-    console.log("View user:", user);
     setSelectedUser(user);
     setShowDetailModal(true);
   };
 
   const handleEdit = (user) => {
-    console.log("Edit user:", user);
     setSelectedUser(user);
     setShowEditModal(true);
   };
 
   const handleSaveEdit = (formData) => {
-    console.log("Save user:", formData);
-    showToast(`${formData.name} has been updated`, "success", 3000);
+    showToast(
+      t("usersTable.userUpdated", { name: formData.name }),
+      "success",
+      3000
+    );
     setShowEditModal(false);
     setSelectedUser(null);
-    // TODO: When backend is ready:
-    // fetch(`/api/users/${selectedUser.id}`, { method: 'PUT', body: JSON.stringify(formData) })
-    //   .then(() => refreshUsersList())
   };
 
   const handleDelete = (user) => {
@@ -107,19 +109,22 @@ export default function UsersTable() {
   };
 
   const confirmDelete = () => {
-    console.log("Delete user:", selectedUser);
-    showToast(`${selectedUser.name} has been deleted`, "delete", 4000);
+    showToast(
+      t("usersTable.userDeleted", { name: selectedUser.name }),
+      "delete",
+      4000
+    );
     setShowConfirmDialog(false);
     setSelectedUser(null);
   };
 
   const handleViewAll = () => {
-    console.log("View all users clicked");
-    showToast("Navigating to all users page...", "info");
+    showToast(t("usersTable.viewAllUsers"), "info");
   };
 
   return (
     <>
+      {/* Toasts */}
       {toasts.map((toast) => (
         <Toast
           key={toast.id}
@@ -130,15 +135,25 @@ export default function UsersTable() {
         />
       ))}
 
+      {/* Detail Modal */}
       {showDetailModal && selectedUser && (
         <DetailModal
-          title="User Details"
+          title={t("usersTable.userDetails")}
           details={[
-            { label: "Name", value: selectedUser.name },
-            { label: "Email", value: selectedUser.email },
-            { label: "Role", value: selectedUser.role },
-            { label: "Registered Date", value: selectedUser.registeredDate },
-            { label: "Status", value: selectedUser.status },
+            { label: t("usersTable.name"), value: selectedUser.name },
+            { label: t("usersTable.email"), value: selectedUser.email },
+            {
+              label: t("usersTable.role"),
+              value: t(`usersTable.role${selectedUser.role}`),
+            },
+            {
+              label: t("usersTable.registeredDate"),
+              value: selectedUser.registeredDate,
+            },
+            {
+              label: t("usersTable.status"),
+              value: t(`usersTable.status${selectedUser.status}`),
+            },
           ]}
           onClose={() => {
             setShowDetailModal(false);
@@ -147,27 +162,28 @@ export default function UsersTable() {
         />
       )}
 
+      {/* Edit Modal */}
       {showEditModal && selectedUser && (
         <EditModal
-          title="Edit User"
+          title={t("usersTable.editUser")}
           fields={[
             {
               name: "name",
-              label: "Name",
+              label: t("usersTable.name"),
               value: selectedUser.name,
               type: "text",
               required: true,
             },
             {
               name: "email",
-              label: "Email",
+              label: t("usersTable.email"),
               value: selectedUser.email,
               type: "email",
               required: true,
             },
             {
               name: "role",
-              label: "Role",
+              label: t("usersTable.role"),
               value: selectedUser.role,
               type: "select",
               options: ["Admin", "User", "Moderator"],
@@ -175,7 +191,7 @@ export default function UsersTable() {
             },
             {
               name: "status",
-              label: "Status",
+              label: t("usersTable.status"),
               value: selectedUser.status,
               type: "select",
               options: ["Active", "Inactive", "Pending"],
@@ -190,9 +206,10 @@ export default function UsersTable() {
         />
       )}
 
+      {/* Confirm Delete Dialog */}
       {showConfirmDialog && selectedUser && (
         <ConfirmDialog
-          message={`Are you sure you want to delete ${selectedUser.name}? This action cannot be undone.`}
+          message={t("usersTable.confirmDelete", { name: selectedUser.name })}
           onConfirm={confirmDelete}
           onCancel={() => {
             setShowConfirmDialog(false);
@@ -214,43 +231,44 @@ export default function UsersTable() {
               theme === "light" ? "text-slate-800" : "text-white"
             }`}
           >
-            Recent Users
+            {t("usersTable.recentUsers")}
           </h3>
           <button
             onClick={handleViewAll}
             className="text-sm font-medium text-indigo-600 hover:text-indigo-700 transition-colors"
           >
-            View All Users
+            {t("usersTable.viewAllUsers")}
           </button>
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-slate-500">
-                <th className="text-left text-xs font-semibold text-slate-400 uppercase tracking-wider px-6 py-4">
-                  Name
+              <tr className="border-b border-slate-100">
+                <th className="text-xs font-semibold text-slate-400 uppercase tracking-wider px-6 py-4">
+                  {t("usersTable.name")}
                 </th>
-                <th className="text-left text-xs font-semibold text-slate-400 uppercase tracking-wider px-6 py-4">
-                  Email
+                <th className="text-xs font-semibold text-slate-400 uppercase tracking-wider px-6 py-4">
+                  {t("usersTable.email")}
                 </th>
-                <th className="text-left text-xs font-semibold text-slate-400 uppercase tracking-wider px-6 py-4">
-                  Role
+                <th className="text-xs font-semibold text-slate-400 uppercase tracking-wider px-6 py-4">
+                  {t("usersTable.role")}
                 </th>
-                <th className="text-left text-xs font-semibold text-slate-400 uppercase tracking-wider px-6 py-4">
-                  Registered Date
+                <th className="text-xs font-semibold text-slate-400 uppercase tracking-wider px-6 py-4">
+                  {t("usersTable.registeredDate")}
                 </th>
-                <th className="text-left text-xs font-semibold text-slate-400 uppercase tracking-wider px-6 py-4">
-                  Status
+                <th className="text-xs font-semibold text-slate-400 uppercase tracking-wider px-6 py-4">
+                  {t("usersTable.status")}
                 </th>
-                <th className="text-left text-xs font-semibold text-slate-400 uppercase tracking-wider px-6 py-4">
-                  Actions
+                <th className="text-xs font-semibold text-slate-400 uppercase tracking-wider px-6 py-4">
+                  {t("usersTable.actions")}
                 </th>
               </tr>
             </thead>
 
             <tbody>
-              {users.map((user) => (
+
+{users.map((user) => (
                 <tr
                   key={user.id}
                   className="border-b border-slate-500 last:border-0 cursor-pointer transition-colors"
@@ -283,7 +301,8 @@ export default function UsersTable() {
                       variant="secondary"
                       className={`${user.roleColor} font-medium rounded-md px-3 py-1 text-xs border-0`}
                     >
-                      {user.role}
+{roleLabel}
+
                     </Badge>
                   </td>
 
@@ -296,7 +315,7 @@ export default function UsersTable() {
                       variant="secondary"
                       className={`${user.statusColor} font-medium rounded-md px-3 py-1 text-xs border-0`}
                     >
-                      {user.status}
+                       {statusLabel}
                     </Badge>
                   </td>
 
