@@ -13,7 +13,7 @@ const StatCard = ({
   const { theme } = useAppContext();
   const Icon = icon;
   return (
-    <Card className={`p-6 ${theme === "dark" ? "border border-white" : ""}`}>
+    <Card className={`p-6 ${theme === "dark" ? "border border-slate-500" : ""}`}>
       <div className="flex items-start justify-between mb-4">
         <div>
           <p className="text-sm text-muted-foreground mb-1">{title}</p>
@@ -27,7 +27,7 @@ const StatCard = ({
       </div>
       <p
         className={`text-sm flex items-center gap-1 ${
-          isPositive ? "text-success" : "text-destructive"
+          isPositive ? "text-success text-emerald-600" : "text-destructive text-red-600"
         }`}
       >
         <span>{isPositive ? "↑" : "↓"}</span>

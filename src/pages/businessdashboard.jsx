@@ -6,17 +6,33 @@ import { SalesTrendChart } from "@/components/BusinessSalesTrendChart";
 import { ProductDistributionChart } from "@/components/BusinessProductDistributionChart";
 import { RecentSalesTable } from "@/components/BusinessRecentSalesTable";
 import { ActionCards } from "@/components/BusinessActionCards";
+import { useAppContext } from "@/contexts/useAppContext";
 
 export default function BusinessDashboard() {
+  const { theme } = useAppContext();
   return (
-    <div className="min-h-screen bg-slate-50">
-      <DashboardHeader />
-      
+    <div
+      className={`min-h-screen ${
+        theme === "light" ? "bg-slate-50" : "bg-dark-gray"
+      } pt-[5em] md:pt-[8em]`}
+    >
+      {/* <DashboardHeader /> */}
+
       <main className="max-w-7xl mx-auto px-6 py-8 space-y-6">
         {/* Page Title */}
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Business Dashboard</h1>
-          <p className="text-slate-500 text-sm mt-1">
+          <h1
+            className={`${
+              theme === "light" ? "text-slate-900" : "text-white"
+            } text-2xl font-bold `}
+          >
+            Business Dashboard
+          </h1>
+          <p
+            className={`${
+              theme === "light" ? "text-slate-500" : "text-light-gray"
+            } text-sm mt-1`}
+          >
             Welcome back! Here's your business overview for this month.
           </p>
         </div>

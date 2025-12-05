@@ -1,17 +1,42 @@
-import React, { useState } from 'react';
-import { X, CheckCircle, AlertCircle, Info, Trash2, AlertTriangle } from 'lucide-react';
+import React from "react";
+import {
+  X,
+  CheckCircle,
+  AlertCircle,
+  Info,
+  Trash2,
+  AlertTriangle,
+} from "lucide-react";
+import { useAppContext } from "@/contexts/useAppContext";
 
 const ConfirmDialog = ({ message, onConfirm, onCancel }) => {
+  const { theme } = useAppContext();
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 animate-fade-in">
-      <div className="bg-white rounded-xl shadow-2xl p-6 max-w-md w-full mx-4 animate-scale-in">
+      <div
+        className={`${
+          theme === "light" ? "bg-white" : "bg-dark-gray"
+        } rounded-xl shadow-2xl p-6 max-w-md w-full mx-4 animate-scale-in`}
+      >
         <div className="flex items-start gap-3 mb-4">
           <div className="text-amber-600">
             <AlertTriangle className="h-6 w-6" />
           </div>
           <div className="flex-1">
-            <h3 className="text-lg font-semibold text-slate-900 mb-2">Confirm Delete</h3>
-            <p className="text-sm text-slate-600">{message}</p>
+            <h3
+              className={`text-lg font-semibold  mb-2 ${
+                theme === "light" ? "text-slate-900" : "text-white"
+              }`}
+            >
+              Confirm Delete
+            </h3>
+            <p
+              className={`text-sm ${
+                theme === "light" ? "text-slate-600" : "text-white"
+              }`}
+            >
+              {message}
+            </p>
           </div>
         </div>
         <div className="flex gap-3 justify-end">
@@ -34,11 +59,22 @@ const ConfirmDialog = ({ message, onConfirm, onCancel }) => {
 };
 
 const DetailModal = ({ title, details, onClose }) => {
+  const { theme } = useAppContext();
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 animate-fade-in">
-      <div className="bg-white rounded-xl shadow-2xl p-6 max-w-lg w-full mx-4 animate-scale-in">
+      <div
+        className={`${
+          theme === "light" ? "bg-white" : "bg-dark-gray"
+        }  rounded-xl shadow-2xl p-6 max-w-lg w-full mx-4 animate-scale-in`}
+      >
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-xl font-bold text-slate-900">{title}</h3>
+          <h3
+            className={`${
+              theme === "light" ? "text-slate-900" : "text-white"
+            } text-xl font-bold`}
+          >
+            {title}
+          </h3>
           <button
             onClick={onClose}
             className="text-slate-400 hover:text-slate-600 transition-colors"
@@ -48,9 +84,24 @@ const DetailModal = ({ title, details, onClose }) => {
         </div>
         <div className="space-y-3">
           {details.map((detail, index) => (
-            <div key={index} className="flex justify-between py-2 border-b border-slate-100 last:border-0">
-              <span className="text-sm font-medium text-slate-500">{detail.label}:</span>
-              <span className="text-sm font-semibold text-slate-900">{detail.value}</span>
+            <div
+              key={index}
+              className="flex justify-between py-2 border-b border-slate-100 last:border-0"
+            >
+              <span
+                className={`${
+                  theme === "light" ? "text-slate-500" : "text-white"
+                } text-sm font-medium `}
+              >
+                {detail.label}:
+              </span>
+              <span
+                className={`${
+                  theme === "light" ? "text-slate-900" : "text-white"
+                } text-sm font-semibold `}
+              >
+                {detail.value}
+              </span>
             </div>
           ))}
         </div>
@@ -68,12 +119,13 @@ const DetailModal = ({ title, details, onClose }) => {
 };
 
 const EditModal = ({ title, fields, onSave, onClose }) => {
+  const { theme } = useAppContext();
   const [formData, setFormData] = React.useState(
     fields.reduce((acc, field) => ({ ...acc, [field.name]: field.value }), {})
   );
 
   const handleChange = (name, value) => {
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
@@ -82,10 +134,24 @@ const EditModal = ({ title, fields, onSave, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 animate-fade-in">
-      <div className="bg-white rounded-xl shadow-2xl p-6 max-w-lg w-full mx-4 animate-scale-in max-h-[90vh] overflow-y-auto">
+    <div
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-black/50 animate-fade-in ${
+        theme === "light" ? "" : "text-white"
+      }`}
+    >
+      <div
+        className={`${
+          theme === "light" ? "bg-white" : "bg-dark-gray"
+        }  rounded-xl shadow-2xl p-6 max-w-lg w-full mx-4 animate-scale-in max-h-[90vh] overflow-y-auto`}
+      >
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-xl font-bold text-slate-900">{title}</h3>
+          <h3
+            className={`text-xl font-bold ${
+              theme === "light" ? "text-slate-900" : "text-white"
+            } `}
+          >
+            {title}
+          </h3>
           <button
             onClick={onClose}
             className="text-slate-400 hover:text-slate-600 transition-colors"
@@ -93,25 +159,33 @@ const EditModal = ({ title, fields, onSave, onClose }) => {
             <X className="h-5 w-5" />
           </button>
         </div>
-        
+
         <form onSubmit={handleSubmit} className="space-y-4">
           {fields.map((field, index) => (
             <div key={index}>
-              <label className="block text-sm font-medium text-slate-700 mb-1">
+              <label
+                className={`block text-sm font-medium mb-1 ${
+                  theme === "light" ? "text-slate-700" : "text-white"
+                } `}
+              >
                 {field.label}
               </label>
-              {field.type === 'select' ? (
+              {field.type === "select" ? (
                 <select
                   value={formData[field.name]}
                   onChange={(e) => handleChange(field.name, e.target.value)}
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className={`${
+                    theme === "light" ? "" : "bg-dark-gray text-white"
+                  } w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent`}
                   required={field.required}
                 >
                   {field.options.map((option, i) => (
-                    <option key={i} value={option}>{option}</option>
+                    <option key={i} value={option} className="">
+                      {option}
+                    </option>
                   ))}
                 </select>
-              ) : field.type === 'textarea' ? (
+              ) : field.type === "textarea" ? (
                 <textarea
                   value={formData[field.name]}
                   onChange={(e) => handleChange(field.name, e.target.value)}
@@ -121,7 +195,7 @@ const EditModal = ({ title, fields, onSave, onClose }) => {
                 />
               ) : (
                 <input
-                  type={field.type || 'text'}
+                  type={field.type || "text"}
                   value={formData[field.name]}
                   onChange={(e) => handleChange(field.name, e.target.value)}
                   className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
@@ -131,7 +205,7 @@ const EditModal = ({ title, fields, onSave, onClose }) => {
               )}
             </div>
           ))}
-          
+
           <div className="flex gap-3 justify-end pt-4">
             <button
               type="button"

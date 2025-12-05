@@ -4,20 +4,16 @@ import {
   TrendingUp,
   Wallet,
   Receipt,
-  Bell,
-  Plus,
   BarChart3,
   FileText,
 } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+
 // klnscslknc
 // Component imports
 import StatCard from "@/components/StatCard";
 import AIInsightCard from "@/components/AIInsightCard";
 import ActionCard from "@/components/ActionCard";
 import RecentReceiptsTable from "@/components/RecentReceiptsTable";
-import NotificationsMenu from "@/components/NotificationsMenu";
 import { useAppContext } from "../contexts/useAppContext";
 import { useTranslation } from "react-i18next";
 
@@ -29,7 +25,6 @@ const CategoryDistributionChart = React.lazy(() =>
 );
 
 export default function Dashboard() {
-  // const [showNotifications, setShowNotifications] = useState(false);
   const { theme } = useAppContext();
   const isDark = theme === "dark";
 
@@ -126,12 +121,16 @@ export default function Dashboard() {
 
         {/* Charts row */}
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <div className="w-full h-full">
+          <div
+            className={`w-full h-full rounded-xl ${
+              isDark ? "border border-slate-500" : ""
+            } `}
+          >
             <Suspense
               fallback={
                 <div
-                  className={`w-full h-64 sm:h-80 md:h-96 rounded-xl animate-pulse ${
-                    isDark ? "bg-gray-700" : "bg-slate-100"
+                  className={`w-full h-64 sm:h-80 md:h-96  animate-pulse ${
+                    isDark ? "bg-gray-700 " : "bg-slate-100"
                   }`}
                 />
               }

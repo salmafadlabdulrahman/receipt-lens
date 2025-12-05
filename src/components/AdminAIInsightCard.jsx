@@ -3,8 +3,8 @@ import { Card } from "./ui/card";
 
 const AdminAIInsightCard = () => {
   return (
-    <Card className="bg-gradient-to-r from-violet-600 to-purple-600 border-0 p-6 text-white relative overflow-hidden">
-      <div className="flex items-start gap-4">
+    <Card className="bg-linear-to-r from-violet-600 to-purple-600 border-0 p-6 text-white relative overflow-hidden">
+      <div className="flex flex-col md:flex-row items-start gap-4">
         <div className="bg-white/20 p-2.5 rounded-xl backdrop-blur-sm">
           <Sparkles className="h-6 w-6 text-white" />
         </div>

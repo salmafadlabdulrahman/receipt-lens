@@ -10,19 +10,19 @@ const AIInsightCard = () => {
   //bg-gradient-to-r from-accent to-purple-500
   return (
     <Card
-      className={`${
+      className={`text-white ${
         theme === "light"
-          ? "bg-linear-to-br from-purple-soft to-purple-light"
-          : "bg-linear-to-r  from-[#0029FF] via-purple-warm to-pink-pastel"
-      }  border-0 p-6 text-accent-foreground`}
+          ? "bg-linear-to-r from-violet-600 to-purple-600 "
+          : "bg-linear-to-r  from-[#0029FF] via-purple-600 to-pink-pastel"
+      }  border-0 p-6 text-accent-foreground `}
     >
-      <div className="flex items-start justify-between">
+      <div className="flex items-start justify-between text-white">
         <div className="flex items-center gap-2 mb-3">
           <Sparkles className="h-5 w-5" />
           <h2
             className="font-semibold"
             style={{
-              color: "var(--text-main)",
+              color: "white",
               fontFamily: "var(--font-primary)",
             }}
           >
@@ -49,7 +49,7 @@ const AIInsightCard = () => {
       <p
         className="text-lg mb-1"
         style={{
-          color: "var(--text-main)",
+          color: "white",
           fontFamily: "var(--font-secondary)",
         }}
       >
@@ -58,7 +58,7 @@ const AIInsightCard = () => {
       <p
         className="text-m text-accent-foreground/90"
         style={{
-          color: "var(--text-main)",
+          color: "white",
           fontFamily: "var(--font-secondary)",
         }}
       >

@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense } from "react";
 import {
   DollarSign,
   TrendingUp,
@@ -24,6 +24,7 @@ import AdminDashboardHeader from "@/components/AdminDashboardHeader";
 import AdminAction from "@/components/AdminAction";
 import UsersTable from "@/components/UsersTable";
 import NotificationsMenu from "@/components/NotificationsMenu";
+import { useAppContext } from "@/contexts/useAppContext";
 
 // Charts: load lazily (React.lazy)
 const AdminPlatformActivityChart = React.lazy(() =>
@@ -34,53 +35,15 @@ const AdminUserCategoriesChart = React.lazy(() =>
 );
 
 export default function AdminDashboard() {
-  const [showNotifications, setShowNotifications] = useState(false);
-
+  const { theme } = useAppContext();
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans">
-      {/* Top header */}
-      <header className="sticky top-0 z-40 bg-white border-b border-slate-200">
-        <div className="container mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-8">
-            <div className="flex items-center gap-2">
-              <div className="bg-indigo-600 p-1.5 rounded-lg">
-                <Receipt className="h-5 w-5 text-white" />
-              </div>
-              <span className="text-xl font-bold tracking-tight">
-                Spend Right
-              </span>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <Button className="bg-indigo-700 hover:bg-indigo-800 text-white gap-2 shadow-sm">
-              <Plus className="h-4 w-4" />
-              Upload Receipt
-            </Button>
-
-            <div className="relative">
-              <button
-                onClick={() => setShowNotifications(!showNotifications)}
-                className="p-2 rounded-full hover:bg-slate-100 text-slate-500 transition-colors relative"
-              >
-                <Bell className="h-5 w-5" />
-                <span className="absolute top-1.5 right-1.5 h-2 w-2 bg-red-500 rounded-full border-2 border-white"></span>
-              </button>
-              {showNotifications && (
-                <div className="absolute right-0 top-full mt-2 z-50">
-                  <NotificationsMenu />
-                </div>
-              )}
-            </div>
-
-            <Avatar className="h-9 w-9 border border-slate-200 cursor-pointer">
-              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-          </div>
-        </div>
-      </header>
-
+    <div
+      className={`${
+        theme === "light"
+          ? "bg-slate-50 text-slate-900"
+          : "bg-dark-gray text-white"
+      } min-h-screen flex flex-col font-sans pt-[5em] md:pt-[8em]`}
+    >
       {/* Main content */}
       <main className="container mx-auto px-6 py-8 flex-1 max-w-7xl">
         {/* Page title */}
