@@ -1,30 +1,60 @@
-import { Sparkles, X } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { Card } from "./ui/card";
+import { useTranslation } from "react-i18next";
 
 const AIInsightCard = () => {
+  const { t } = useTranslation();
+
   return (
-    <Card className="bg-gradient-to-r from-violet-600 to-purple-600 border-0 p-6 text-white relative overflow-hidden">
-      <div className="flex items-start gap-4">
-        <div className="bg-white/20 p-2.5 rounded-xl backdrop-blur-sm">
-          <Sparkles className="h-6 w-6 text-white" />
+    <Card className="bg-gradient-to-r from-accent to-purple-500 border-0 p-6 text-accent-foreground">
+      <div className="flex items-start justify-between">
+        <div className="flex items-center gap-2 mb-3">
+          <Sparkles className="h-5 w-5" />
+          <h2
+            className="font-semibold"
+            style={{
+              color: "var(--text-main)",
+              fontFamily: "var(--font-primary)",
+            }}
+          >
+            {t("aiInsightTitle")}
+          </h2>
         </div>
-        
-        <div className="flex-1">
-          <div className="flex items-center justify-between mb-1">
-            <h3 className="font-semibold text-white/90 text-sm">AI Insight</h3>
-            <button className="text-white/70 hover:text-white transition-colors absolute top-4 right-4">
-              <X className="h-5 w-5" />
-            </button>
-          </div>
-          
-          <p className="text-lg font-bold mb-1 leading-tight">
-            You spent 30% more on dining this month compared to last month.
-          </p>
-          <p className="text-sm text-white/80 font-medium">
-            Consider setting a dining budget to better manage your expenses and reach your savings goals.
-          </p>
-        </div>
+        <button className="text-accent-foreground/80 hover:text-accent-foreground">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            className="rotate-45"
+          >
+            <path
+              d="M8 3V13M3 8H13"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+          </svg>
+        </button>
       </div>
+      <p
+        className="text-lg mb-1"
+        style={{
+          color: "var(--text-main)",
+          fontFamily: "var(--font-secondary)",
+        }}
+      >
+        {t("aiInsightMessage1")}
+      </p>
+      <p
+        className="text-m text-accent-foreground/90"
+        style={{
+          color: "var(--text-main)",
+          fontFamily: "var(--font-secondary)",
+        }}
+      >
+        {t("aiInsightMessage2")}
+      </p>
     </Card>
   );
 };
