@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useToast } from "@/hooks/useToast";
 import Toast from "@/components/Toast";
 import { ConfirmDialog, DetailModal, EditModal } from "@/components/Modals";
+import { useTranslation } from "react-i18next";
 
 const sales = [
   {
@@ -53,6 +54,7 @@ const statusColors = {
 };
 
 export function RecentSalesTable() {
+  const { t } = useTranslation();
   const { toasts, showToast, removeToast } = useToast();
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -60,25 +62,19 @@ export function RecentSalesTable() {
   const [selectedSale, setSelectedSale] = useState(null);
 
   const handleView = (sale) => {
-    console.log("View sale:", sale);
     setSelectedSale(sale);
     setShowDetailModal(true);
   };
 
   const handleEdit = (sale) => {
-    console.log("Edit sale:", sale);
     setSelectedSale(sale);
     setShowEditModal(true);
   };
 
   const handleSaveEdit = (formData) => {
-    console.log("Save sale:", formData);
-    showToast(`Sale for ${formData.customer} updated`, 'success', 3000);
+    showToast(t("recentSales.updated", { customer: formData.customer }), "success", 3000);
     setShowEditModal(false);
     setSelectedSale(null);
-    // TODO: When backend is ready:
-    // fetch(`/api/sales/${selectedSale.id}`, { method: 'PUT', body: JSON.stringify(formData) })
-    //   .then(() => refreshSalesList())
   };
 
   const handleDelete = (sale) => {
@@ -87,15 +83,13 @@ export function RecentSalesTable() {
   };
 
   const confirmDelete = () => {
-    console.log("Delete sale:", selectedSale);
-    showToast(`Sale for ${selectedSale.customer} deleted`, 'delete', 4000);
+    showToast(t("recentSales.deleted", { customer: selectedSale.customer }), "delete", 4000);
     setShowConfirmDialog(false);
     setSelectedSale(null);
   };
 
   const handleViewAll = () => {
-    console.log("View all sales clicked");
-    showToast("Navigating to all sales...", 'info');
+    showToast(t("recentSales.viewAllToast"), "info");
   };
 
   return (
@@ -112,13 +106,13 @@ export function RecentSalesTable() {
 
       {showDetailModal && selectedSale && (
         <DetailModal
-          title="Sale Details"
+          title={t("recentSales.detailTitle")}
           details={[
-            { label: "Customer", value: selectedSale.customer },
-            { label: "Amount", value: selectedSale.amount },
-            { label: "Category", value: selectedSale.category },
-            { label: "Date", value: selectedSale.date },
-            { label: "Status", value: selectedSale.status },
+            { label: t("recentSales.customer"), value: selectedSale.customer },
+            { label: t("recentSales.amount"), value: selectedSale.amount },
+            { label: t("recentSales.category"), value: t(`categories.${selectedSale.category}`) },
+            { label: t("recentSales.date"), value: selectedSale.date },
+            { label: t("recentSales.status"), value: t(`status.${selectedSale.status}`) },
           ]}
           onClose={() => {
             setShowDetailModal(false);
@@ -129,13 +123,13 @@ export function RecentSalesTable() {
 
       {showEditModal && selectedSale && (
         <EditModal
-          title="Edit Sale"
+          title={t("recentSales.editTitle")}
           fields={[
-            { name: "customer", label: "Customer", value: selectedSale.customer, type: "text", required: true },
-            { name: "amount", label: "Amount", value: selectedSale.amount, type: "text", required: true },
-            { name: "category", label: "Category", value: selectedSale.category, type: "select", options: ["Electronics", "Software", "Clothing", "Services"], required: true },
-            { name: "date", label: "Date", value: selectedSale.date, type: "text", required: true },
-            { name: "status", label: "Status", value: selectedSale.status, type: "select", options: ["Completed", "Pending", "Cancelled"], required: true },
+            { name: "customer", label: t("recentSales.customer"), value: selectedSale.customer, type: "text", required: true },
+            { name: "amount", label: t("recentSales.amount"), value: selectedSale.amount, type: "text", required: true },
+            { name: "category", label: t("recentSales.category"), value: selectedSale.category, type: "select", options: ["Electronics", "Software", "Clothing", "Services"], required: true },
+            { name: "date", label: t("recentSales.date"), value: selectedSale.date, type: "text", required: true },
+            { name: "status", label: t("recentSales.status"), value: selectedSale.status, type: "select", options: ["Completed", "Pending", "Cancelled"], required: true },
           ]}
           onSave={handleSaveEdit}
           onClose={() => {
@@ -147,7 +141,7 @@ export function RecentSalesTable() {
 
       {showConfirmDialog && selectedSale && (
         <ConfirmDialog
-          message={`Are you sure you want to delete the sale for ${selectedSale.customer} (${selectedSale.amount})? This action cannot be undone.`}
+          message={t("recentSales.confirmDelete", { customer: selectedSale.customer, amount: selectedSale.amount })}
           onConfirm={confirmDelete}
           onCancel={() => {
             setShowConfirmDialog(false);
@@ -155,93 +149,81 @@ export function RecentSalesTable() {
           }}
         />
       )}
-      
+
       <div className="bg-white rounded-xl border border-slate-200 shadow-sm">
-      <div className="flex items-center justify-between p-5 border-b border-slate-200">
-        <h3 className="text-lg font-semibold text-slate-900">Recent Sales</h3>
-        <button onClick={handleViewAll} className="text-sm text-indigo-600 hover:text-indigo-700 font-medium">
-          View All Sales
-        </button>
-      </div>
-      <div className="overflow-x-auto">
-        <table className="w-full">
-          <thead>
-            <tr className="border-b border-slate-200">
-              <th className="text-left text-xs font-medium text-slate-500 uppercase tracking-wider px-5 py-3">
-                Customer
-              </th>
-              <th className="text-left text-xs font-medium text-slate-500 uppercase tracking-wider px-5 py-3">
-                Date
-              </th>
-              <th className="text-left text-xs font-medium text-slate-500 uppercase tracking-wider px-5 py-3">
-                Category
-              </th>
-              <th className="text-left text-xs font-medium text-slate-500 uppercase tracking-wider px-5 py-3">
-                Amount
-              </th>
-              <th className="text-left text-xs font-medium text-slate-500 uppercase tracking-wider px-5 py-3">
-                Status
-              </th>
-              <th className="text-left text-xs font-medium text-slate-500 uppercase tracking-wider px-5 py-3">
-                Actions
-              </th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {sales.map((sale) => (
-              <tr key={sale.id} className="border-b border-slate-200 last:border-0 hover:bg-slate-50 transition-colors">
-                <td className="px-5 py-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center">
-                      <span className="text-sm font-medium text-indigo-600">
-                        {sale.customer.charAt(0)}
-                      </span>
-                    </div>
-                    <span className="font-medium text-slate-900">{sale.customer}</span>
-                  </div>
-                </td>
-
-                <td className="px-5 py-4 text-sm text-slate-500">{sale.date}</td>
-                <td className="px-5 py-4">
-                  <Badge variant="secondary" className={categoryColors[sale.category]}>
-                    {sale.category}
-                  </Badge>
-                </td>
-                <td className="px-5 py-4 font-semibold text-slate-900">{sale.amount}</td>
-                <td className="px-5 py-4">
-                  <Badge variant="secondary" className={statusColors[sale.status]}>
-                    {sale.status}
-                  </Badge>
-                </td>
-
-                <td className="px-5 py-4">
-                  <div className="flex items-center gap-2">
-                    <button 
-                      onClick={() => handleView(sale)}
-                      className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition-colors"
-                    >
-                      <Eye className="w-4 h-4" />
-                    </button>
-                    <button 
-                      onClick={() => handleEdit(sale)}
-                      className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition-colors"
-                    >
-                      <Edit className="w-4 h-4" />
-                    </button>
-                    <button 
-                      onClick={() => handleDelete(sale)}
-                      className="p-1.5 rounded-lg hover:bg-red-50 text-slate-500 hover:text-red-600 transition-colors"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  </div>
-                </td>
+        <div className="flex items-center justify-between p-5 border-b border-slate-200">
+          <h3 className="text-lg font-semibold text-slate-900">{t("recentSales.title")}</h3>
+          <button onClick={handleViewAll} className="text-sm text-indigo-600 hover:text-indigo-700 font-medium">
+            {t("recentSales.viewAll")}
+          </button>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-slate-200">
+                <th className="text-left text-xs font-medium text-slate-500 uppercase tracking-wider px-5 py-3">
+                  {t("recentSales.customer")}
+                </th>
+                <th className="text-left text-xs font-medium text-slate-500 uppercase tracking-wider px-5 py-3">
+                  {t("recentSales.date")}
+                </th>
+                <th className="text-left text-xs font-medium text-slate-500 uppercase tracking-wider px-5 py-3">
+                  {t("recentSales.category")}
+                </th>
+                <th className="text-left text-xs font-medium text-slate-500 uppercase tracking-wider px-5 py-3">
+                  {t("recentSales.amount")}
+                </th>
+                <th className="text-left text-xs font-medium text-slate-500 uppercase tracking-wider px-5 py-3">
+                  {t("recentSales.status")}
+                </th>
+                <th className="text-left text-xs font-medium text-slate-500 uppercase tracking-wider px-5 py-3">
+                  {t("recentSales.actions")}
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {sales.map((sale) => (
+                <tr key={sale.id} className="border-b border-slate-200 last:border-0 hover:bg-slate-50 transition-colors">
+                  <td className="px-5 py-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center">
+                        <span className="text-sm font-medium text-indigo-600">
+                          {sale.customer.charAt(0)}
+                        </span>
+                      </div>
+                      <span className="font-medium text-slate-900">{sale.customer}</span>
+                    </div>
+                  </td>
+                  <td className="px-5 py-4 text-sm text-slate-500">{sale.date}</td>
+                  <td className="px-5 py-4">
+                    <Badge variant="secondary" className={categoryColors[sale.category]}>
+                      {t(`categories.${sale.category}`)}
+                    </Badge>
+                  </td>
+                  <td className="px-5 py-4 font-semibold text-slate-900">{sale.amount}</td>
+                  <td className="px-5 py-4">
+                    <Badge variant="secondary" className={statusColors[sale.status]}>
+                      {t(`status.${sale.status}`)}
+                    </Badge>
+                  </td>
+                  <td className="px-5 py-4">
+                    <div className="flex items-center gap-2">
+                      <button onClick={() => handleView(sale)} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition-colors">
+                        <Eye className="w-4 h-4" />
+                      </button>
+                      <button onClick={() => handleEdit(sale)} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition-colors">
+                        <Edit className="w-4 h-4" />
+                      </button>
+                      <button onClick={() => handleDelete(sale)} className="p-1.5 rounded-lg hover:bg-red-50 text-slate-500 hover:text-red-600 transition-colors">
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );

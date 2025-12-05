@@ -1,13 +1,9 @@
 import { Card } from "./ui/card";
 import { Button } from "./ui/Button";
+import { useTranslation } from "react-i18next";
 
-const ActionCard = ({
-  title,
-  description,
-  buttonText,
-  icon,
-  bgColor,
-}) => {
+const ActionCard = ({ titleKey, descriptionKey, buttonTextKey, icon, bgColor }) => {
+  const { t } = useTranslation();
   const Icon = icon;
 
   return (
@@ -17,14 +13,14 @@ const ActionCard = ({
           <Icon className="h-8 w-8 text-white" />
         </div>
         
-        <h3 className="text-xl font-bold mb-2">{title}</h3>
-        <p className="text-sm text-white/90 mb-6 flex-1">{description}</p>
+        <h3 className="text-xl font-bold mb-2">{t(titleKey)}</h3>
+        <p className="text-sm text-white/90 mb-6 flex-1">{t(descriptionKey)}</p>
 
         <Button 
           variant="secondary"
           className="bg-white/20 hover:bg-white/30 text-white border-0 w-full font-semibold"
         >
-          {buttonText}
+          {t(buttonTextKey)}
         </Button>
       </div>
     </Card>

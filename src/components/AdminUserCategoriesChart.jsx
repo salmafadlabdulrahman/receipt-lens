@@ -1,25 +1,36 @@
 import { Card } from "./ui/card";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import { useTranslation } from "react-i18next";
 
 const data = [
-  { name: "Shopping", value: 35, color: "#8B5CF6" },
-  { name: "Transportation", value: 25, color: "#06B6D4" },
-  { name: "Dining", value: 20, color: "#F97316" },
-  { name: "Business", value: 15, color: "#10B981" },
-  { name: "Entertainment", value: 5, color: "#3B82F6" },
+  { name: "shopping", value: 35, color: "#8B5CF6" },
+  { name: "transportation", value: 25, color: "#06B6D4" },
+  { name: "dining", value: 20, color: "#F97316" },
+  { name: "business", value: 15, color: "#10B981" },
+  { name: "entertainment", value: 5, color: "#3B82F6" },
 ];
 
 const AdminUserCategoriesChart = () => {
+  const { t, i18n } = useTranslation();
+  const isArabic = i18n.language.startsWith("ar");
+
   return (
-    <Card className="p-6 h-full flex flex-col shadow-sm border border-slate-100 rounded-xl">
-      <div className="flex items-center justify-between mb-2">
+    <Card
+      className={`p-6 h-full flex flex-col shadow-sm border border-slate-100 rounded-xl ${
+        isArabic ? "text-right" : "text-left"
+      }`}
+    >
+      {/* Header */}
+      <div className={`flex items-center justify-between mb-2 `}>
         <h3 className="text-lg font-semibold text-slate-900">
-          User Categories Distribution
+          {t("dashboardAdmin.userCategoriesDistribution")}
         </h3>
         <button className="text-sm text-indigo-600 font-medium hover:text-indigo-700 hover:underline">
-          View All
+          {t("dashboardAdmin.viewAll")}
         </button>
       </div>
+
+      {/* Chart */}
       <div className="flex-1 min-h-[200px] relative">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
@@ -40,6 +51,8 @@ const AdminUserCategoriesChart = () => {
           </PieChart>
         </ResponsiveContainer>
       </div>
+
+      {/* Legend */}
       <div className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-2">
         {data.map((item) => (
           <div key={item.name} className="flex items-center gap-2">
@@ -47,7 +60,9 @@ const AdminUserCategoriesChart = () => {
               className="h-2.5 w-2.5 rounded-full"
               style={{ backgroundColor: item.color }}
             />
-            <span className="text-sm text-slate-500">{item.name}</span>
+            <span className="text-sm text-slate-500">
+              {t(`dashboardAdmin.categories.${item.name}`)}
+            </span>
           </div>
         ))}
       </div>

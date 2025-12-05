@@ -1,4 +1,5 @@
 import { DollarSign, TrendingUp, ShoppingCart, Users } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { DashboardHeader } from "@/components/BusinessDashboardHeader";
 import { InsightBanner } from "@/components/BusinessInsightBanner";
 import { MetricCard } from "@/components/BusinessMetricCard";
@@ -8,17 +9,21 @@ import { RecentSalesTable } from "@/components/BusinessRecentSalesTable";
 import { ActionCards } from "@/components/BusinessActionCards";
 
 export default function BusinessDashboard() {
+  const { t } = useTranslation();
+
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-white">
       <DashboardHeader />
-      
+
       <main className="max-w-7xl mx-auto px-6 py-8 space-y-6">
         {/* Page Title */}
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Business Dashboard</h1>
+          <h1 className="text-2xl font-bold text-slate-900">
+            {t("businessDashboard.title")}
+          </h1>
           <p className="text-slate-500 text-sm mt-1">
-            Welcome back! Here's your business overview for this month.
-          </p>
+            {t("businessDashboard.subtitle")}
+          </p>  
         </div>
 
         {/* Insight Banner */}
@@ -27,33 +32,44 @@ export default function BusinessDashboard() {
         {/* Metrics Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <MetricCard
-            title="Total Revenue"
+            title={t("businessDashboard.metrics.totalRevenue.title")}
             value="$124,580.00"
-            change="↑ 24% vs last month"
+            change={t("businessDashboard.metrics.totalRevenue.change", {
+              percent: "24%",
+            })}
             changeType="positive"
             icon={DollarSign}
             iconBg="blue"
           />
+
           <MetricCard
-            title="Monthly Sales"
+            title={t("businessDashboard.metrics.monthlySales.title")}
             value="1,847"
-            change="↑ 12% vs last month"
+            change={t("businessDashboard.metrics.monthlySales.change", {
+              percent: "12%",
+            })}
             changeType="positive"
             icon={ShoppingCart}
             iconBg="green"
           />
+
           <MetricCard
-            title="Active Customers"
+            title={t("businessDashboard.metrics.activeCustomers.title")}
             value="3,429"
-            change="last save this month"
+            change={t("businessDashboard.metrics.activeCustomers.change", {
+              value: "3,429",
+            })}
             changeType="neutral"
             icon={Users}
             iconBg="purple"
           />
+
           <MetricCard
-            title="Avg Order Value"
+            title={t("businessDashboard.metrics.avgOrderValue.title")}
             value="$42,180.00"
-            change="↑ 8% vs last month"
+            change={t("businessDashboard.metrics.avgOrderValue.change", {
+              percent: "8%",
+            })}
             changeType="positive"
             icon={TrendingUp}
             iconBg="amber"

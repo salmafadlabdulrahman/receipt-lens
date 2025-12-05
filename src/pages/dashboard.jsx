@@ -11,8 +11,7 @@ import {
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-// klnscslknc
-// Component imports
+
 import StatCard from "@/components/StatCard";
 import AIInsightCard from "@/components/AIInsightCard";
 import ActionCard from "@/components/ActionCard";
@@ -77,11 +76,9 @@ export default function Dashboard() {
   return (
     <div
       className={`min-h-screen flex flex-col ${
-        isDark ? "py-6 bg-dark-gray text-white" : "bg-slate-50 text-slate-900"
+        isDark ? "py-6 bg-dark-gray text-white" : "bg-white text-slate-900"
       } font-sans`}
     >
-      {/* Top header */}
-
       {/* Main content */}
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 flex-1 max-w-7xl py-8 mt-[6em]">
         {/* Page title */}
@@ -93,7 +90,7 @@ export default function Dashboard() {
                 : "text-3xl font-bold text-slate-900"
             }
           >
-            {t ? t("dashboard") || "User Dashboard" : "User Dashboard"}
+            {t ? t("dashboarduser") || "User Dashboard" : "User Dashboard"}
           </h1>
           <p
             className={
@@ -103,17 +100,15 @@ export default function Dashboard() {
             }
           >
             {t
-              ? t("login_welcome") ||
+              ? t("welcomeMessage") ||
                 "Welcome back! Here's your expense overview for this month."
               : "Welcome back! Here's your expense overview for this month."}
           </p>
         </div>
-
         {/* AI insight banner */}
         <div className="mb-6">
           <AIInsightCard />
         </div>
-
         {/* Stats row */}
         <section
           aria-label="Quick stats"
@@ -123,7 +118,6 @@ export default function Dashboard() {
             <StatCard key={idx} {...s} />
           ))}
         </section>
-
         {/* Charts row */}
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           <div className="w-full h-full">
@@ -154,35 +148,35 @@ export default function Dashboard() {
             </Suspense>
           </div>
         </section>
-
         {/* Recent receipts table */}
         <section className="mb-6 overflow-x-auto">
           <RecentReceiptsTable />
         </section>
-
         {/* Action cards */}
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+        {/* Action cards */}{" "}
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12 ">
+          {" "}
           <ActionCard
-            title={t("uploadReceipt")}
-            description={t("uploadReceiptDescription")}
-            buttonText={t("startUpload")}
+            titleKey="uploadReceiptuser"
+            descriptionKey="uploadReceiptDescription"
+            buttonTextKey="startUpload"
             icon={Receipt}
             bgColor="bg-gradient-to-br from-blue-700 to-blue-600"
-          />
+          />{" "}
           <ActionCard
-            title={t("viewAnalytics")}
-            description={t("viewAnalyticsDescription")}
-            buttonText={t("viewReports")}
+            titleKey="viewAnalytics"
+            descriptionKey="viewAnalyticsDescription"
+            buttonTextKey="viewReports"
             icon={BarChart3}
             bgColor="bg-gradient-to-br from-violet-600 to-purple-600"
-          />
+          />{" "}
           <ActionCard
-            title={t("exportData")}
-            description={t("exportDataDescription")}
-            buttonText={t("exportNow")}
+            titleKey="exportData"
+            descriptionKey="exportDataDescription"
+            buttonTextKey="exportNow"
             icon={FileText}
             bgColor="bg-gradient-to-br from-emerald-600 to-emerald-500"
-          />
+          />{" "}
         </section>
       </main>
     </div>

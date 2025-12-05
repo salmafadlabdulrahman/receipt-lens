@@ -1,39 +1,43 @@
 import { Users, Tag, Receipt, DollarSign } from "lucide-react";
 import StatCard from "@/components/StatCard";
+import { useTranslation } from "react-i18next";
 
 const AdminCards = () => {
+  const { t, i18n } = useTranslation();
+  const isArabic = i18n.language.startsWith("ar");
+
   const adminStats = [
     {
-      title: "Total Users",
+      title: t("totalUsers"),
       value: "2,847",
-      change: "12% vs last month",
+      change: t("totalUsersChange"),
       isPositive: true,
       icon: Users,
       bgColor: "bg-emerald-50",
       iconColor: "text-emerald-600",
     },
     {
-      title: "Top Category",
-      value: "Shopping",
-      change: "$892.45 spent",
+      title: t("topCategory"),
+      value: t("shoppingCategory"),
+      change: t("topCategoryChange"),
       isPositive: true,
       icon: Tag,
       bgColor: "bg-purple-50",
       iconColor: "text-purple-600",
     },
     {
-      title: "Receipts Uploaded",
+      title: t("receiptsUploaded"),
       value: "8,942",
-      change: "$892.45 avg value",
+      change: t("receiptsUploadedChange"),
       isPositive: true,
       icon: Receipt,
       bgColor: "bg-blue-50",
       iconColor: "text-blue-600",
     },
     {
-      title: "System Spend Total",
+      title: t("systemSpendTotal"),
       value: "$124,847",
-      change: "5% vs last month",
+      change: t("systemSpendChange"),
       isPositive: false,
       icon: DollarSign,
       bgColor: "bg-cyan-50",
@@ -44,7 +48,9 @@ const AdminCards = () => {
   return (
     <section
       aria-label="Admin statistics"
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
+      className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 ${
+        isArabic ? "text-right" : "text-left"
+      }`}
     >
       {adminStats.map((stat, idx) => (
         <StatCard
