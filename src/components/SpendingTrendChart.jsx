@@ -27,16 +27,16 @@ const SpendingTrendChart = () => {
   const { t } = useTranslation();
 
   return (
-    <Card className={`p-6 py-18 ${isDark ? "bg-dark-gray text-white" : ""}`}>
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-semibold">
+    <Card className={`p-6 h-full ${isDark ? "bg-dark-gray text-white" : ""}`}>
+      <div className="flex items-center justify-between mb-10">
+        <h3 className="text-lg font-semibold ">
           {t("spendingTrend")}
         </h3>
         <button className={`text-sm hover:opacity-80 ${isDark ? "text-gray-300" : "text-muted-foreground"}`}>
           {t("last7Days")}
         </button>
       </div>
-      <ResponsiveContainer width="100%" height={300} className={'py-8'} >
+      <ResponsiveContainer width="100%" height={350}>
         <AreaChart data={data}>
           <defs>
             <linearGradient id="colorAmount" x1="0" y1="0" x2="0" y2="1">
@@ -70,6 +70,7 @@ const SpendingTrendChart = () => {
             tickLine={false}
             axisLine={false}
             tickFormatter={(value) => `$${value}`}
+            domain={[0, 300]} 
           />
           <Tooltip
             contentStyle={{
