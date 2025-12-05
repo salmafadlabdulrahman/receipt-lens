@@ -20,7 +20,6 @@ import RecentReceiptsTable from "@/components/RecentReceiptsTable";
 import NotificationsMenu from "@/components/NotificationsMenu";
 import { useAppContext } from "../contexts/useAppContext";
 import { useTranslation } from "react-i18next";
-import NavLink from "@/components/NavLink";
 
 const SpendingTrendChart = React.lazy(() =>
   import("@/components/SpendingTrendChart")
@@ -97,45 +96,6 @@ export default function Dashboard() {
                 {t ? t("appName") || "Spend Right" : "Spend Right"}
               </span>
             </div>
-
-            {/* Nav (kept from feature branch) */}
-            <nav className="hidden md:flex items-center gap-1">
-              <NavLink
-                to="/"
-                className="px-4 py-2 text-sm font-medium rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
-                activeClassName="bg-indigo-50 text-indigo-600"
-              >
-                {t ? t("dashboard") || "Dashboard" : "Dashboard"}
-              </NavLink>
-              <NavLink
-                to="/receipts"
-                className="px-4 py-2 text-sm font-medium rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
-                activeClassName="bg-indigo-50 text-indigo-600"
-              >
-                {t ? t("receipts") || "Receipts" : "Receipts"}
-              </NavLink>
-              <NavLink
-                to="/analytics"
-                className="px-4 py-2 text-sm font-medium rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
-                activeClassName="bg-indigo-50 text-indigo-600"
-              >
-                {t ? t("analytics") || "Analytics" : "Analytics"}
-              </NavLink>
-              <NavLink
-                to="/subscription"
-                className="px-4 py-2 text-sm font-medium rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
-                activeClassName="bg-indigo-50 text-indigo-600"
-              >
-                {t ? t("subscription") || "Subscription" : "Subscription"}
-              </NavLink>
-              <NavLink
-                to="/profile"
-                className="px-4 py-2 text-sm font-medium rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
-                activeClassName="bg-indigo-50 text-indigo-600"
-              >
-                {t ? t("profile") || "Profile" : "Profile"}
-              </NavLink>
-            </nav>
           </div>
 
           <div className="flex items-center gap-4">
@@ -144,7 +104,6 @@ export default function Dashboard() {
               <Plus className="h-4 w-4" />
               {t ? t("uploadReceipt") || "Upload Receipt" : "Upload Receipt"}
             </Button>
-
             <div className="relative">
               <button
                 onClick={() => setShowNotifications(!showNotifications)}
@@ -174,11 +133,26 @@ export default function Dashboard() {
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 flex-1 max-w-7xl py-8">
         {/* Page title */}
         <div className={isDark ? "mb-6" : "mb-8"}>
-          <h1 className={isDark ? "text-2xl sm:text-3xl font-bold" : "text-3xl font-bold text-slate-900"}>
+          <h1
+            className={
+              isDark
+                ? "text-2xl sm:text-3xl font-bold"
+                : "text-3xl font-bold text-slate-900"
+            }
+          >
             {t ? t("dashboard") || "User Dashboard" : "User Dashboard"}
           </h1>
-          <p className={isDark ? "mt-1 text-sm sm:text-base text-gray-300" : "text-slate-500 mt-2"}>
-            {t ? t("login_welcome") || "Welcome back! Here's your expense overview for this month." : "Welcome back! Here's your expense overview for this month."}
+          <p
+            className={
+              isDark
+                ? "mt-1 text-sm sm:text-base text-gray-300"
+                : "text-slate-500 mt-2"
+            }
+          >
+            {t
+              ? t("login_welcome") ||
+                "Welcome back! Here's your expense overview for this month."
+              : "Welcome back! Here's your expense overview for this month."}
           </p>
         </div>
 

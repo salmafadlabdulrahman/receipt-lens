@@ -1,5 +1,19 @@
 import React, { Suspense, useState } from "react";
-import { DollarSign, TrendingUp, Wallet, Receipt, Bell, Plus, BarChart3, FileText, Users, Settings, FileSpreadsheet, Download, UserPlus } from "lucide-react";
+import {
+  DollarSign,
+  TrendingUp,
+  Wallet,
+  Receipt,
+  Bell,
+  Plus,
+  BarChart3,
+  FileText,
+  Users,
+  Settings,
+  FileSpreadsheet,
+  Download,
+  UserPlus,
+} from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 
@@ -10,7 +24,6 @@ import AdminDashboardHeader from "@/components/AdminDashboardHeader";
 import AdminAction from "@/components/AdminAction";
 import UsersTable from "@/components/UsersTable";
 import NotificationsMenu from "@/components/NotificationsMenu";
-import { NavLink } from "@/components/NavLink";
 
 // Charts: load lazily (React.lazy)
 const AdminPlatformActivityChart = React.lazy(() =>
@@ -19,8 +32,6 @@ const AdminPlatformActivityChart = React.lazy(() =>
 const AdminUserCategoriesChart = React.lazy(() =>
   import("@/components/AdminUserCategoriesChart")
 );
-
-
 
 export default function AdminDashboard() {
   const [showNotifications, setShowNotifications] = useState(false);
@@ -33,48 +44,12 @@ export default function AdminDashboard() {
           <div className="flex items-center gap-8">
             <div className="flex items-center gap-2">
               <div className="bg-indigo-600 p-1.5 rounded-lg">
-                 <Receipt className="h-5 w-5 text-white" />
+                <Receipt className="h-5 w-5 text-white" />
               </div>
-              <span className="text-xl font-bold tracking-tight">Spend Right</span>
+              <span className="text-xl font-bold tracking-tight">
+                Spend Right
+              </span>
             </div>
-            
-            <nav className="hidden md:flex items-center gap-1">
-              <NavLink 
-                to="/" 
-                className="px-4 py-2 text-sm font-medium rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
-                activeClassName="bg-indigo-50 text-indigo-600"
-              >
-                Dashboard
-              </NavLink>
-              <NavLink 
-                to="/receipts" 
-                className="px-4 py-2 text-sm font-medium rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
-                activeClassName="bg-indigo-50 text-indigo-600"
-              >
-                Receipts
-              </NavLink>
-              <NavLink 
-                to="/analytics" 
-                className="px-4 py-2 text-sm font-medium rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
-                activeClassName="bg-indigo-50 text-indigo-600"
-              >
-                Analytics
-              </NavLink>
-              <NavLink 
-                to="/subscription" 
-                className="px-4 py-2 text-sm font-medium rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
-                activeClassName="bg-indigo-50 text-indigo-600"
-              >
-                Subscription
-              </NavLink>
-              <NavLink 
-                to="/profile" 
-                className="px-4 py-2 text-sm font-medium rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
-                activeClassName="bg-indigo-50 text-indigo-600"
-              >
-                Profile
-              </NavLink>
-            </nav>
           </div>
 
           <div className="flex items-center gap-4">
@@ -82,9 +57,9 @@ export default function AdminDashboard() {
               <Plus className="h-4 w-4" />
               Upload Receipt
             </Button>
-            
+
             <div className="relative">
-              <button 
+              <button
                 onClick={() => setShowNotifications(!showNotifications)}
                 className="p-2 rounded-full hover:bg-slate-100 text-slate-500 transition-colors relative"
               >
@@ -122,12 +97,20 @@ export default function AdminDashboard() {
         {/* Charts row */}
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           <div className="h-full">
-            <Suspense fallback={<div className="h-[350px] w-full rounded-xl bg-slate-100 animate-pulse" />}>
+            <Suspense
+              fallback={
+                <div className="h-[350px] w-full rounded-xl bg-slate-100 animate-pulse" />
+              }
+            >
               <AdminPlatformActivityChart />
             </Suspense>
           </div>
           <div className="h-full">
-            <Suspense fallback={<div className="h-[350px] w-full rounded-xl bg-slate-100 animate-pulse" />}>
+            <Suspense
+              fallback={
+                <div className="h-[350px] w-full rounded-xl bg-slate-100 animate-pulse" />
+              }
+            >
               <AdminUserCategoriesChart />
             </Suspense>
           </div>
