@@ -1,7 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "../contexts/useAppContext";
-
 export default function About() {
   const { t } = useTranslation();
 
@@ -27,9 +26,9 @@ export default function About() {
   ];
 
   return (
-    <div className={`font-sans `}>
+    <div>
       <section
-        className={` py-28  from-50 
+        className={` py-28 px-10  from-50 
         ${
           theme === "light"
             ? "bg-linear-to-br from-purple-soft via-purple-light to-yellow-soft"
@@ -79,7 +78,7 @@ export default function About() {
                   : "text-black bg-purple-50"
               }`}
             >
-              <div className="mx-24 bg-purple-200 text-purple-600 rounded-lg mb-4 flex items-center justify-center text-lg">
+              <div className="w-10 mx-auto bg-purple-200 text-purple-600 rounded-lg mb-4 flex items-center justify-center text-lg">
                 🧩
               </div>
               <h4 className="font-semibold text-lg mb-2">{f.title}</h4>

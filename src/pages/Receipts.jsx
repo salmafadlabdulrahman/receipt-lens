@@ -255,6 +255,8 @@ export default function Receipts() {
 
   function handleFileChange(e) {
     const f = e.target.files?.[0];
+    console.log(f);
+
     if (f)
       alert(
         `Would upload file: ${f.name} (upload integration not implemented in demo)`
@@ -294,7 +296,7 @@ ID: ${receipt.id}`);
               {t("receipts_subtitle")}
             </p>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 mt-40 p-5 overflow-x-hidden">
             <button
               onClick={handleUploadClick}
               className="inline-flex items-center gap-2 bg-purple-600 text-white px-4 py-2 rounded-lg shadow hover:bg-purple-700"
@@ -613,13 +615,13 @@ ID: ${receipt.id}`);
             } rounded-lg p-4 shadow`}
           >
             <div
-              className={`${
-                theme === "dark" ? "text-gray-300" : "text-xs text-gray-500"
+              className={`text-xs${
+                theme === "dark" ? "text-gray-300" : " text-gray-500"
               }`}
             >
               {t("total_receipts_this_month")}
             </div>
-            <div className="text-2xl font-bold mt-2">
+            <div className="text-sm md:text-2xl font-bold mt-2 ">
               {stats.receiptsThisMonth}
             </div>
           </div>
@@ -637,7 +639,7 @@ ID: ${receipt.id}`);
             >
               {t("total_spent")}
             </div>
-            <div className="text-2xl font-bold mt-2">
+            <div className="text-md md:text-2xl font-bold mt-2">
               {formatCurrency(stats.totalSpent)}
             </div>
           </div>
@@ -649,13 +651,15 @@ ID: ${receipt.id}`);
             } rounded-lg p-4 shadow`}
           >
             <div
-              className={`${
+              className={` ${
                 theme === "dark" ? "text-gray-300" : "text-xs text-gray-500"
               }`}
             >
               {t("top_spending_category")}
             </div>
-            <div className="text-2xl font-bold mt-2">{stats.topCategory}</div>
+            <div className="text-sm md:text-2xl font-bold mt-2">
+              {stats.topCategory}
+            </div>
           </div>
           <div
             className={`${
@@ -671,7 +675,7 @@ ID: ${receipt.id}`);
             >
               {t("average_per_day")}
             </div>
-            <div className="text-2xl font-bold mt-2">
+            <div className="text-md md:text-2xl font-bold mt-2">
               {formatCurrency(stats.avgPerDay)}
             </div>
           </div>
