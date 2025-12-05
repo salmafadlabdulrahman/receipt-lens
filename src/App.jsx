@@ -32,6 +32,8 @@ import Dashboard from "./pages/dashboard.jsx";
 
 // ✅ إضافة داشبورد الأدمن
 import AdminDashboard from "./pages/admindashboard.jsx";
+// ✅ إضافة داشبورد الأعمال
+import BusinessDashboard from "./pages/businessdashboard.jsx";
 
 const Layout = ({ children }) => {
   const location = useLocation();
@@ -89,6 +91,8 @@ function App() {
 
           {/* ✅ مسار داشبورد الأدمن */}
           <Route path="/admindashboard" element={<AdminDashboard />} />
+          {/* ✅ مسار داشبورد الأعمال */}
+          <Route path="/businessdashboard" element={<BusinessDashboard />} />
         </Routes>
       </Layout>
     </Router>
