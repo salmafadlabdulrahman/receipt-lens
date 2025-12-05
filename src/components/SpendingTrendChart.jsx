@@ -1,6 +1,26 @@
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  Area,
+  AreaChart,
+} from "recharts";
+import {
+  AreaChart as AreaChartAlias,
+  Area as AreaAlias,
+  XAxis as XAxisAlias,
+  YAxis as YAxisAlias,
+  CartesianGrid as CartesianGridAlias,
+  Tooltip as TooltipAlias,
+  ResponsiveContainer as ResponsiveContainerAlias,
+} from "recharts";
 import { ChevronDown } from "lucide-react";
 import { useAppContext } from "../contexts/useAppContext";
 import { useTranslation } from "react-i18next";
@@ -37,12 +57,23 @@ const SpendingTrendChart = () => {
   };
 
   return (
-    <Card className={`p-6 ${isDark ? "h-full bg-dark-gray text-white" : "shadow-sm border border-slate-100 rounded-xl"}`}>
+    <Card
+      className={`p-6 ${
+        isDark
+          ? "h-full bg-dark-gray text-white"
+          : "shadow-sm border border-slate-100 rounded-xl"
+      }`}
+    >
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-lg font-semibold">{t("spendingTrend")}</h3>
 
-        <div className="relative flex items-center gap-3">
-          <button className={`text-sm hover:opacity-80 ${isDark ? "text-gray-300" : "text-muted-foreground"}`}>
+        {/* Combined controls: dev had simple button, feature had dropdown with Chevron */}
+        <div className="relative flex items-center flex-wrap justify-end gap-3">
+          <button
+            className={`text-sm hover:opacity-80 ${
+              isDark ? "text-gray-300" : "text-muted-foreground"
+            }`}
+          >
             {t(selectedPeriod)}
           </button>
 
@@ -52,7 +83,11 @@ const SpendingTrendChart = () => {
               className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-slate-600 bg-slate-100 rounded-lg hover:bg-slate-200 transition-colors"
             >
               {t(selectedPeriod)}
-              <ChevronDown className={`h-4 w-4 transition-transform ${isOpen ? "rotate-180" : ""}`} />
+              <ChevronDown
+                className={`h-4 w-4 transition-transform ${
+                  isOpen ? "rotate-180" : ""
+                }`}
+              />
             </button>
 
             {isOpen && (
@@ -65,7 +100,9 @@ const SpendingTrendChart = () => {
                       setIsOpen(false);
                     }}
                     className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors first:rounded-t-lg last:rounded-b-lg ${
-                      selectedPeriod === period ? "bg-indigo-50 text-indigo-600 font-medium" : "text-slate-700"
+                      selectedPeriod === period
+                        ? "bg-indigo-50 text-indigo-600 font-medium"
+                        : "text-slate-700"
                     }`}
                   >
                     {t(period)}
@@ -78,7 +115,11 @@ const SpendingTrendChart = () => {
       </div>
 
       <ResponsiveContainer width="100%" height={containerHeight}>
-        <AreaChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+        {/* Using AreaChart (keeps both branches' Area usage) */}
+        <AreaChart
+          data={data}
+          margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
+        >
           <defs>
             <linearGradient id="colorAmount" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor={isDark ? "#7c3aed" : "#8B5CF6"} stopOpacity={0.2} />
@@ -104,7 +145,13 @@ const SpendingTrendChart = () => {
             axisLine={false}
             tickFormatter={formatNumber}
             domain={[0, yMax]}
-            ticks={[0, Math.round(yMax * 0.25), Math.round(yMax * 0.5), Math.round(yMax * 0.75), yMax]}
+            ticks={[
+              0,
+              Math.round(yMax * 0.25),
+              Math.round(yMax * 0.5),
+              Math.round(yMax * 0.75),
+              yMax,
+            ]}
           />
 
           <Tooltip

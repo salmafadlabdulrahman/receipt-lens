@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense } from "react";
 import {
   DollarSign,
   TrendingUp,
@@ -25,6 +25,7 @@ import AdminDashboardHeader from "@/components/AdminDashboardHeader";
 import AdminAction from "@/components/AdminAction";
 import UsersTable from "@/components/UsersTable";
 import NotificationsMenu from "@/components/NotificationsMenu";
+import { useAppContext } from "@/contexts/useAppContext";
 
 // Charts: load lazily (React.lazy)
 const AdminPlatformActivityChart = React.lazy(() =>
@@ -38,8 +39,15 @@ export default function AdminDashboard() {
   const [showNotifications, setShowNotifications] = useState(false);
   const { t } = useTranslation();
 
+ const { theme } = useAppContext();
   return (
-    <div className="min-h-screen flex flex-col bg-white text-slate-900 font-sans">
+    <div
+      className={`${
+        theme === "light"
+          ? "bg-slate-50 text-slate-900"
+          : "bg-dark-gray text-white"
+      } min-h-screen flex flex-col font-sans pt-[5em] md:pt-[8em]`}
+    >
       {/* Top header */}
       <header className="sticky top-0 z-40 bg-white border-b border-slate-200">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 h-16 flex items-center justify-between">

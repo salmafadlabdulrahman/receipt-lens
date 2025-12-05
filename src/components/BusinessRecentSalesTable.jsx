@@ -5,6 +5,7 @@ import { useToast } from "@/hooks/useToast";
 import Toast from "@/components/Toast";
 import { ConfirmDialog, DetailModal, EditModal } from "@/components/Modals";
 import { useTranslation } from "react-i18next";
+import { useAppContext } from "@/contexts/useAppContext";
 
 const sales = [
   {
@@ -55,7 +56,9 @@ const statusColors = {
 
 export function RecentSalesTable() {
   const { t } = useTranslation();
+  const { theme } = useAppContext();
   const { toasts, showToast, removeToast } = useToast();
+
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
@@ -72,7 +75,9 @@ export function RecentSalesTable() {
   };
 
   const handleSaveEdit = (formData) => {
+    // feature/updateDashboard
     showToast(t("recentSales.updated", { customer: formData.customer }), "success", 3000);
+
     setShowEditModal(false);
     setSelectedSale(null);
   };
@@ -83,7 +88,12 @@ export function RecentSalesTable() {
   };
 
   const confirmDelete = () => {
+    // feature/updateDashboard
     showToast(t("recentSales.deleted", { customer: selectedSale.customer }), "delete", 4000);
+
+    // dev version (keep logging as well)
+    console.log("Delete sale:", selectedSale);
+
     setShowConfirmDialog(false);
     setSelectedSale(null);
   };
@@ -94,6 +104,7 @@ export function RecentSalesTable() {
 
   return (
     <>
+      {/* Toasts */}
       {toasts.map((toast) => (
         <Toast
           key={toast.id}
@@ -104,6 +115,7 @@ export function RecentSalesTable() {
         />
       ))}
 
+      {/* Detail Modal */}
       {showDetailModal && selectedSale && (
         <DetailModal
           title={t("recentSales.detailTitle")}
@@ -121,10 +133,12 @@ export function RecentSalesTable() {
         />
       )}
 
+      {/* Edit Modal */}
       {showEditModal && selectedSale && (
         <EditModal
           title={t("recentSales.editTitle")}
           fields={[
+            // merged version includes localization & labels
             { name: "customer", label: t("recentSales.customer"), value: selectedSale.customer, type: "text", required: true },
             { name: "amount", label: t("recentSales.amount"), value: selectedSale.amount, type: "text", required: true },
             { name: "category", label: t("recentSales.category"), value: selectedSale.category, type: "select", options: ["Electronics", "Software", "Clothing", "Services"], required: true },
@@ -139,6 +153,7 @@ export function RecentSalesTable() {
         />
       )}
 
+      {/* Delete Confirm Dialog */}
       {showConfirmDialog && selectedSale && (
         <ConfirmDialog
           message={t("recentSales.confirmDelete", { customer: selectedSale.customer, amount: selectedSale.amount })}
@@ -150,13 +165,21 @@ export function RecentSalesTable() {
         />
       )}
 
-      <div className="bg-white rounded-xl border border-slate-200 shadow-sm">
+      {/* Combined UI (dark mode + localization) */}
+      <div className={`${theme === "light" ? "bg-white text-black border border-slate-200" : "bg-dark-gray text-white border border-slate-500"} rounded-xl shadow-sm`}>
         <div className="flex items-center justify-between p-5 border-b border-slate-200">
-          <h3 className="text-lg font-semibold text-slate-900">{t("recentSales.title")}</h3>
-          <button onClick={handleViewAll} className="text-sm text-indigo-600 hover:text-indigo-700 font-medium">
+          <h3 className={`${theme === "light" ? "text-slate-900" : "text-white"} text-lg font-semibold`}>
+            {t("recentSales.title")}
+          </h3>
+
+          <button
+            onClick={handleViewAll}
+            className="text-sm text-indigo-600 hover:text-indigo-700 font-medium"
+          >
             {t("recentSales.viewAll")}
           </button>
         </div>
+
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
@@ -181,6 +204,7 @@ export function RecentSalesTable() {
                 </th>
               </tr>
             </thead>
+
             <tbody>
               {sales.map((sale) => (
                 <tr key={sale.id} className="border-b border-slate-200 last:border-0 hover:bg-slate-50 transition-colors">
@@ -191,34 +215,46 @@ export function RecentSalesTable() {
                           {sale.customer.charAt(0)}
                         </span>
                       </div>
-                      <span className="font-medium text-slate-900">{sale.customer}</span>
+                      <span className={`${theme === "light" ? "text-slate-900" : "text-white"} font-medium`}>
+                        {sale.customer}
+                      </span>
                     </div>
                   </td>
+
                   <td className="px-5 py-4 text-sm text-slate-500">{sale.date}</td>
+
                   <td className="px-5 py-4">
                     <Badge variant="secondary" className={categoryColors[sale.category]}>
                       {t(`categories.${sale.category}`)}
                     </Badge>
                   </td>
-                  <td className="px-5 py-4 font-semibold text-slate-900">{sale.amount}</td>
+
+                  <td className={`${theme === "light" ? "text-slate-900" : "text-white"} px-5 py-4 font-semibold`}>
+                    {sale.amount}
+                  </td>
+
                   <td className="px-5 py-4">
                     <Badge variant="secondary" className={statusColors[sale.status]}>
                       {t(`status.${sale.status}`)}
                     </Badge>
                   </td>
+
                   <td className="px-5 py-4">
                     <div className="flex items-center gap-2">
                       <button onClick={() => handleView(sale)} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition-colors">
                         <Eye className="w-4 h-4" />
                       </button>
+
                       <button onClick={() => handleEdit(sale)} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition-colors">
                         <Edit className="w-4 h-4" />
                       </button>
+
                       <button onClick={() => handleDelete(sale)} className="p-1.5 rounded-lg hover:bg-red-50 text-slate-500 hover:text-red-600 transition-colors">
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
                   </td>
+
                 </tr>
               ))}
             </tbody>

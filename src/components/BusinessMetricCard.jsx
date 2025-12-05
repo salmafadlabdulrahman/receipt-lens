@@ -1,3 +1,4 @@
+import { useAppContext } from "@/contexts/useAppContext";
 import { cn } from "@/lib/utils";
 
 const iconBgColors = {
@@ -16,12 +17,29 @@ export function MetricCard({
   icon: Icon,
   iconBg,
 }) {
+  const { theme } = useAppContext();
   return (
-    <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300">
+    <div
+      className={`${
+        theme === "dark" ? "bg-dark-gray border border-slate-500" : "bg-white"
+      }  rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300`}
+    >
       <div className="flex items-start justify-between">
         <div className="flex-1">
-          <p className="text-sm text-slate-500 font-medium">{title}</p>
-          <p className="text-3xl font-bold text-slate-900 mt-2">{value}</p>
+          <p
+            className={`${
+              theme === "light" ? "text-slate-500" : "text-white"
+            } text-sm font-medium`}
+          >
+            {title}
+          </p>
+          <p
+            className={`${
+              theme === "light" ? "text-slate-900" : "text-white"
+            } text-3xl font-bold  mt-2`}
+          >
+            {value}
+          </p>
           {subtitle && (
             <p className="text-sm text-slate-500 mt-1">{subtitle}</p>
           )}
@@ -38,7 +56,12 @@ export function MetricCard({
             </p>
           )}
         </div>
-        <div className={cn("w-12 h-12 rounded-lg flex items-center justify-center", iconBgColors[iconBg])}>
+        <div
+          className={cn(
+            "w-12 h-12 rounded-lg flex items-center justify-center",
+            iconBgColors[iconBg]
+          )}
+        >
           <Icon className="w-6 h-6" />
         </div>
       </div>

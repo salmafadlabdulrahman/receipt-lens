@@ -1,9 +1,11 @@
 import { Card } from "./ui/card";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import { useTranslation } from "react-i18next";
+import { useAppContext } from "@/contexts/useAppContext";
 
 const CategoryDistributionChart = () => {
   const { t } = useTranslation();
+  const { theme } = useAppContext();
 
   const data = [
     { name: t("dining"), value: 892.45, color: "#EF4444" },
@@ -15,12 +17,16 @@ const CategoryDistributionChart = () => {
   ];
 
   return (
-    <Card className="p-6 h-full flex flex-col shadow-sm border border-slate-100 rounded-xl">
+    <Card
+      className={`${
+        theme === "light" ? "" : "border border-slate-500"
+      } p-6 h-full flex flex-col shadow-sm rounded-xl`}
+    >
       <div className="flex items-center justify-between mb-2">
         <h3 className="text-lg font-semibold text-foreground">
           {t("categoryDistribution")}
         </h3>
-        <button  className="text-sm text-indigo-600 font-medium hover:text-indigo-700 hover:underline">
+        <button className="text-sm text-indigo-600 font-medium hover:text-indigo-700 hover:underline">
           {t("viewAll")}
         </button>
       </div>

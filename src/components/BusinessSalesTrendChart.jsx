@@ -10,6 +10,7 @@ import {
 } from "recharts";
 import { ChevronDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useAppContext } from "@/contexts/useAppContext";
 
 const data = [
   { name: "Dec 9", sales: 4200 },
@@ -32,14 +33,25 @@ export function SalesTrendChart() {
   
   const [selectedPeriod, setSelectedPeriod] = useState(defaultPeriod);
   const [isOpen, setIsOpen] = useState(false);
+  const { theme } = useAppContext();
 
   return (
-    <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
+    <div
+      className={`${
+        theme === "light"
+          ? "bg-white border-slate-200"
+          : "bg-dark-gray border-slate-500"
+      } rounded-xl p-5 border  shadow-sm`}
+    >
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-semibold text-slate-900">
+
+        <h3
+          className={`${
+            theme === "light" ? "text-slate-900" : "text-white"
+          } text-lg font-semibold `}
+        >
           {t("businessDashboard.salesTrend.title")}
         </h3>
-
         <div className="relative">
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -62,7 +74,8 @@ export function SalesTrendChart() {
                     setSelectedPeriod(period);
                     setIsOpen(false);
                   }}
-                  className={`w-full text-right px-4 py-2 text-sm hover:bg-slate-50 transition-colors first:rounded-t-lg last:rounded-b-lg ${
+
+                  className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors first:rounded-t-lg last:rounded-b-lg ${
                     selectedPeriod === period
                       ? "bg-indigo-50 text-indigo-600 font-medium"
                       : "text-slate-700"

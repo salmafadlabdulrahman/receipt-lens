@@ -241,35 +241,73 @@ const RecentReceiptsTable = () => {
         />
       )}
 
+      {/* Main Card / Table */}
       <Card
-        className={`p-6 ${
-          isDark ? "bg-dark-gray text-white" : "bg-white text-black"
-        } rounded-xl shadow-sm border`}
+        className={`p-6 rounded-xl shadow-sm  ${
+          theme === "light"
+            ? "bg-white "
+            : "bg-dark-gray border border-slate-500"
+        }`}
       >
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-semibold">
+          <h3 className="text-lg font-semibold text-foreground">
             {t("recentReceipts") || "Recent Receipts"}
           </h3>
           <div className="flex items-center gap-2">
-            <Button onClick={handleViewAll} variant="link">
-              {t("viewAllReceipts") || "View All Receipts"}
-            </Button>
-            <MoreHorizontal className="h-5 w-5" />
+            <button
+              onClick={handleViewAll}
+              className="text-sm text-primary hover:text-primary/80"
+            >
+                 {t("viewAllReceipts") || "View All Receipts"}
+            </button>
+            <button className="p-2 rounded-md hover:bg-muted/50">
+              <MoreHorizontal className="h-5 w-5" />
+            </button>
           </div>
         </div>
 
-        <div className="overflow-x-auto">
+        {/* Add a wrapper with horizontal scroll */}
+        <div className="overflow-x-auto -mx-6 px-6">
           <table
-            className={`w-full border-collapse text-sm ${
-              isRTL ? "direction-rtl text-right" : "text-left"
-            }`}
+            className={`w-full border-collapse min-w-[700px] text-sm ${
+              theme === "light"
+                ? "bg-white text-black"
+                : "bg-dark-gray text-white"
+            } ${isRTL ? "direction-rtl text-right" : "text-left"}`}
           >
             <thead>
-              <tr>
-                {headers.map((header) => (
+              <tr className="border-b border-slate-500">
+                {[
+                  {
+                    label: t ? t("merchant") || "Merchant" : "Merchant",
+                    className: "text-left",
+                  },
+                  {
+                    label: t ? t("date") || "Date" : "Date",
+                    className: "hidden sm:table-cell text-left",
+                  },
+                  {
+                    label: t ? t("category") || "Category" : "Category",
+                    className: "text-left",
+                  },
+                  {
+                    label: t ? t("amount") || "Amount" : "Amount",
+                    className: "text-left",
+                  },
+                  {
+                    label: t ? t("status") || "Status" : "Status",
+                    className: "text-left",
+                  },
+                  {
+                    label: t ? t("actions") || "Actions" : "Actions",
+                    className: "text-left",
+                  },
+                ].map((header, idx) => (
                   <th
-                    key={header.key}
-                    className={`px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider`}
+                    key={idx}
+                    className={`text-xs font-semibold text-slate-400 uppercase tracking-wider px-4 py-3 whitespace-nowrap ${
+                      header.className
+                    } ${isRTL ? "text-right" : "text-left"}`}
                   >
                     {header.label}
                   </th>
@@ -277,41 +315,60 @@ const RecentReceiptsTable = () => {
               </tr>
             </thead>
             <tbody>
-              {mergedReceipts.map((receipt, idx) => (
+              {mergedReceipts.map((receipt, index) => (
                 <tr
-                  key={idx}
-                  className="border-b last:border-0 hover:bg-slate-50/50 transition-colors"
+                  key={`${index}-${receipt.merchant}`}
+                  className="border-b border-slate-500 last:border-0 "
                 >
+                  {/* Merchant */}
                   <td className="px-4 py-3">
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 whitespace-nowrap">
                       <div
-                        className={`flex h-10 w-10 items-center justify-center rounded-lg ${receipt.iconBg} font-semibold text-sm`}
+                        className={`flex h-10 w-10 items-center justify-center rounded-full ${receipt.iconBg} font-semibold text-sm shrink-0`}
                       >
                         {receipt.icon}
                       </div>
-                      <span className="font-semibold">{receipt.merchant}</span>
+                      <span
+                        className={`font-semibold ${
+                          theme === "light" ? "text-slate-900" : "text-white"
+                        }`}
+                      >
+                        {receipt.merchant}
+                      </span>
                     </div>
                   </td>
-                  <td className="px-4 py-3 hidden sm:table-cell">
+
+                  {/* Date */}
+                  <td className="px-4 py-3 text-sm text-slate-500 hidden sm:table-cell whitespace-nowrap">
                     {receipt.date}
                   </td>
+
+                  {/* Category */}
                   <td className="px-4 py-3">
                     <Badge
                       variant="secondary"
                       className={`${
                         receipt.categoryColor ?? ""
-                      } font-medium rounded-md px-3 py-1 text-xs border-0`}
+                      } font-medium rounded-md px-3 py-1 text-xs border-0 whitespace-nowrap`}
                     >
                       {getCategoryLabel(receipt)}
                     </Badge>
                   </td>
-                  <td className="px-4 py-3 font-semibold">
-                    {formatCurrency(receipt.amount)}
+
+                  {/* Amount */}
+                  <td
+                    className={`px-4 py-3 font-semibold whitespace-nowrap ${
+                      theme === "light" ? "text-slate-900" : "text-slate-500"
+                    }`}
+                  >
+                    {receipt.amount}
                   </td>
+
+                  {/* Status */}
                   <td className="px-4 py-3">
                     <Badge
                       variant="secondary"
-                      className={`font-medium rounded-md px-3 py-1 text-xs border-0 ${
+                      className={`font-medium rounded-md px-3 py-1 text-xs border-0 whitespace-nowrap ${
                         isStatusProcessed(receipt)
                           ? "bg-emerald-50 text-emerald-600"
                           : "bg-amber-50 text-amber-600"
@@ -321,12 +378,12 @@ const RecentReceiptsTable = () => {
                     </Badge>
                   </td>
                   <td className="px-4 py-3">
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-1 whitespace-nowrap">
                       <Button
                         onClick={() => handleView(receipt)}
                         variant="ghost"
                         size="icon"
-                        title={t("view") || "View"}
+                        className="h-8 w-8 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all"
                       >
                         <Eye className="h-4 w-4" />
                       </Button>
@@ -334,7 +391,7 @@ const RecentReceiptsTable = () => {
                         onClick={() => handleEdit(receipt)}
                         variant="ghost"
                         size="icon"
-                        title={t("edit") || "Edit"}
+                        className="h-8 w-8 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all"
                       >
                         <Edit className="h-4 w-4" />
                       </Button>
@@ -342,10 +399,14 @@ const RecentReceiptsTable = () => {
                         onClick={() => handleDelete(receipt)}
                         variant="ghost"
                         size="icon"
-                        title={t("delete") || "Delete"}
+                        className="h-8 w-8 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"
                       >
                         <Trash2 className="h-4 w-4" />
                       </Button>
+
+                      <button className="hidden sm:inline-flex items-center p-2 rounded-md hover:bg-muted/50">
+                        <MoreHorizontal className="h-5 w-5" />
+                      </button>
                     </div>
                   </td>
                 </tr>

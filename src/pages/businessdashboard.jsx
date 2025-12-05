@@ -7,23 +7,35 @@ import { SalesTrendChart } from "@/components/BusinessSalesTrendChart";
 import { ProductDistributionChart } from "@/components/BusinessProductDistributionChart";
 import { RecentSalesTable } from "@/components/BusinessRecentSalesTable";
 import { ActionCards } from "@/components/BusinessActionCards";
+import { useAppContext } from "@/contexts/useAppContext";
 
 export default function BusinessDashboard() {
-  const { t } = useTranslation();
-
+  const { theme } = useAppContext();
   return (
-    <div className="min-h-screen bg-white">
-      <DashboardHeader />
+    <div
+      className={`min-h-screen ${
+        theme === "light" ? "bg-slate-50" : "bg-dark-gray"
+      } pt-[5em] md:pt-[8em]`}
+    >
+      {/* <DashboardHeader /> */}
 
       <main className="max-w-7xl mx-auto px-6 py-8 space-y-6">
         {/* Page Title */}
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">
+          <h1
+            className={`${
+              theme === "light" ? "text-slate-900" : "text-white"
+            } text-2xl font-bold `}
+          >
             {t("businessDashboard.title")}
           </h1>
-          <p className="text-slate-500 text-sm mt-1">
+          <p
+            className={`${
+              theme === "light" ? "text-slate-500" : "text-light-gray"
+            } text-sm mt-1`}
+          >
             {t("businessDashboard.subtitle")}
-          </p>  
+          </p>
         </div>
 
         {/* Insight Banner */}

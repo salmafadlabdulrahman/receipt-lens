@@ -1,8 +1,17 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
 import { useTranslation } from "react-i18next";
-
+import { useAppContext } from "@/contexts/useAppContext";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  Legend,
+  Tooltip,
+} from "recharts";
 export function ProductDistributionChart() {
   const { t } = useTranslation();
+  const { theme } = useAppContext();
 
   const data = [
     { name: t("productDistribution.categories.electronics"), value: 35, color: "#6366f1" },
@@ -12,10 +21,23 @@ export function ProductDistributionChart() {
     { name: t("productDistribution.categories.other"), value: 8, color: "#64748b" },
   ];
 
+
   return (
-    <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
+    <div
+      className={`${
+        theme === "light"
+          ? "bg-white border border-slate-200"
+          : "bg-dark-gray border border-slate-500"
+      }  rounded-xl p-5  shadow-sm`}
+    >
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-slate-900">{t("productDistribution.title")}</h3>
+
+        <h3
+          className={`${
+            theme === "light" ? "text-slate-900" : "text-white"
+          } text-lg font-semibold text-slate-900`}
+        >
+{t("productDistribution.title")}        </h3>
         <button className="text-sm text-indigo-600 hover:text-indigo-700 font-medium">
           {t("productDistribution.viewAll")}
         </button>
