@@ -4,9 +4,12 @@ import { Mail, Lock } from "lucide-react";
 import InputField from "../common/InputField.jsx";
 import PrimaryButton from "../common/PrimaryButton.jsx";
 import i18n from "../../i18n.js";
+import useDarkMode from "../pricing/useDarkMode.js";
 
 const LoginForm = () => {
   const { t } = useTranslation();
+  const isDarkMode = useDarkMode();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -58,9 +61,7 @@ const LoginForm = () => {
         icon={Mail}
         className={isArabic ? "text-right" : "text-left pl-10"}
       />
-      {errors.email && (
-        <p className="text-red-500 text-sm">{errors.email}</p>
-      )}
+      {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
 
       <InputField
         label={t("password")}
@@ -76,30 +77,30 @@ const LoginForm = () => {
         <p className="text-red-500 text-sm">{errors.password}</p>
       )}
 
-      <div className="flex items-center justify-between text-sm">
-        <label className="flex items-center font-400">
+      <div className="flex items-center justify-between text-sm ">
+        <label className="flex items-center font-400 cursor-pointer">
           <input
             type="checkbox"
             name="rememberMe"
             checked={formData.rememberMe}
             onChange={handleChange}
-            className="w-4 h-4 border-gray-300 rounded-lg"
+            className="w-4 h-4 border-gray-300 rounded-lg cursor-pointer"
           />
           <span className={`${isArabic ? "mr-2" : "ml-2"}`}>
             {t("remember_me")}
           </span>
         </label>
-        <a
-          href="/ForgotPassword"
-          className="transition duration-150 font-bold"
-        >
+        <a href="/ForgotPassword" className="transition duration-150 font-bold">
           {t("forgot_password")}
         </a>
       </div>
 
       <PrimaryButton>{t("login_button")}</PrimaryButton>
 
-      <div className="text-center mt-6 text-gray-600">
+      <div
+        style={{ color: isDarkMode ? "white" : "var(--text-main)" }}
+        className="text-center mt-6 text-gray-600"
+      >
         {t("signup_text")}
         <a
           href="/Register"

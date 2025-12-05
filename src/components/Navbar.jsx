@@ -14,10 +14,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import LanguageThemeToggle from "./LanguageThemeToggle";
 import { useAppContext } from "../contexts/useAppContext";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import NotificationsMenu from "./NotificationsMenu";
+import { LayoutDashboard } from "lucide-react";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -38,7 +38,7 @@ const Navbar = () => {
 
   useEffect(() => {
     setNotificationsList(false);
-  }, [location.pathname])
+  }, [location.pathname]);
 
   const navItems = [
     { name: t("nav_home"), path: "/" },
@@ -77,12 +77,18 @@ const Navbar = () => {
             </Link>
           </ListItem>
         ))}
+
         <button className="login-btn text-white text-[1em] font-semibold py-[.4em] px-[1.7em] rounded-[7px] cursor-pointer mt-[2em]">
           {t("login_btn")}
         </button>
 
         <div className="mt-[1.5em]">
-          <LanguageThemeToggle />
+          <ListItem className="hover:text-indigo-400">
+            <Link to="/dashboard" className="flex items-center gap-2">
+              <LayoutDashboard className="w-6 h-6 text-purple-500" />
+              <ListItemText />
+            </Link>
+          </ListItem>{" "}
         </div>
       </List>
     </Box>
@@ -142,6 +148,12 @@ const Navbar = () => {
           </Box>
 
           <div className="hidden md:flex items-center gap-[.5em]">
+            <Link
+              to="/dashboard"
+              className="p-2 rounded-full hover:bg-gray-200"
+            >
+              <LayoutDashboard className="w-6 h-6 text-purple-500" />
+            </Link>
             <button className="login-btn text-white text-[1em] font-semibold py-[.4em] px-[1.7em] rounded-[7px] cursor-pointer">
               <a href="/login"> {t("login_btn")}</a>
             </button>

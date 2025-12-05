@@ -86,7 +86,7 @@ const ForgotPasswordSuccess = () => {
           <Link to="/login">
             <button
               type="button"
-              className={`w-full ${bgButton} ${shadowButton} text-white font-semibold py-3.5 rounded-lg transition-all duration-300 active:scale-[0.98]`}
+              className={`w-full ${bgButton} ${shadowButton} text-white  font-semibold py-3.5 rounded-lg transition-all duration-300 active:scale-[0.98]`}
             >
               {t("back_to_login_button")}
             </button>

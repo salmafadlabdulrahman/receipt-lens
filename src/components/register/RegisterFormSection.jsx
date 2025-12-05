@@ -122,11 +122,11 @@ const RegisterFormSection = () => {
             type="checkbox"
             checked={formData.agreeToTerms}
             onChange={handleChange}
-            className="h-4 w-4 rounded focus:ring-2 focus:ring-[var(--secondary)] border-[var(--border-color)] bg-[var(--bg-card)]"
+            className=" cursor-pointer h-4 w-4 rounded focus:ring-2 focus:ring-[var(--secondary)] border-[var(--border-color)] bg-[var(--bg-card)]"
           />
-          <label htmlFor="agreeToTerms" className="ml-2 block text-sm">
+          <label htmlFor="agreeToTerms" className="ml-2 block text-sm cursor-pointer">
             {t("agree_terms")}
-            <a href="#" className="font-bold ml-1">
+            <a href="#" className="font-bold ml-1 ">
               {t("terms_of_service")}
             </a>{" "}
             {t("and")}{" "}

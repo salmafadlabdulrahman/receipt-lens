@@ -1,15 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import AppContext from "./AppContext";
 
 const AppProvider = ({ children }) => {
-  const [theme, setTheme] = useState("light");
+  const savedTheme = localStorage.getItem("theme") || "light";
 
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
-  }, [theme]);
+  document.documentElement.classList.toggle("dark", savedTheme === "dark");
+
+  const [theme, setTheme] = useState(savedTheme);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+  };
 
   return (
-    <AppContext.Provider value={{ theme, setTheme }}>
+    <AppContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </AppContext.Provider>
   );
