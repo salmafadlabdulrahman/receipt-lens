@@ -5,6 +5,7 @@ import {
   Squares2X2Icon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 
 const useDarkMode = () => {
   const [isDark, setIsDark] = useState(false);
@@ -195,24 +196,14 @@ const PaymentSuccessPage = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 mb-8">
-          <button
+          <Link
+            to="/dashboard"
             className={`flex-1 py-3 px-6 rounded-lg text-white font-semibold flex items-center justify-center hover:opacity-90 transition-opacity ${flexDirectionClass}`}
             style={{ backgroundColor: "var(--color-primary-purple)" }}
           >
             <Squares2X2Icon className={`w-5 h-5 ${startMarginClass}-2`} />
             {t("button_go_to_dashboard")}
-          </button>
-          <button
-            className={`flex-1 py-3 px-6 rounded-lg border font-semibold flex items-center justify-center hover:bg-opacity-5 transition-colors ${flexDirectionClass}`}
-            style={{
-              color: isDarkMode ? "#d1d5db" : "var(--text-secondary)",
-              borderColor: isDarkMode ? "#374151" : "var(--border-color)",
-              backgroundColor: isDarkMode ? "transparent" : "transparent",
-            }}
-          >
-            <XMarkIcon className={`w-5 h-5 ${startMarginClass}-2`} />
-            {t("button_view_cancel_page")}
-          </button>
+          </Link>
         </div>
 
         <div
@@ -223,7 +214,7 @@ const PaymentSuccessPage = () => {
         >
           {t("need_help_prompt")}{" "}
           <a
-            href="#"
+            href="/contact"
             className="hover:underline"
             style={{ color: "var(--color-primary-purple)" }}
           >
