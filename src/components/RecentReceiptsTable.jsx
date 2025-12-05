@@ -74,7 +74,7 @@ const RecentReceiptsTable = () => {
           <thead>
             {" "}
             <tr className="border-b border-border">
-            {" "}
+              {" "}
               {[
                 { label: t("merchant"), className: "" },
                 { label: t("date"), className: "hidden sm:table-cell" },
@@ -89,17 +89,16 @@ const RecentReceiptsTable = () => {
                     header.className
                   } font-medium text-muted-foreground uppercase tracking-wider 
  ${
-                    header.label === t("merchant")
-                      ? isRTL
-                        ? "text-right"
-                        : "text-left"
-                      : "text-center"
-                  }`}
+   header.label === t("merchant")
+     ? isRTL
+       ? "text-right"
+       : "text-left"
+     : "text-center"
+ }`}
                 >
-                 {header.label}{" "}
+                  {header.label}{" "}
                 </th>
-              ))}
-             {" "}
+              ))}{" "}
             </tr>{" "}
           </thead>
 
@@ -107,9 +106,7 @@ const RecentReceiptsTable = () => {
             {receipts.map((receipt, index) => (
               <tr key={index} className="border-b border-border/50">
                 <td className="py-4 px-2">
-                  <div
-                    className={`flex items-center gap-2 `}
-                  >
+                  <div className={`flex items-center gap-2 `}>
                     <div
                       className={`flex h-10 w-10 items-center justify-center rounded-lg ${receipt.iconBg} text-black shrink-0`}
                     >
