@@ -4,25 +4,25 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { ChevronDown } from "lucide-react";
 
 const data = [
-  { date: "Dec 9", amount: 45 },
-  { date: "Dec 10", amount: 120 },
-  { date: "Dec 11", amount: 90 },
-  { date: "Dec 12", amount: 80 },
-  { date: "Dec 13", amount: 190 },
-  { date: "Dec 14", amount: 240 },
-  { date: "Dec 15", amount: 85 },
+  { date: "Dec 9", amount: 120 },
+  { date: "Dec 10", amount: 160 },
+  { date: "Dec 11", amount: 180 },
+  { date: "Dec 12", amount: 140 },
+  { date: "Dec 13", amount: 200 },
+  { date: "Dec 14", amount: 210 },
+  { date: "Dec 15", amount: 240 },
 ];
 
 const periods = ["Last 7 days", "Last 14 days", "Last 30 days", "Last 90 days"];
 
-const SpendingTrendChart = () => {
+const AdminPlatformActivityChart = () => {
   const [selectedPeriod, setSelectedPeriod] = useState("Last 7 days");
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Card className="p-6 shadow-sm border border-slate-100 rounded-xl">
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-semibold text-foreground">Spending Trend</h3>
+        <h3 className="text-lg font-semibold text-slate-900">Platform Activity Trend</h3>
         <div className="relative">
           <button 
             onClick={() => setIsOpen(!isOpen)}
@@ -55,43 +55,42 @@ const SpendingTrendChart = () => {
       <ResponsiveContainer width="100%" height={300}>
         <AreaChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
           <defs>
-            <linearGradient id="colorAmount" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="colorAdminAmount" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#8B5CF6" stopOpacity={0.2}/>
               <stop offset="95%" stopColor="#8B5CF6" stopOpacity={0}/>
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" vertical={false} />
+          <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
           <XAxis 
             dataKey="date" 
-            stroke="hsl(var(--muted-foreground))"
+            stroke="#64748b"
             fontSize={12}
             tickLine={false}
             axisLine={false}
             dy={10}
           />
           <YAxis 
-            stroke="hsl(var(--muted-foreground))"
+            stroke="#64748b"
             fontSize={12}
             tickLine={false}
             axisLine={false}
-            tickFormatter={(value) => `$${value}`}
             domain={[0, 240]}
             ticks={[0, 60, 120, 180, 240]}
           />
           <Tooltip 
             contentStyle={{
-              backgroundColor: "hsl(var(--card))",
-              border: "1px solid hsl(var(--border))",
+              backgroundColor: "#ffffff",
+              border: "1px solid #e2e8f0",
               borderRadius: "8px",
             }}
-            formatter={(value) => [`$${value}`, "Amount"]}
+            formatter={(value) => [value, "Users"]}
           />
           <Area 
             type="monotone" 
             dataKey="amount" 
             stroke="#8B5CF6" 
             strokeWidth={3}
-            fill="url(#colorAmount)"
+            fill="url(#colorAdminAmount)"
           />
         </AreaChart>
       </ResponsiveContainer>
@@ -99,4 +98,4 @@ const SpendingTrendChart = () => {
   );
 };
 
-export default SpendingTrendChart;
+export default AdminPlatformActivityChart;

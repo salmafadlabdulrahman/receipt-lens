@@ -1,9 +1,18 @@
 // src/pages/dashboard.jsx
 import React, { Suspense, useState } from "react";
-import { DollarSign, TrendingUp, Wallet, Receipt, Bell, Plus, BarChart3, FileText } from "lucide-react";
+import {
+  DollarSign,
+  TrendingUp,
+  Wallet,
+  Receipt,
+  Bell,
+  Plus,
+  BarChart3,
+  FileText,
+} from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-
+// klnscslknc
 // Component imports
 import StatCard from "@/components/StatCard";
 import AIInsightCard from "@/components/AIInsightCard";
@@ -71,42 +80,44 @@ export default function Dashboard() {
           <div className="flex items-center gap-8">
             <div className="flex items-center gap-2">
               <div className="bg-indigo-600 p-1.5 rounded-lg">
-                 <Receipt className="h-5 w-5 text-white" />
+                <Receipt className="h-5 w-5 text-white" />
               </div>
-              <span className="text-xl font-bold tracking-tight">Spend Right</span>
+              <span className="text-xl font-bold tracking-tight">
+                Spend Right
+              </span>
             </div>
-            
+
             <nav className="hidden md:flex items-center gap-1">
-              <NavLink 
-                to="/" 
+              <NavLink
+                to="/"
                 className="px-4 py-2 text-sm font-medium rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
                 activeClassName="bg-indigo-50 text-indigo-600"
               >
                 Dashboard
               </NavLink>
-              <NavLink 
-                to="/receipts" 
+              <NavLink
+                to="/receipts"
                 className="px-4 py-2 text-sm font-medium rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
                 activeClassName="bg-indigo-50 text-indigo-600"
               >
                 Receipts
               </NavLink>
-              <NavLink 
-                to="/analytics" 
+              <NavLink
+                to="/analytics"
                 className="px-4 py-2 text-sm font-medium rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
                 activeClassName="bg-indigo-50 text-indigo-600"
               >
                 Analytics
               </NavLink>
-              <NavLink 
-                to="/subscription" 
+              <NavLink
+                to="/subscription"
                 className="px-4 py-2 text-sm font-medium rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
                 activeClassName="bg-indigo-50 text-indigo-600"
               >
                 Subscription
               </NavLink>
-              <NavLink 
-                to="/profile" 
+              <NavLink
+                to="/profile"
                 className="px-4 py-2 text-sm font-medium rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors"
                 activeClassName="bg-indigo-50 text-indigo-600"
               >
@@ -120,9 +131,9 @@ export default function Dashboard() {
               <Plus className="h-4 w-4" />
               Upload Receipt
             </Button>
-            
+
             <div className="relative">
-              <button 
+              <button
                 onClick={() => setShowNotifications(!showNotifications)}
                 className="p-2 rounded-full hover:bg-slate-100 text-slate-500 transition-colors relative"
               >
@@ -148,7 +159,7 @@ export default function Dashboard() {
       <main className="container mx-auto px-6 py-8 flex-1 max-w-7xl">
         {/* Page title */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900">Dashboard</h1>
+          <h1 className="text-3xl font-bold text-slate-900">User Dashboard</h1>
           <p className="text-slate-500 mt-2">
             Welcome back! Here's your expense overview for this month.
           </p>
@@ -181,12 +192,20 @@ export default function Dashboard() {
         {/* Charts row */}
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           <div className="h-full">
-            <Suspense fallback={<div className="h-[350px] w-full rounded-xl bg-slate-100 animate-pulse" />}>
+            <Suspense
+              fallback={
+                <div className="h-[350px] w-full rounded-xl bg-slate-100 animate-pulse" />
+              }
+            >
               <SpendingTrendChart />
             </Suspense>
           </div>
           <div className="h-full">
-            <Suspense fallback={<div className="h-[350px] w-full rounded-xl bg-slate-100 animate-pulse" />}>
+            <Suspense
+              fallback={
+                <div className="h-[350px] w-full rounded-xl bg-slate-100 animate-pulse" />
+              }
+            >
               <CategoryDistributionChart />
             </Suspense>
           </div>

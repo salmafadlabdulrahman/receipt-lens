@@ -1,7 +1,7 @@
 import { Sparkles, X } from "lucide-react";
 import { Card } from "./ui/card";
 
-const AIInsightCard = () => {
+const AdminAIInsightCard = () => {
   return (
     <Card className="bg-gradient-to-r from-violet-600 to-purple-600 border-0 p-6 text-white relative overflow-hidden">
       <div className="flex items-start gap-4">
@@ -18,10 +18,10 @@ const AIInsightCard = () => {
           </div>
           
           <p className="text-lg font-bold mb-1 leading-tight">
-            You spent 30% more on dining this month compared to last month.
+            User activity increased by 18% this week. Highest engagement comes from new users in the Shopping category.
           </p>
           <p className="text-sm text-white/80 font-medium">
-            Consider setting a dining budget to better manage your expenses and reach your savings goals.
+            Consider launching a promotional campaign targeting Transportation category to boost engagement.
           </p>
         </div>
       </div>
@@ -29,4 +29,4 @@ const AIInsightCard = () => {
   );
 };
 
-export default AIInsightCard;
+export default AdminAIInsightCard;
