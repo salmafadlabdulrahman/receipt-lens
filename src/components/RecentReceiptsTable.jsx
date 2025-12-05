@@ -72,9 +72,7 @@ const RecentReceiptsTable = () => {
           } ${isRTL ? "direction-rtl text-right" : "text-left"}`}
         >
           <thead>
-            {" "}
             <tr className="border-b border-border">
-              {" "}
               {[
                 { label: t("merchant"), className: "" },
                 { label: t("date"), className: "hidden sm:table-cell" },
@@ -88,18 +86,18 @@ const RecentReceiptsTable = () => {
                   className={`py-3 px-2 ${
                     header.className
                   } font-medium text-muted-foreground uppercase tracking-wider 
- ${
-   header.label === t("merchant")
-     ? isRTL
-       ? "text-right"
-       : "text-left"
-     : "text-center"
- }`}
+          ${
+            header.label === t("merchant")
+              ? isRTL
+                ? "text-right"
+                : "text-left"
+              : "text-center"
+          }`}
                 >
-                  {header.label}{" "}
+                  {header.label}
                 </th>
-              ))}{" "}
-            </tr>{" "}
+              ))}
+            </tr>
           </thead>
 
           <tbody>
