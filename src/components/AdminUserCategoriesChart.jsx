@@ -1,27 +1,23 @@
 import { Card } from "./ui/card";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
-import { useTranslation } from "react-i18next";
 
-const CategoryDistributionChart = () => {
-  const { t } = useTranslation();
+const data = [
+  { name: "Shopping", value: 35, color: "#8B5CF6" },
+  { name: "Transportation", value: 25, color: "#06B6D4" },
+  { name: "Dining", value: 20, color: "#F97316" },
+  { name: "Business", value: 15, color: "#10B981" },
+  { name: "Entertainment", value: 5, color: "#3B82F6" },
+];
 
-  const data = [
-    { name: t("dining"), value: 892.45, color: "#EF4444" },
-    { name: t("transportation"), value: 450.2, color: "#3B82F6" },
-    { name: t("shopping"), value: 650.8, color: "#14B8A6" },
-    { name: t("business"), value: 520.3, color: "#8B5CF6" },
-    { name: t("entertainment"), value: 234.67, color: "#F59E0B" },
-    { name: t("other"), value: 99.0, color: "#10B981" },
-  ];
-
+const AdminUserCategoriesChart = () => {
   return (
     <Card className="p-6 h-full flex flex-col shadow-sm border border-slate-100 rounded-xl">
       <div className="flex items-center justify-between mb-2">
-        <h3 className="text-lg font-semibold text-foreground">
-          {t("categoryDistribution")}
+        <h3 className="text-lg font-semibold text-slate-900">
+          User Categories Distribution
         </h3>
-        <button  className="text-sm text-indigo-600 font-medium hover:text-indigo-700 hover:underline">
-          {t("viewAll")}
+        <button className="text-sm text-indigo-600 font-medium hover:text-indigo-700 hover:underline">
+          View All
         </button>
       </div>
       <div className="flex-1 min-h-[200px] relative">
@@ -59,4 +55,4 @@ const CategoryDistributionChart = () => {
   );
 };
 
-export default CategoryDistributionChart;
+export default AdminUserCategoriesChart;
