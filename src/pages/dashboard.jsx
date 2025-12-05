@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense } from "react";
 import {
   DollarSign,
   TrendingUp,
@@ -29,7 +29,7 @@ const CategoryDistributionChart = React.lazy(() =>
 );
 
 export default function Dashboard() {
-  const [showNotifications, setShowNotifications] = useState(false);
+  // const [showNotifications, setShowNotifications] = useState(false);
   const { theme } = useAppContext();
   const isDark = theme === "dark";
 
@@ -81,56 +81,9 @@ export default function Dashboard() {
       } font-sans`}
     >
       {/* Top header */}
-      <header
-        className={`sticky top-0 z-40 border-b ${
-          isDark ? "border-gray-700 bg-dark-gray" : "border-slate-200 bg-white"
-        }`}
-      >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-8">
-            <div className="flex items-center gap-2">
-              <div className="bg-indigo-600 p-1.5 rounded-lg">
-                <Receipt className="h-5 w-5 text-white" />
-              </div>
-              <span className="text-xl font-bold tracking-tight">
-                {t ? t("appName") || "Spend Right" : "Spend Right"}
-              </span>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4">
-            {/* Upload Receipt button (feature branch) */}
-            <Button className="bg-indigo-700 hover:bg-indigo-800 text-white gap-2 shadow-sm hidden sm:inline-flex">
-              <Plus className="h-4 w-4" />
-              {t ? t("uploadReceipt") || "Upload Receipt" : "Upload Receipt"}
-            </Button>
-            <div className="relative">
-              <button
-                onClick={() => setShowNotifications(!showNotifications)}
-                className={`p-2 rounded-full ${
-                  isDark ? "hover:bg-gray-700" : "hover:bg-slate-100"
-                } text-slate-500 transition-colors relative`}
-              >
-                <Bell className="h-5 w-5" />
-                <span className="absolute top-1.5 right-1.5 h-2 w-2 bg-red-500 rounded-full border-2 border-white"></span>
-              </button>
-              {showNotifications && (
-                <div className="absolute right-0 top-full mt-2 z-50">
-                  <NotificationsMenu />
-                </div>
-              )}
-            </div>
-
-            <Avatar className="h-9 w-9 border border-slate-200 cursor-pointer">
-              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-          </div>
-        </div>
-      </header>
 
       {/* Main content */}
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 flex-1 max-w-7xl py-8">
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 flex-1 max-w-7xl py-8 mt-[6em]">
         {/* Page title */}
         <div className={isDark ? "mb-6" : "mb-8"}>
           <h1
