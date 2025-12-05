@@ -1,4 +1,12 @@
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
+import { useAppContext } from "@/contexts/useAppContext";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  Legend,
+  Tooltip,
+} from "recharts";
 
 const data = [
   { name: "Electronics", value: 35, color: "#6366f1" },
@@ -9,10 +17,24 @@ const data = [
 ];
 
 export function ProductDistributionChart() {
+  const { theme } = useAppContext();
+
   return (
-    <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-sm">
+    <div
+      className={`${
+        theme === "light"
+          ? "bg-white border border-slate-200"
+          : "bg-dark-gray border border-slate-500"
+      }  rounded-xl p-5  shadow-sm`}
+    >
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-slate-900">Product Distribution</h3>
+        <h3
+          className={`${
+            theme === "light" ? "text-slate-900" : "text-white"
+          } text-lg font-semibold text-slate-900`}
+        >
+          Product Distribution
+        </h3>
         <button className="text-sm text-indigo-600 hover:text-indigo-700 font-medium">
           View All
         </button>
@@ -33,7 +55,7 @@ export function ProductDistributionChart() {
                 <Cell key={`cell-${index}`} fill={entry.color} />
               ))}
             </Pie>
-            <Tooltip 
+            <Tooltip
               contentStyle={{
                 backgroundColor: "#ffffff",
                 border: "1px solid #e2e8f0",
@@ -41,7 +63,7 @@ export function ProductDistributionChart() {
               }}
               formatter={(value) => [`${value}%`, "Share"]}
             />
-            <Legend 
+            <Legend
               verticalAlign="bottom"
               height={36}
               formatter={(value) => (

@@ -1,3 +1,4 @@
+import { useAppContext } from "@/contexts/useAppContext";
 import { Card } from "./ui/card";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 
@@ -10,10 +11,16 @@ const data = [
 ];
 
 const AdminUserCategoriesChart = () => {
+  const { theme } = useAppContext();
+
   return (
-    <Card className="p-6 h-full flex flex-col shadow-sm border border-slate-100 rounded-xl">
+    <Card className="p-6 h-full flex flex-col shadow-sm border border-slate-500 rounded-xl">
       <div className="flex items-center justify-between mb-2">
-        <h3 className="text-lg font-semibold text-slate-900">
+        <h3
+          className={`text-lg font-semibold ${
+            theme === "light" ? "text-slate-900" : "text-white"
+          }`}
+        >
           User Categories Distribution
         </h3>
         <button className="text-sm text-indigo-600 font-medium hover:text-indigo-700 hover:underline">

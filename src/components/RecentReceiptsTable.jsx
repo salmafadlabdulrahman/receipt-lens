@@ -122,7 +122,8 @@ const RecentReceiptsTable = () => {
   // from dev branch
   const { theme } = useAppContext();
   const { t, i18n } = useTranslation();
-  const isRTL = i18n.language && i18n.language.startsWith && i18n.language.startsWith("ar");
+  const isRTL =
+    i18n.language && i18n.language.startsWith && i18n.language.startsWith("ar");
 
   // merge both arrays without deleting anything (feature first, then dev)
   // This preserves all original entries. If there are duplicates, they will appear twice.
@@ -157,14 +158,23 @@ const RecentReceiptsTable = () => {
 
   const confirmDelete = () => {
     console.log("Delete receipt:", selectedReceipt);
-    showToast(`Receipt from ${selectedReceipt?.merchant} deleted`, "delete", 4000);
+    showToast(
+      `Receipt from ${selectedReceipt?.merchant} deleted`,
+      "delete",
+      4000
+    );
     setShowConfirmDialog(false);
     setSelectedReceipt(null);
   };
 
   const handleViewAll = () => {
     console.log("View all receipts clicked");
-    showToast(t ? t("navigatingToAllReceipts") || "Navigating to all receipts..." : "Navigating to all receipts...", "info");
+    showToast(
+      t
+        ? t("navigatingToAllReceipts") || "Navigating to all receipts..."
+        : "Navigating to all receipts...",
+      "info"
+    );
   };
 
   // helper to determine translated labels where dev branch used t()
@@ -200,13 +210,30 @@ const RecentReceiptsTable = () => {
       {/* Detail Modal */}
       {showDetailModal && selectedReceipt && (
         <DetailModal
-          title={t ? t("receiptDetails") || "Receipt Details" : "Receipt Details"}
+          title={
+            t ? t("receiptDetails") || "Receipt Details" : "Receipt Details"
+          }
           details={[
-            { label: t ? t("merchant") || "Merchant" : "Merchant", value: selectedReceipt.merchant },
-            { label: t ? t("amount") || "Amount" : "Amount", value: selectedReceipt.amount },
-            { label: t ? t("category") || "Category" : "Category", value: getCategoryLabel(selectedReceipt) },
-            { label: t ? t("date") || "Date" : "Date", value: selectedReceipt.date },
-            { label: t ? t("status") || "Status" : "Status", value: getStatusLabel(selectedReceipt) },
+            {
+              label: t ? t("merchant") || "Merchant" : "Merchant",
+              value: selectedReceipt.merchant,
+            },
+            {
+              label: t ? t("amount") || "Amount" : "Amount",
+              value: selectedReceipt.amount,
+            },
+            {
+              label: t ? t("category") || "Category" : "Category",
+              value: getCategoryLabel(selectedReceipt),
+            },
+            {
+              label: t ? t("date") || "Date" : "Date",
+              value: selectedReceipt.date,
+            },
+            {
+              label: t ? t("status") || "Status" : "Status",
+              value: getStatusLabel(selectedReceipt),
+            },
           ]}
           onClose={() => {
             setShowDetailModal(false);
@@ -220,23 +247,51 @@ const RecentReceiptsTable = () => {
         <EditModal
           title={t ? t("editReceipt") || "Edit Receipt" : "Edit Receipt"}
           fields={[
-            { name: "merchant", label: "Merchant", value: selectedReceipt.merchant, type: "text", required: true },
-            { name: "amount", label: "Amount", value: selectedReceipt.amount, type: "text", required: true },
+            {
+              name: "merchant",
+              label: "Merchant",
+              value: selectedReceipt.merchant,
+              type: "text",
+              required: true,
+            },
+            {
+              name: "amount",
+              label: "Amount",
+              value: selectedReceipt.amount,
+              type: "text",
+              required: true,
+            },
             {
               name: "category",
               label: "Category",
-              value: selectedReceipt.category || getCategoryLabel(selectedReceipt),
+              value:
+                selectedReceipt.category || getCategoryLabel(selectedReceipt),
               type: "select",
-              options: [t ? t("dining") || "Dining" : "Dining", t ? t("transportation") || "Transportation" : "Transportation", t ? t("shopping") || "Shopping" : "Shopping", t ? t("business") || "Business" : "Business"],
+              options: [
+                t ? t("dining") || "Dining" : "Dining",
+                t ? t("transportation") || "Transportation" : "Transportation",
+                t ? t("shopping") || "Shopping" : "Shopping",
+                t ? t("business") || "Business" : "Business",
+              ],
               required: true,
             },
-            { name: "date", label: "Date", value: selectedReceipt.date, type: "text", required: true },
+            {
+              name: "date",
+              label: "Date",
+              value: selectedReceipt.date,
+              type: "text",
+              required: true,
+            },
             {
               name: "status",
               label: "Status",
               value: selectedReceipt.status || getStatusLabel(selectedReceipt),
               type: "select",
-              options: [t ? t("processed") || "Processed" : "Processed", t ? t("processing") || "Processing" : "Processing", "Pending"],
+              options: [
+                t ? t("processed") || "Processed" : "Processed",
+                t ? t("processing") || "Processing" : "Processing",
+                "Pending",
+              ],
               required: true,
             },
           ]}
@@ -261,42 +316,74 @@ const RecentReceiptsTable = () => {
       )}
 
       {/* Main Card / Table */}
-      <Card className="p-6 bg-white rounded-xl shadow-sm border border-slate-100">
+      <Card
+        className={`p-6 rounded-xl shadow-sm  ${
+          theme === "light"
+            ? "bg-white "
+            : "bg-dark-gray border border-slate-500"
+        }`}
+      >
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-semibold text-foreground">{t ? t("recentReceipts") || "Recent Receipts" : "Recent Receipts"}</h3>
+          <h3 className="text-lg font-semibold text-foreground">
+            {t ? t("recentReceipts") || "Recent Receipts" : "Recent Receipts"}
+          </h3>
           <div className="flex items-center gap-2">
-            <button onClick={handleViewAll} className="text-sm text-primary hover:text-primary/80">
-              {t ? t("viewAllReceipts") || "View All Receipts" : "View All Receipts"}
+            <button
+              onClick={handleViewAll}
+              className="text-sm text-primary hover:text-primary/80"
+            >
+              {t
+                ? t("viewAllReceipts") || "View All Receipts"
+                : "View All Receipts"}
             </button>
-            {/* keep MoreHorizontal from dev branch */}
             <button className="p-2 rounded-md hover:bg-muted/50">
               <MoreHorizontal className="h-5 w-5" />
             </button>
           </div>
         </div>
 
-        <div className="overflow-x-auto">
+        {/* Add a wrapper with horizontal scroll */}
+        <div className="overflow-x-auto -mx-6 px-6">
           <table
-            className={`w-full border-collapse text-sm ${
-              theme === "light" ? "bg-white text-black" : "bg-dark-gray text-white"
+            className={`w-full border-collapse min-w-[700px] text-sm ${
+              theme === "light"
+                ? "bg-white text-black"
+                : "bg-dark-gray text-white"
             } ${isRTL ? "direction-rtl text-right" : "text-left"}`}
           >
             <thead>
-              <tr className="border-b border-slate-100">
-                {/* Using a combined header that supports translation and responsive classes */}
+              <tr className="border-b border-slate-500">
                 {[
-                  { label: t ? t("merchant") || "Merchant" : "Merchant", className: "text-left" },
-                  { label: t ? t("date") || "Date" : "Date", className: "hidden sm:table-cell text-left" },
-                  { label: t ? t("category") || "Category" : "Category", className: "text-left" },
-                  { label: t ? t("amount") || "Amount" : "Amount", className: "text-left" },
-                  { label: t ? t("status") || "Status" : "Status", className: "text-left" },
-                  { label: t ? t("actions") || "Actions" : "Actions", className: "text-left" },
+                  {
+                    label: t ? t("merchant") || "Merchant" : "Merchant",
+                    className: "text-left",
+                  },
+                  {
+                    label: t ? t("date") || "Date" : "Date",
+                    className: "hidden sm:table-cell text-left",
+                  },
+                  {
+                    label: t ? t("category") || "Category" : "Category",
+                    className: "text-left",
+                  },
+                  {
+                    label: t ? t("amount") || "Amount" : "Amount",
+                    className: "text-left",
+                  },
+                  {
+                    label: t ? t("status") || "Status" : "Status",
+                    className: "text-left",
+                  },
+                  {
+                    label: t ? t("actions") || "Actions" : "Actions",
+                    className: "text-left",
+                  },
                 ].map((header, idx) => (
                   <th
                     key={idx}
-                    className={`text-xs font-semibold text-slate-400 uppercase tracking-wider px-4 py-3 ${header.className} ${
-                      isRTL ? "text-right" : "text-left"
-                    }`}
+                    className={`text-xs font-semibold text-slate-400 uppercase tracking-wider px-4 py-3 whitespace-nowrap ${
+                      header.className
+                    } ${isRTL ? "text-right" : "text-left"}`}
                   >
                     {header.label}
                   </th>
@@ -306,36 +393,62 @@ const RecentReceiptsTable = () => {
 
             <tbody>
               {mergedReceipts.map((receipt, index) => (
-                <tr key={`${index}-${receipt.merchant}`} className="border-b last:border-0 hover:bg-slate-50/50 transition-colors">
+                <tr
+                  key={`${index}-${receipt.merchant}`}
+                  className="border-b border-slate-500 last:border-0 "
+                >
                   {/* Merchant */}
                   <td className="px-4 py-3">
-                    <div className="flex items-center gap-3">
-                      <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${receipt.iconBg} font-semibold text-sm`}>
+                    <div className="flex items-center gap-3 whitespace-nowrap">
+                      <div
+                        className={`flex h-10 w-10 items-center justify-center rounded-full ${receipt.iconBg} font-semibold text-sm shrink-0`}
+                      >
                         {receipt.icon}
                       </div>
-                      <span className="font-semibold text-slate-900">{receipt.merchant}</span>
+                      <span
+                        className={`font-semibold ${
+                          theme === "light" ? "text-slate-900" : "text-white"
+                        }`}
+                      >
+                        {receipt.merchant}
+                      </span>
                     </div>
                   </td>
 
                   {/* Date */}
-                  <td className="px-4 py-3 text-sm text-slate-500 hidden sm:table-cell">{receipt.date}</td>
+                  <td className="px-4 py-3 text-sm text-slate-500 hidden sm:table-cell whitespace-nowrap">
+                    {receipt.date}
+                  </td>
 
                   {/* Category */}
                   <td className="px-4 py-3">
-                    <Badge variant="secondary" className={`${receipt.categoryColor ?? ""} font-medium rounded-md px-3 py-1 text-xs border-0`}>
+                    <Badge
+                      variant="secondary"
+                      className={`${
+                        receipt.categoryColor ?? ""
+                      } font-medium rounded-md px-3 py-1 text-xs border-0 whitespace-nowrap`}
+                    >
                       {getCategoryLabel(receipt)}
                     </Badge>
                   </td>
 
                   {/* Amount */}
-                  <td className="px-4 py-3 font-semibold text-slate-900">{receipt.amount}</td>
+                  <td
+                    className={`px-4 py-3 font-semibold whitespace-nowrap ${
+                      theme === "light" ? "text-slate-900" : "text-slate-500"
+                    }`}
+                  >
+                    {receipt.amount}
+                  </td>
 
                   {/* Status */}
                   <td className="px-4 py-3">
                     <Badge
                       variant="secondary"
-                      className={`font-medium rounded-md px-3 py-1 text-xs border-0 ${
-                        isStatusProcessed(receipt) ? "bg-emerald-50 text-emerald-600" : "bg-amber-50 text-amber-600"
+                      className={`font-medium rounded-md px-3 py-1 text-xs border-0 whitespace-nowrap ${
+                        isStatusProcessed(receipt)
+                          ? "bg-emerald-50 text-emerald-600"
+                          : "bg-amber-50 text-amber-600"
                       }`}
                     >
                       {getStatusLabel(receipt)}
@@ -344,19 +457,32 @@ const RecentReceiptsTable = () => {
 
                   {/* Actions */}
                   <td className="px-4 py-3">
-                    <div className="flex items-center gap-1">
-                      {/* keep action buttons from feature branch */}
-                      <Button onClick={() => handleView(receipt)} variant="ghost" size="icon" className="h-8 w-8 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all">
+                    <div className="flex items-center gap-1 whitespace-nowrap">
+                      <Button
+                        onClick={() => handleView(receipt)}
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all"
+                      >
                         <Eye className="h-4 w-4" />
                       </Button>
-                      <Button onClick={() => handleEdit(receipt)} variant="ghost" size="icon" className="h-8 w-8 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all">
+                      <Button
+                        onClick={() => handleEdit(receipt)}
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all"
+                      >
                         <Edit className="h-4 w-4" />
                       </Button>
-                      <Button onClick={() => handleDelete(receipt)} variant="ghost" size="icon" className="h-8 w-8 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all">
+                      <Button
+                        onClick={() => handleDelete(receipt)}
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"
+                      >
                         <Trash2 className="h-4 w-4" />
                       </Button>
 
-                      {/* More options (dev branch) - visible on larger screens */}
                       <button className="hidden sm:inline-flex items-center p-2 rounded-md hover:bg-muted/50">
                         <MoreHorizontal className="h-5 w-5" />
                       </button>
