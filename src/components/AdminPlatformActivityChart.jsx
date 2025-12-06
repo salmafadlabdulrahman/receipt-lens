@@ -62,14 +62,6 @@ const AdminPlatformActivityChart = () => {
                 isOpen ? "rotate-180" : ""
               }`}
             />
-
-            {/* this line from dev branch (you asked not to delete anything) */}
-            {selectedPeriod}
-            <ChevronDown
-              className={`h-4 w-4 transition-transform ${
-                isOpen ? "rotate-180" : ""
-              }`}
-            />
           </button>
 
           {isOpen && (
