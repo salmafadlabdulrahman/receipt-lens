@@ -1,16 +1,50 @@
-# React + Vite
+# Spend Right
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Table of contents
 
-Currently, two official plugins are available:
+- [Overview](#overview)
+- [Features](#features)
+- [Screenshot](#screenshot)
+- [Links](#links)
+- [Built with](#built-with)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Overview
+Spend Right is an AI-powered financial management platform that transforms receipt chaos into actionable financial insights. 
+Our mission is to simplify expense tracking for individuals and small businesses by automating the tedious process of manual data entry. 
+Users simply upload receipt images, and our advanced technology extracts merchant names, dates, amounts, and categories instantly. 
+What sets us apart is our Smart Financial Advisor—an AI system that analyzes spending patterns and delivers personalized recommendations 
+to help users save money, identify wasteful subscriptions, and optimize their budgets.
 
-## React Compiler
+### Features
+Users should be able to:
+- View the optimal layout for the app depending on their device's screen size.
+- Clean modern layout features light/dark themes.
+- Intuitive dashboards with visual spending breakdowns.
+- Notifications through app and through email to track actions.
+- Forgot password form to update password.
+- Ability to register as a business owner or as a user.
+- Contact us form to reach us through our email.
+- Upload receipts, and make crud operations on receipts.
+- Search and filter receipts by category.
+- Smart Financial advisor to summarize receipts.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Screenshot
+<img width="1887" height="983" alt="homescreen" src="https://github.com/user-attachments/assets/da017f85-7d0f-4368-8780-02d69e9f2f40" />
+<img width="1855" height="878" alt="dashboard" src="https://github.com/user-attachments/assets/9599c45a-7863-451c-87db-1501e9ba0362" />
+<img width="1879" height="980" alt="organizemoney" src="https://github.com/user-attachments/assets/b1d63ab9-dbd8-4c44-8244-bce4eda50a63" />
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Links
+- Live Site URL: 
+
+### Built with
+- Semantic HTML5 markup
+- Mobile-first workflow
+- JavaScript
+- React
+- Tailwind
+- Framer Motion
+- Material UI
+- Node js
+- Express
+- MongoDB
