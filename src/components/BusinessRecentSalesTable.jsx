@@ -75,7 +75,6 @@ export function RecentSalesTable() {
   };
 
   const handleSaveEdit = (formData) => {
-    // feature/updateDashboard
     showToast(
       t("recentSales.updated", { customer: formData.customer }),
       "success",
@@ -92,14 +91,12 @@ export function RecentSalesTable() {
   };
 
   const confirmDelete = () => {
-    // feature/updateDashboard
     showToast(
       t("recentSales.deleted", { customer: selectedSale.customer }),
       "delete",
       4000
     );
 
-    // dev version (keep logging as well)
     console.log("Delete sale:", selectedSale);
 
     setShowConfirmDialog(false);
@@ -123,7 +120,6 @@ export function RecentSalesTable() {
         />
       ))}
 
-      {/* Detail Modal */}
       {showDetailModal && selectedSale && (
         <DetailModal
           title={t("recentSales.detailTitle")}
@@ -137,7 +133,7 @@ export function RecentSalesTable() {
             { label: t("recentSales.date"), value: selectedSale.date },
             {
               label: t("recentSales.status"),
-              value: t(`status.${selectedSale.status}`),
+              value: t(`sale_statuses_list.${selectedSale.status}`),
             },
           ]}
           onClose={() => {
@@ -147,12 +143,10 @@ export function RecentSalesTable() {
         />
       )}
 
-      {/* Edit Modal */}
       {showEditModal && selectedSale && (
         <EditModal
           title={t("recentSales.editTitle")}
           fields={[
-            // merged version includes localization & labels
             {
               name: "customer",
               label: t("recentSales.customer"),
@@ -185,7 +179,7 @@ export function RecentSalesTable() {
             {
               name: "status",
               label: t("recentSales.status"),
-              value: selectedSale.status,
+              value: selectedSale.status, 
               type: "select",
               options: ["Completed", "Pending", "Cancelled"],
               required: true,
@@ -199,7 +193,6 @@ export function RecentSalesTable() {
         />
       )}
 
-      {/* Delete Confirm Dialog */}
       {showConfirmDialog && selectedSale && (
         <ConfirmDialog
           message={t("recentSales.confirmDelete", {
@@ -214,7 +207,6 @@ export function RecentSalesTable() {
         />
       )}
 
-      {/* Combined UI (dark mode + localization) */}
       <div
         className={`${
           theme === "light"
@@ -313,7 +305,7 @@ export function RecentSalesTable() {
                       variant="secondary"
                       className={statusColors[sale.status]}
                     >
-                      {t(`status.${sale.status}`)}
+                      {t(`sale_statuses_list.${sale.status}`)}{" "}
                     </Badge>
                   </td>
 

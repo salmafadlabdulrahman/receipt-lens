@@ -61,10 +61,6 @@ const CheckoutForm = () => {
   const fields = [
     { label: t("firstName"), name: "firstName" },
     { label: t("lastName"), name: "lastName" },
-    { label: t("country"), name: "country" },
-    { label: t("address"), name: "address" },
-    { label: t("city"), name: "city" },
-    { label: t("zip"), name: "zip" },
     { label: t("phone"), name: "phone" },
     { label: t("emailAddress"), name: "email", type: "email" },
   ];
@@ -88,8 +84,10 @@ const CheckoutForm = () => {
               name={field.name}
               value={formData[field.name]}
               onChange={handleChange}
-              className={`p-3 rounded-lg border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500 ${
-                theme === "dark" ? "text-white" : "text-black"
+              className={`p-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors ${
+                theme === "dark" 
+                  ? "text-white bg-dark-light-gray border-slate-600 placeholder:text-slate-400"
+                  : "text-black bg-gray-50 border-gray-300"
               }`}
             />
             {errors[field.name] && (

@@ -29,7 +29,6 @@
   "exportNow": "Export Now",
   "feature_secure": "Secure & Private",
   "feature_secure_desc": "Bank-level encryption keeps your data safe",
-
   "signup_title": "Join Spend Right",
   "signup_subtitle": "Create your account and start managing your expenses smarter",
   "full_name": "Full Name",
@@ -58,11 +57,9 @@
   "need_help": "Need help? Contact our",
   "support_team": "support team",
   "forgot_password_title": "Forgot your password?",
-
   "sending": "Sending...",
   "back_to_login_text": "Remember your password?",
   "reset_link_sent": "Reset link sent to {{email}} (If email exists).",
-
   "contact_title": "Get in Touch",
   "contact_subtitle": "We're here to help with your expenses and subscriptions.",
   "contact_form_title": "Send us a message",
@@ -71,13 +68,11 @@
   "contact_email": "Email Address",
   "contact_message": "Message",
   "contact_send_button": "Send a message",
-
   "contact_info_title": "Contact Information",
   "contact_email_label": "Email",
   "contact_phone_label": "Phone",
   "contact_location_label": "Location",
   "contact_location_address": "123 Finance street",
-
   "contact_business_hours": "Business Hours",
   "contact_weekdays": "Monday - Friday",
   "contact_weekdays_hours": "9:00 AM - 6:00 PM",
@@ -86,14 +81,11 @@
   "contact_sunday": "Sunday",
   "contact_sunday_hours": "Closed",
   "Pending": "Pending",
-
   "contact_image_alt": "money and calculator image",
-
   "nav_home": "Home",
   "nav_about": " About",
   "nav_pricing": "Pricing",
   "nav_contact": "Contact",
-
   "nav_receipts": "Receipts",
   "home_page": "Home",
   "login_btn": "Login",
@@ -130,6 +122,7 @@
   "budgetGoals": "Budget goals & alerts",
   "exportCSV": "Export to CSV/PDF",
   "prioritySupport": "Priority email support",
+  "everythingInPro": "Everything in Pro",
   "teamCollab": "Team collaboration (5 users)",
   "multiCurrency": "Multi-currency support",
   "apiAccess": "API access & integrations",
@@ -150,7 +143,6 @@
   "button_go_to_dashboard": "Go to Dashboard",
   "button_view_cancel_page": "View Cancel Page",
   "Pro Plan": "Pro Plan Subscription",
-
   "need_help_prompt": "Need help?",
   "link_contact_support": "Contact Support",
   "account": "Account",
@@ -194,23 +186,18 @@
   "answer6": "Go to Profile Settings, click Change Password, and follow the steps to enter your old and new password.",
   "question7": "What do the receipt statuses (Pending / Approved / Rejected) mean?",
   "answer7": "Pending: The receipt has been uploaded but not reviewed yet. Approved: The receipt has been verified and approved. Rejected: The receipt was rejected due to incomplete details or unclear image.",
-
   "problem": "The problem",
   "problem_title": "Receipts are a nightmare for millions",
   "problem_subtitle": "From last paper receipts to missed reimbursements, managing expenses shouldn't be this hard.",
   "cards": {
     "clutter_title": "Clutter & Disorganization",
     "clutter_desc": "Receipts scattered across emails, wallets, and drawers. Physical receipts fade, get lost, or become unreadable when you need them most.",
-
     "missed_title": "Missed Reimbursements",
     "missed_desc": "Employees lose thousands annually by failing to claim business expenses. Missed placed receipts mean lost money. and frustrated finance teams.",
-
     "stress_title": "Financial Stress",
     "stress_desc": "Manual tracking makes budgeting impossible. Tax season becomes a scramble to find deductible expense, leading to overpaid taxes.",
-
     "storage_title": "Storage Issues",
     "storage_desc": "Physical receipts takes up space and make it difficult to find purchases when you need them - for returns, warranties, or records.",
-
     "environment_title": "Environmental Waste",
     "environment_desc": "Billions of paper receipts contribute to deforestation and waste. Most receipts contain harmful chemicals that are not eco-friendly and can't be recycled."
   },
@@ -219,13 +206,10 @@
   "email_not_received_prompt": "Didn't receive the email?",
   "resend_link": "Resend link",
   "back_to_login_button": "Back to Login",
-
   "contact_firstname_label": "First Name",
   "contact_lastname_label": "Last Name",
-
   "contact_receive_other_messages": "I agree to receive updates, newsletters, and other communication messages from SpendRight.",
   "contact_consent_storage": "I give my consent to SpendRight to store and process my personal data in accordance with its policies.",
-
   "contact_follow_us": "Follow us",
   "my_receipts": "My Receipts",
   "receipts_subtitle": "Track and manage all your expenses",
@@ -281,26 +265,20 @@
   "firstName": "First Name",
   "lastName": "Last Name",
   "countryRegion": "Country / Region",
-
   "checkout": "Checkout",
   "plan": "Plan",
   "total": "Total",
-
   "perfectForStarting": "Perfect for getting started",
-
   "country": "Country / Region",
   "phone": "Phone Number",
   "emailAddress": "Email Address",
   "subscribeNow": "Subscribe Now",
   "subscriptionProcessedFor": "Subscription processed for",
-
   "welcome_notification": "Welcome to our website!",
   "welcome_notify_subtext": "We're excited to have you here",
   "welcome_notify_link": "Get Started",
-
   "receipt_uploaded_notification": "You've just uploaded a new receipt!",
   "receipt_uploaded_notify_subtext": "Processing will take a few moments",
-
   "receipt_uploaded_notify_link": "View Receipt",
   "dashboard": "Dashboard",
   "dashboarduser": "User Dashboard",
@@ -308,7 +286,6 @@
   "actionsUser": "Actions",
   "welcomeMessage": "Welcome back! Here's your expense overview for this month.",
   "aiInsightTitle": "AI Insight",
-
   "aiInsightMessage1": "You spent 30% more on dining this month compared to last month.",
   "aiInsightMessage2": "Consider setting a dining budget to better manage your expenses.",
   "totalSpend": "Total Spend",
@@ -320,9 +297,7 @@
   "topCategoryChange": "{{$892.45}} spent",
   "avgPerReceipt": "Avg per Receipt",
   "avgPerReceiptChange": "↓ {{percent}} vs last month",
-
   "exportDataDesc": "Download receipts and reports",
-
   "spendingTrend": "Spending Trend",
   "last7Days": "Last 7 days",
   "categoryDistribution": "Category Distribution",
@@ -349,10 +324,8 @@
   "Last 14 days": "Last 14 days",
   "Last 30 days": "Last 30 days",
   "Last 90 days": "Last 90 days",
-
   "receiptDetails": "Receipt Details",
   "editReceipt": "Edit Receipt",
-
   "pending": "Pending",
   "updated": "updated",
   "deleted": "deleted",
@@ -369,12 +342,10 @@
   "aiInsightSuggestion": "Consider launching a promotional campaign targeting the Transportation category to boost engagement.",
   "totalUsers": "Total Users",
   "totalUsersChange": "12% vs last month",
-
   "shoppingCategory": "Shopping",
   "shoppingChange": "$1,245.67 spent",
   "receiptsUploaded": "Receipts Uploaded",
   "receiptsUploadedChange": "$892.45 avg value",
-
   "systemSpendTotal": "System Spend Total",
   "systemSpendChange": "5% vs last month",
   "dashboard.activityTrend": "Platform Activity Trend",
@@ -517,12 +488,18 @@
     "Clothing": "Clothing",
     "Services": "Services"
   },
-  "status": {
+
+  "sale_statuses": {
     "Completed": "Completed",
     "Pending": "Pending",
     "Cancelled": "Cancelled"
   },
-  "actions": {
+  "sale_statuses_list": {
+    "Completed": "Completed",
+    "Pending": "Pending",
+    "Cancelled": "Cancelled"
+  },
+  "admin_actions": {
     "generateReport": {
       "title": "Generate Report",
       "description": "Create and download detailed financial reports",
@@ -539,5 +516,6 @@
       "button": "Export Now"
     }
   },
+
   "statusUser": "Status"
 }

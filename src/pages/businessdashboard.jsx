@@ -18,13 +18,11 @@ export default function BusinessDashboard() {
   return (
     <div
       className={`min-h-screen ${
-        theme === "light" ? "bg-slate-50" : "bg-dark-gray"
+        theme === "light" ? "bg-white" : "bg-dark-gray"
       } pt-[5em] md:pt-[8em]`}
     >
-      {/* <DashboardHeader theme={theme} /> */}
 
       <main className="max-w-7xl mx-auto px-6 py-8 space-y-6">
-        {/* Page Title */}
         <div>
           <h1
             className={`${
@@ -96,16 +94,13 @@ export default function BusinessDashboard() {
           />
         </div>
 
-        {/* Charts Row */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <SalesTrendChart theme={theme} />
           <ProductDistributionChart theme={theme} />
         </div>
 
-        {/* Recent Sales Table */}
         <RecentSalesTable theme={theme} />
 
-        {/* Action Cards */}
         <ActionCards theme={theme} />
       </main>
     </div>
