@@ -55,9 +55,10 @@ const statusColors = {
 };
 
 export function RecentSalesTable() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { theme } = useAppContext();
   const { toasts, showToast, removeToast } = useToast();
+  const isRTL = i18n.language.startsWith("ar");
 
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -179,7 +180,7 @@ export function RecentSalesTable() {
             {
               name: "status",
               label: t("recentSales.status"),
-              value: selectedSale.status, 
+              value: selectedSale.status,
               type: "select",
               options: ["Completed", "Pending", "Cancelled"],
               required: true,
@@ -232,25 +233,29 @@ export function RecentSalesTable() {
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full">
+          <table
+            className={`w-full ${
+              isRTL ? "direction-rtl text-right" : "text-left"
+            }`}
+          >
             <thead>
               <tr className="border-b border-slate-200">
-                <th className="text-left text-xs font-medium text-slate-500 uppercase tracking-wider px-5 py-3">
+                <th className="text-xs font-medium text-slate-500 uppercase tracking-wider px-5 py-3">
                   {t("recentSales.customer")}
                 </th>
-                <th className="text-left text-xs font-medium text-slate-500 uppercase tracking-wider px-5 py-3">
+                <th className="text-xs font-medium text-slate-500 uppercase tracking-wider px-5 py-3">
                   {t("recentSales.date")}
                 </th>
-                <th className="text-left text-xs font-medium text-slate-500 uppercase tracking-wider px-5 py-3">
+                <th className="text-xs font-medium text-slate-500 uppercase tracking-wider px-5 py-3">
                   {t("recentSales.category")}
                 </th>
-                <th className="text-left text-xs font-medium text-slate-500 uppercase tracking-wider px-5 py-3">
+                <th className="text-xs font-medium text-slate-500 uppercase tracking-wider px-5 py-3">
                   {t("recentSales.amount")}
                 </th>
-                <th className="text-left text-xs font-medium text-slate-500 uppercase tracking-wider px-5 py-3">
+                <th className="text-xs font-medium text-slate-500 uppercase tracking-wider px-5 py-3">
                   {t("recentSales.status")}
                 </th>
-                <th className="text-left text-xs font-medium text-slate-500 uppercase tracking-wider px-5 py-3">
+                <th className="text-xs font-medium text-slate-500 uppercase tracking-wider px-5 py-3">
                   {t("recentSales.actions")}
                 </th>
               </tr>

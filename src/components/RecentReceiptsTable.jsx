@@ -344,7 +344,7 @@ const RecentReceiptsTable = () => {
                     </div>
                   </td>
 
-                  <td className="px-4 py-3 text-sm text-slate-500 hidden sm:table-cell whitespace-nowrap">
+                  <td className="px-4 py-3 text-sm text-slate-500  sm:table-cell whitespace-nowrap">
                     {receipt.date}
                   </td>
 

@@ -16,7 +16,7 @@ const AdminUserCategoriesChart = () => {
   const { theme } = useAppContext();
 
   return (
-    <Card className="p-6 h-full flex flex-col shadow-sm border border-slate-500 rounded-xl">
+    <Card className="p-6 h-full flex flex-col shadow-sm rounded-xl">
       <div className="flex items-center justify-between mb-2">
         <h3
           className={`text-lg font-semibold ${

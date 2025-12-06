@@ -39,7 +39,7 @@ const AdminPlatformActivityChart = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Card className="p-6 shadow-sm border border-slate-500 rounded-xl">
+    <Card className="p-6 shadow-sm rounded-xl">
       <div className="flex items-center justify-between mb-6">
         <h3
           className={`text-lg font-semibold ${
