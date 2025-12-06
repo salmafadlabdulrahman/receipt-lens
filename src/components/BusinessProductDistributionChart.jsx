@@ -1,14 +1,8 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/contexts/useAppContext";
-import {
-  PieChart,
-  Pie,
-  Cell,
-  ResponsiveContainer,
-  Legend,
-  Tooltip,
-} from "recharts";
+
+
 export function ProductDistributionChart() {
   const { t } = useTranslation();
   const { theme } = useAppContext();

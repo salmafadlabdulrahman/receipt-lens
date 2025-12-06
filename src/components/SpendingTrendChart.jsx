@@ -1,26 +1,15 @@
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import {
-  LineChart,
-  Line,
+  AreaChart,
+  Area,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  Area,
-  AreaChart,
 } from "recharts";
-import {
-  AreaChart as AreaChartAlias,
-  Area as AreaAlias,
-  XAxis as XAxisAlias,
-  YAxis as YAxisAlias,
-  CartesianGrid as CartesianGridAlias,
-  Tooltip as TooltipAlias,
-  ResponsiveContainer as ResponsiveContainerAlias,
-} from "recharts";
+
 import { ChevronDown } from "lucide-react";
 import { useAppContext } from "../contexts/useAppContext";
 import { useTranslation } from "react-i18next";
@@ -47,13 +36,17 @@ const SpendingTrendChart = () => {
   const { t, i18n } = useTranslation();
 
   const dataMax = Math.max(...data.map((d) => d.amount), 0);
-  const suggestedMax = 300; 
+  const suggestedMax = 300;
   const yMax = Math.max(dataMax, suggestedMax);
   const containerHeight = 350;
 
   // دالة لتنسيق الأرقام حسب اللغة
   const formatNumber = (value) => {
-    return new Intl.NumberFormat(i18n.language, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(value);
+    return new Intl.NumberFormat(i18n.language, {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0,
+    }).format(value);
   };
 
   return (
@@ -122,12 +115,24 @@ const SpendingTrendChart = () => {
         >
           <defs>
             <linearGradient id="colorAmount" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor={isDark ? "#7c3aed" : "#8B5CF6"} stopOpacity={0.2} />
-              <stop offset="95%" stopColor={isDark ? "#7c3aed" : "#8B5CF6"} stopOpacity={0} />
+              <stop
+                offset="5%"
+                stopColor={isDark ? "#7c3aed" : "#8B5CF6"}
+                stopOpacity={0.2}
+              />
+              <stop
+                offset="95%"
+                stopColor={isDark ? "#7c3aed" : "#8B5CF6"}
+                stopOpacity={0}
+              />
             </linearGradient>
           </defs>
 
-          <CartesianGrid strokeDasharray="3 3" stroke={isDark ? "#555" : "hsl(var(--border))"} vertical={false} />
+          <CartesianGrid
+            strokeDasharray="3 3"
+            stroke={isDark ? "#555" : "hsl(var(--border))"}
+            vertical={false}
+          />
 
           <XAxis
             dataKey="date"
@@ -164,7 +169,13 @@ const SpendingTrendChart = () => {
             formatter={(value) => [formatNumber(value), t("amount")]}
           />
 
-          <Area type="monotone" dataKey="amount" stroke={isDark ? "#fff" : "#8B5CF6"} strokeWidth={3} fill="url(#colorAmount)" />
+          <Area
+            type="monotone"
+            dataKey="amount"
+            stroke={isDark ? "#fff" : "#8B5CF6"}
+            strokeWidth={3}
+            fill="url(#colorAmount)"
+          />
         </AreaChart>
       </ResponsiveContainer>
     </Card>

@@ -9,7 +9,7 @@ import { ConfirmDialog, DetailModal, EditModal } from "@/components/Modals";
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/contexts/useAppContext";
 
-const users = [
+const initialUsers = [
   {
     id: 1,
     name: "Sarah Johnson",
@@ -74,14 +74,16 @@ const users = [
 
 export default function UsersTable() {
   const { toasts, showToast, removeToast } = useToast();
+
+  const [currentUsers, setCurrentUsers] = useState(initialUsers);
+
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const { theme } = useAppContext();
 
-  const { t, i18n } = useTranslation();
-  const isArabic = i18n.language.startsWith("ar");
+  const { t } = useTranslation();
 
   const handleView = (user) => {
     setSelectedUser(user);
@@ -94,6 +96,21 @@ export default function UsersTable() {
   };
 
   const handleSaveEdit = (formData) => {
+    setCurrentUsers((prevUsers) =>
+      prevUsers.map((u) =>
+        u.id === selectedUser.id 
+          ? {
+              ...u,
+              name: formData.name,
+              email: formData.email,
+              role: formData.role,
+              status: formData.status,
+             
+            }
+          : u
+      )
+    );
+
     showToast(
       t("usersTable.userUpdated", { name: formData.name }),
       "success",
@@ -109,6 +126,10 @@ export default function UsersTable() {
   };
 
   const confirmDelete = () => {
+    setCurrentUsers((prevUsers) =>
+      prevUsers.filter((u) => u.id !== selectedUser.id)
+    );
+
     showToast(
       t("usersTable.userDeleted", { name: selectedUser.name }),
       "delete",
@@ -124,7 +145,6 @@ export default function UsersTable() {
 
   return (
     <>
-      {/* Toasts */}
       {toasts.map((toast) => (
         <Toast
           key={toast.id}
@@ -135,7 +155,6 @@ export default function UsersTable() {
         />
       ))}
 
-      {/* Detail Modal */}
       {showDetailModal && selectedUser && (
         <DetailModal
           title={t("usersTable.userDetails")}
@@ -223,7 +242,7 @@ export default function UsersTable() {
           theme === "light"
             ? "bg-white border border-slate-100"
             : "bg-dark-gray border border-slate-500"
-        }  rounded-xl shadow-sm `}
+        } rounded-xl shadow-sm `}
       >
         <div className="flex items-center justify-between p-6 border-b border-slate-100">
           <h3
@@ -267,88 +286,91 @@ export default function UsersTable() {
             </thead>
 
             <tbody>
+              {currentUsers.map((user) => {
+                const roleLabel = t(`usersTable.role${user.role}`);
+                const statusLabel = t(`usersTable.status${user.status}`);
 
-{users.map((user) => (
-                <tr
-                  key={user.id}
-                  className="border-b border-slate-500 last:border-0 cursor-pointer transition-colors"
-                >
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-3">
-                      <Avatar className="h-10 w-10">
-                        <AvatarFallback
-                          className={`${user.avatarBg} font-semibold text-sm`}
+                return (
+                  <tr
+                    key={user.id}
+                    className="border-b border-slate-500 last:border-0 cursor-pointer transition-colors"
+                  >
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-3">
+                        <Avatar className="h-10 w-10">
+                          <AvatarFallback
+                            className={`${user.avatarBg} font-semibold text-sm`}
+                          >
+                            {user.initials}
+                          </AvatarFallback>
+                        </Avatar>
+                        <span
+                          className={`font-semibold ${
+                            theme === "light" ? "text-slate-900" : "text-white"
+                          }`}
                         >
-                          {user.initials}
-                        </AvatarFallback>
-                      </Avatar>
-                      <span
-                        className={`font-semibold ${
-                          theme === "light" ? "text-slate-900" : "text-white"
-                        }`}
+                          {user.name}
+                        </span>
+                      </div>
+                    </td>
+
+                    <td className="px-6 py-4 text-sm text-slate-500">
+                      {user.email}
+                    </td>
+
+                    <td className="px-6 py-4">
+                      <Badge
+                        variant="secondary"
+                        className={`${user.roleColor} font-medium rounded-md px-3 py-1 text-xs border-0`}
                       >
-                        {user.name}
-                      </span>
-                    </div>
-                  </td>
+                        {roleLabel}
+                      </Badge>
+                    </td>
 
-                  <td className="px-6 py-4 text-sm text-slate-500">
-                    {user.email}
-                  </td>
+                    <td className="px-6 py-4 text-sm text-slate-500">
+                      {user.registeredDate}
+                    </td>
 
-                  <td className="px-6 py-4">
-                    <Badge
-                      variant="secondary"
-                      className={`${user.roleColor} font-medium rounded-md px-3 py-1 text-xs border-0`}
-                    >
-{roleLabel}
-
-                    </Badge>
-                  </td>
-
-                  <td className="px-6 py-4 text-sm text-slate-500">
-                    {user.registeredDate}
-                  </td>
-
-                  <td className="px-6 py-4">
-                    <Badge
-                      variant="secondary"
-                      className={`${user.statusColor} font-medium rounded-md px-3 py-1 text-xs border-0`}
-                    >
-                       {statusLabel}
-                    </Badge>
-                  </td>
-
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-1">
-                      <Button
-                        onClick={() => handleView(user)}
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all"
+                    <td className="px-6 py-4">
+                      <Badge
+                        variant="secondary"
+                        className={`${user.statusColor} font-medium rounded-md px-3 py-1 text-xs border-0`}
                       >
-                        <Eye className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        onClick={() => handleEdit(user)}
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all"
-                      >
-                        <Edit className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        onClick={() => handleDelete(user)}
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
+                        {statusLabel}
+                      </Badge>
+                    </td>
+
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-1">
+                        <Button
+                          onClick={() => handleView(user)}
+                          variant="ghost"
+                          size="icon"
+                          className="h-8 w-8 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all"
+                        >
+                          <Eye className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          onClick={() => handleEdit(user)}
+                          variant="ghost"
+                          size="icon"
+                          className="h-8 w-8 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all"
+                        >
+                          <Edit className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          onClick={() => handleDelete(user)}
+                          variant="ghost"
+                          size="icon"
+                          className="h-8 w-8 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

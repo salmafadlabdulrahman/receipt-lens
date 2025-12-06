@@ -85,6 +85,7 @@
   "contact_saturday_hours": "10:00 AM - 4:00 PM",
   "contact_sunday": "Sunday",
   "contact_sunday_hours": "Closed",
+  "Pending": "Pending",
 
   "contact_image_alt": "money and calculator image",
 
@@ -537,5 +538,6 @@
       "description": "Download all receipts and financial data to CSV/PDF",
       "button": "Export Now"
     }
-  }
+  },
+  "statusUser": "Status"
 }

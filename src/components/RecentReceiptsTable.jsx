@@ -14,10 +14,10 @@ const receiptsDev = [
     merchant: "Starbucks Coffee",
     date: "Dec 15, 2024",
     categoryKey: "dining",
-    category: "Dining",
+    category: "Dining", 
     amount: "$12.45",
     statusKey: "processed",
-    status: "Processed",
+    status: "Processed", 
     icon: "S",
     iconBg: "bg-red-100",
     categoryColor: "bg-orange-100 text-orange-700",
@@ -48,7 +48,7 @@ const receiptsDev = [
   },
   {
     merchant: "Office Supplies Co",
-    date: "Dec 12, 2024",
+    date: "Dec 12, 24",
     categoryKey: "business",
     category: "Business",
     amount: "$156.78",
@@ -62,6 +62,8 @@ const receiptsDev = [
 
 const RecentReceiptsTable = () => {
   const { toasts, showToast, removeToast } = useToast();
+  const [receipts, setReceipts] = useState(receiptsDev); 
+  
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
@@ -70,12 +72,12 @@ const RecentReceiptsTable = () => {
   const { theme } = useAppContext();
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language.startsWith("ar");
-  const isDark = theme === "dark";
-
-  const mergedReceipts = [...receiptsDev];
+ 
 
   const formatCurrency = (amount) => {
-    const number = parseFloat(amount.replace(/[^0-9.-]+/g, ""));
+    const number = parseFloat(amount.replace(/[^0-9.-]+/g, "")); 
+    if (isNaN(number)) return amount; 
+
     return new Intl.NumberFormat(i18n.language, {
       style: "currency",
       currency: "USD",
@@ -83,22 +85,43 @@ const RecentReceiptsTable = () => {
   };
 
   const getCategoryLabel = (r) =>
-    r.categoryKey && t ? t(r.categoryKey) : r.category;
-  const getStatusLabel = (r) => (r.statusKey && t ? t(r.statusKey) : r.status);
+    r.categoryKey && t ? t(r.categoryKey) : r.category; 
+    
+  const getStatusLabel = (r) =>
+    r.statusKey && t ? t(r.statusKey) : r.status; 
+    
   const isStatusProcessed = (r) => {
     const label = getStatusLabel(r);
-    return label === t?.("processed") || label === "Processed";
+    return label === t?.("processed") || label === "Processed"; 
   };
 
   const handleView = (receipt) => {
     setSelectedReceipt(receipt);
     setShowDetailModal(true);
   };
+  
   const handleEdit = (receipt) => {
     setSelectedReceipt(receipt);
     setShowEditModal(true);
   };
+  
   const handleSaveEdit = (formData) => {
+    setReceipts(prevReceipts => 
+      prevReceipts.map(r => 
+        r === selectedReceipt 
+          ? { 
+              ...r, 
+              merchant: formData.merchant,
+              amount: formData.amount,
+              date: formData.date,
+              
+              category: formData.category, 
+              status: formData.status,
+            } 
+          : r
+      )
+    );
+    
     showToast(
       `${formData.merchant} ${t("updated") || "updated"}`,
       "success",
@@ -107,11 +130,17 @@ const RecentReceiptsTable = () => {
     setShowEditModal(false);
     setSelectedReceipt(null);
   };
+  
   const handleDelete = (receipt) => {
     setSelectedReceipt(receipt);
     setShowConfirmDialog(true);
   };
+  
   const confirmDelete = () => {
+    setReceipts(prevReceipts => 
+      prevReceipts.filter(r => r !== selectedReceipt)
+    );
+
     showToast(
       `${selectedReceipt?.merchant} ${t("deleted") || "deleted"}`,
       "delete",
@@ -120,6 +149,7 @@ const RecentReceiptsTable = () => {
     setShowConfirmDialog(false);
     setSelectedReceipt(null);
   };
+  
   const handleViewAll = () => {
     showToast(
       t("navigatingToAllReceipts") || "Navigating to all receipts...",
@@ -132,8 +162,8 @@ const RecentReceiptsTable = () => {
     { key: "date", label: t("date") || "Date" },
     { key: "category", label: t("category") || "Category" },
     { key: "amount", label: t("amount") || "Amount" },
-    { key: "status", label: t("statusUser") || "Status" },
-    { key: "actions", label: t("actionsUser") || "Actions" },
+    { key: "status", label: t("status") || "Status" }, 
+    { key: "actions", label: t("actions") || "Actions" }, 
   ];
 
   return (
@@ -195,7 +225,8 @@ const RecentReceiptsTable = () => {
             {
               name: "category",
               label: t("category") || "Category",
-              value: getCategoryLabel(selectedReceipt),
+            
+              value: selectedReceipt.category || getCategoryLabel(selectedReceipt),
               type: "select",
               options: [
                 t("dining") || "Dining",
@@ -215,7 +246,7 @@ const RecentReceiptsTable = () => {
             {
               name: "status",
               label: t("status") || "Status",
-              value: getStatusLabel(selectedReceipt),
+              value: selectedReceipt.status || getStatusLabel(selectedReceipt),
               type: "select",
               options: [
                 t("processed") || "Processed",
@@ -241,9 +272,8 @@ const RecentReceiptsTable = () => {
         />
       )}
 
-      {/* Main Card / Table */}
       <Card
-        className={`p-6 rounded-xl shadow-sm  ${
+        className={`p-6 rounded-xl shadow-sm ${
           theme === "light"
             ? "bg-white "
             : "bg-dark-gray border border-slate-500"
@@ -258,7 +288,7 @@ const RecentReceiptsTable = () => {
               onClick={handleViewAll}
               className="text-sm text-primary hover:text-primary/80"
             >
-                 {t("viewAllReceipts") || "View All Receipts"}
+              {t("viewAllReceipts") || "View All Receipts"}
             </button>
             <button className="p-2 rounded-md hover:bg-muted/50">
               <MoreHorizontal className="h-5 w-5" />
@@ -266,7 +296,6 @@ const RecentReceiptsTable = () => {
           </div>
         </div>
 
-        {/* Add a wrapper with horizontal scroll */}
         <div className="overflow-x-auto -mx-6 px-6">
           <table
             className={`w-full border-collapse min-w-[700px] text-sm ${
@@ -277,34 +306,9 @@ const RecentReceiptsTable = () => {
           >
             <thead>
               <tr className="border-b border-slate-500">
-                {[
-                  {
-                    label: t ? t("merchant") || "Merchant" : "Merchant",
-                    className: "text-left",
-                  },
-                  {
-                    label: t ? t("date") || "Date" : "Date",
-                    className: "hidden sm:table-cell text-left",
-                  },
-                  {
-                    label: t ? t("category") || "Category" : "Category",
-                    className: "text-left",
-                  },
-                  {
-                    label: t ? t("amount") || "Amount" : "Amount",
-                    className: "text-left",
-                  },
-                  {
-                    label: t ? t("status") || "Status" : "Status",
-                    className: "text-left",
-                  },
-                  {
-                    label: t ? t("actions") || "Actions" : "Actions",
-                    className: "text-left",
-                  },
-                ].map((header, idx) => (
-                  <th
-                    key={idx}
+                {headers.map((header) => (
+                  <th 
+                    key={header.key} 
                     className={`text-xs font-semibold text-slate-400 uppercase tracking-wider px-4 py-3 whitespace-nowrap ${
                       header.className
                     } ${isRTL ? "text-right" : "text-left"}`}
@@ -315,12 +319,11 @@ const RecentReceiptsTable = () => {
               </tr>
             </thead>
             <tbody>
-              {mergedReceipts.map((receipt, index) => (
+              {receipts.map((receipt, index) => ( 
                 <tr
                   key={`${index}-${receipt.merchant}`}
                   className="border-b border-slate-500 last:border-0 "
                 >
-                  {/* Merchant */}
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3 whitespace-nowrap">
                       <div
@@ -338,12 +341,10 @@ const RecentReceiptsTable = () => {
                     </div>
                   </td>
 
-                  {/* Date */}
                   <td className="px-4 py-3 text-sm text-slate-500 hidden sm:table-cell whitespace-nowrap">
                     {receipt.date}
                   </td>
 
-                  {/* Category */}
                   <td className="px-4 py-3">
                     <Badge
                       variant="secondary"
@@ -355,7 +356,6 @@ const RecentReceiptsTable = () => {
                     </Badge>
                   </td>
 
-                  {/* Amount */}
                   <td
                     className={`px-4 py-3 font-semibold whitespace-nowrap ${
                       theme === "light" ? "text-slate-900" : "text-slate-500"

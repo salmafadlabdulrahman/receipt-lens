@@ -12,8 +12,7 @@ const data = [
 ];
 
 const AdminUserCategoriesChart = () => {
-  const { t, i18n } = useTranslation();
-  const isArabic = i18n.language.startsWith("ar");
+  const { t } = useTranslation();
   const { theme } = useAppContext();
 
   return (
