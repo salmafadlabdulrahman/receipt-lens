@@ -83,7 +83,8 @@ export default function UsersTable() {
   const [selectedUser, setSelectedUser] = useState(null);
   const { theme } = useAppContext();
 
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language.startsWith("ar");
 
   const handleView = (user) => {
     setSelectedUser(user);
@@ -98,14 +99,13 @@ export default function UsersTable() {
   const handleSaveEdit = (formData) => {
     setCurrentUsers((prevUsers) =>
       prevUsers.map((u) =>
-        u.id === selectedUser.id 
+        u.id === selectedUser.id
           ? {
               ...u,
               name: formData.name,
               email: formData.email,
               role: formData.role,
               status: formData.status,
-             
             }
           : u
       )
@@ -261,7 +261,11 @@ export default function UsersTable() {
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full">
+          <table
+            className={`w-full ${
+              isRTL ? "direction-rtl text-right" : "text-left"
+            }`}
+          >
             <thead>
               <tr className="border-b border-slate-100">
                 <th className="text-xs font-semibold text-slate-400 uppercase tracking-wider px-6 py-4">
