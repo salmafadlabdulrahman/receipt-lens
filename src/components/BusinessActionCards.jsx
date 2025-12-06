@@ -4,24 +4,24 @@ import { useTranslation } from "react-i18next";
 
 const actions = [
   {
-    titleKey: "actions.generateReport.title", 
-    descriptionKey: "actions.generateReport.description",
+    titleKey: "admin_actions.generateReport.title", 
+    descriptionKey: "admin_actions.generateReport.description",
     icon: FileText,
-    buttonTextKey: "actions.generateReport.button",
+    buttonTextKey: "admin_actions.generateReport.button",
     bgColor: "bg-gradient-to-br from-blue-600 to-indigo-600",
   },
   {
-    titleKey: "actions.viewAnalytics.title",
-    descriptionKey: "actions.viewAnalytics.description",
+    titleKey: "admin_actions.viewAnalytics.title",
+    descriptionKey: "admin_actions.viewAnalytics.description",
     icon: BarChart3,
-    buttonTextKey: "actions.viewAnalytics.button",
+    buttonTextKey: "admin_actions.viewAnalytics.button",
     bgColor: "bg-gradient-to-br from-emerald-600 to-teal-600",
   },
   {
-    titleKey: "actions.exportData.title",
-    descriptionKey: "actions.exportData.description",
+    titleKey: "admin_actions.exportData.title",
+    descriptionKey: "admin_actions.exportData.description",
     icon: Download,
-    buttonTextKey: "actions.exportData.button",
+    buttonTextKey: "admin_actions.exportData.button",
     bgColor: "bg-gradient-to-br from-amber-500 to-orange-500",
   },
 ];

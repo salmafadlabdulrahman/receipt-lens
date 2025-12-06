@@ -40,7 +40,6 @@ const SpendingTrendChart = () => {
   const yMax = Math.max(dataMax, suggestedMax);
   const containerHeight = 350;
 
-  // دالة لتنسيق الأرقام حسب اللغة
   const formatNumber = (value) => {
     return new Intl.NumberFormat(i18n.language, {
       style: "currency",
@@ -60,14 +59,12 @@ const SpendingTrendChart = () => {
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-lg font-semibold">{t("spendingTrend")}</h3>
 
-        {/* Combined controls: dev had simple button, feature had dropdown with Chevron */}
         <div className="relative flex items-center flex-wrap justify-end gap-3">
           <button
             className={`text-sm hover:opacity-80 ${
               isDark ? "text-gray-300" : "text-muted-foreground"
             }`}
           >
-            {t(selectedPeriod)}
           </button>
 
           <div className="relative">
@@ -108,7 +105,6 @@ const SpendingTrendChart = () => {
       </div>
 
       <ResponsiveContainer width="100%" height={containerHeight}>
-        {/* Using AreaChart (keeps both branches' Area usage) */}
         <AreaChart
           data={data}
           margin={{ top: 10, right: 10, left: -20, bottom: 0 }}

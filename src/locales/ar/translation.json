@@ -7,7 +7,6 @@
   "email_placeholder": "voui@example.com",
   "password": "كلمة المرور",
   "password_placeholder": "••••••••",
-  
   "remember_me": "تذكرني",
   "forgot_password": "هل نسيت كلمة المرور؟",
   "login_button": "تسجيل الدخول",
@@ -30,7 +29,6 @@
   "exportNow": "تصدير الآن",
   "feature_secure": "آمن و خاص",
   "feature_secure_desc": "تشفير على مستوى البنوك يحافظ على أمان بياناتك",
-
   "signup_title": "انضم إلى Spend Right",
   "signup_subtitle": "أنشئ حسابك وابدأ في إدارة نفقاتك بذكاء أكبر",
   "full_name": "الاسم الكامل",
@@ -59,11 +57,9 @@
   "need_help": "هل تحتاج مساعدة؟ اتصل بفريق",
   "support_team": "الدعم الفني",
   "forgot_password_title": "هل نسيت كلمة المرور؟",
-
   "sending": "جاري الإرسال...",
   "back_to_login_text": "هل تذكر كلمة المرور؟",
   "reset_link_sent": "تم إرسال رابط إعادة التعيين إلى {{email}} (إذا كان البريد موجودًا).",
-
   "contact_title": "تواصل معنا",
   "contact_subtitle": "نحن هنا للمساعدة في نفقاتك واشتراكاتك.",
   "contact_form_title": "أرسل لنا رسالة",
@@ -72,13 +68,11 @@
   "contact_email": "عنوان البريد الإلكتروني",
   "contact_message": "الرسالة",
   "contact_send_button": "إرسال رسالة",
-
   "contact_info_title": "معلومات الاتصال",
   "contact_email_label": "البريد الإلكتروني",
   "contact_phone_label": "الهاتف",
   "contact_location_label": "الموقع",
   "contact_location_address": "123 شارع التمويل",
-
   "contact_business_hours": "ساعات العمل",
   "contact_weekdays": "الاثنين - الجمعة",
   "contact_weekdays_hours": "9:00 صباحاً - 6:00 مساءً",
@@ -86,14 +80,11 @@
   "contact_saturday_hours": "10:00 صباحاً - 4:00 مساءً",
   "contact_sunday": "الأحد",
   "contact_sunday_hours": "مغلق",
-
   "contact_image_alt": "صورة نقود وآلة حاسبة",
-
   "nav_home": "الرئيسية",
   "nav_about": "حول",
   "nav_pricing": "الاسعار",
   "nav_contact": "الاتصال",
-
   "nav_receipts": "الفواتير",
   "home_page": "الصفحة الرئيسية",
   "login_btn": "تسجيل الدخول",
@@ -131,6 +122,8 @@
   "exportCSV": "تصدير إلى CSV/PDF",
   "prioritySupport": "دعم عبر البريد الإلكتروني ذو أولوية",
   "teamCollab": "تعاون الفريق (5 مستخدمين)",
+  "everythingInPro": "كل شيء في الخطة الاحترافية  ",
+
   "multiCurrency": "دعم العملات المتعددة",
   "apiAccess": "الوصول إلى واجهة برمجة التطبيقات والتكاملات",
   "security": "ميزات أمان متقدمة",
@@ -150,7 +143,6 @@
   "button_go_to_dashboard": "الانتقال إلى لوحة التحكم",
   "button_view_cancel_page": "عرض صفحة الإلغاء",
   "Pro Plan": "اشتراك الخطة الاحترافية",
-
   "need_help_prompt": "هل تحتاج مساعدة؟",
   "link_contact_support": "اتصل بالدعم",
   "account": "الحساب",
@@ -194,23 +186,18 @@
   "answer6": "انتقل إلى إعدادات الملف الشخصي، انقر على 'تغيير كلمة المرور'، واتبع الخطوات لإدخال كلمة المرور القديمة والجديدة.",
   "question7": "ماذا تعني حالات الفاتورة (قيد الانتظار / موافق عليها / مرفوضة)؟",
   "answer7": "قيد الانتظار: تم رفع الفاتورة ولكن لم تتم مراجعتها بعد. موافق عليها: تم التحقق من الفاتورة والموافقة عليها. مرفوضة: تم رفض الفاتورة بسبب تفاصيل غير كاملة أو صورة غير واضحة.",
-
   "problem": "المشكلة",
   "problem_title": "الفواتير كابوس لملايين الأشخاص",
   "problem_subtitle": "من الفواتير الورقية المفقودة إلى التعويضات الفائتة، إدارة النفقات لا يجب أن تكون بهذه الصعوبة.",
   "cards": {
     "clutter_title": "الفوضى وعدم التنظيم",
     "clutter_desc": "الفواتير مبعثرة عبر رسائل البريد الإلكتروني، المحافظ، والأدراج. الفواتير الورقية تتلاشى أو تضيع أو تصبح غير قابلة للقراءة عندما تكون بأمس الحاجة إليها.",
-
     "missed_title": "التعويضات الفائتة",
     "missed_desc": "يخسر الموظفون آلافاً سنوياً بسبب عدم المطالبة بنفقات العمل. ضياع الفواتير يعني خسارة المال وإحباط الفرق المالية.",
-
     "stress_title": "الإجهاد المالي",
     "stress_desc": "التتبع اليدوي يجعل وضع الميزانية مستحيلاً. يصبح موسم الضرائب سباقاً للعثور على النفقات القابلة للخصم، مما يؤدي إلى دفع ضرائب زائدة.",
-
     "storage_title": "مشاكل التخزين",
     "storage_desc": "تستهلك الفواتير الورقية مساحة وتجعل من الصعب العثور على المشتريات عندما تحتاج إليها - للإرجاع أو الضمانات أو السجلات.",
-
     "environment_title": "الهدر البيئي",
     "environment_desc": "مليارات الفواتير الورقية تساهم في إزالة الغابات والهدر. معظم الفواتير تحتوي على مواد كيميائية ضارة غير صديقة للبيئة ولا يمكن إعادة تدويرها."
   },
@@ -219,13 +206,10 @@
   "email_not_received_prompt": "لم تستلم البريد الإلكتروني؟",
   "resend_link": "إعادة إرسال الرابط",
   "back_to_login_button": "العودة لتسجيل الدخول",
-
   "contact_firstname_label": "الاسم الأول",
   "contact_lastname_label": "اسم العائلة",
-
   "contact_receive_other_messages": "أوافق على استلام التحديثات، النشرات الإخبارية، ورسائل الاتصال الأخرى من سبيندرايت.",
   "contact_consent_storage": "أمنح موافقتي لسبيندرايت بتخزين ومعالجة بياناتي الشخصية وفقاً لسياساتها.",
-
   "contact_follow_us": "تابعنا",
   "my_receipts": "فواتيري",
   "receipts_subtitle": "تتبع وأدر جميع نفقاتك",
@@ -268,7 +252,7 @@
   "checkoutTitle": "الدفع / تفاصيل الدفع",
   "planSummary": "ملخص الخطة",
   "planType": "نوع الخطة",
-  "billingPeriod": "فترة الفوترة",
+  "billingPeriod": "فترة الفاتورة",
   "totalPrice": "السعر الإجمالي",
   "cardHolder": "اسم حامل البطاقة",
   "cardNumber": "رقم البطاقة",
@@ -277,30 +261,25 @@
   "payNow": "ادفع الآن",
   "monthly": "شهرياً",
   "yearly": "سنوياً",
-  "billingDetails": "تفاصيل الفوترة",
+  "billingDetails": "تفاصيل الفاتورة",
+
   "firstName": "الاسم الأول",
   "lastName": "اسم العائلة",
   "countryRegion": "البلد / المنطقة",
-
   "checkout": "الدفع",
   "plan": "الخطة",
   "total": "الإجمالي",
-
   "perfectForStarting": "مثالي للبدء",
-
   "country": "البلد / المنطقة",
   "phone": "رقم الهاتف",
   "emailAddress": "عنوان البريد الإلكتروني",
   "subscribeNow": "اشترك الآن",
   "subscriptionProcessedFor": "تمت معالجة الاشتراك لـ",
-
   "welcome_notification": "مرحباً بك في موقعنا!",
   "welcome_notify_subtext": "نحن متحمسون لوجودك هنا",
   "welcome_notify_link": "ابدأ",
-
   "receipt_uploaded_notification": "لقد قمت برفع فاتورة جديدة للتو!",
   "receipt_uploaded_notify_subtext": "ستستغرق المعالجة بضع لحظات",
-
   "receipt_uploaded_notify_link": "عرض الفاتورة",
   "dashboard": "لوحة التحكم",
   "dashboarduser": "لوحة تحكم المستخدم",
@@ -308,7 +287,6 @@
   "actionsUser": "الإجراءات",
   "welcomeMessage": "أهلاً بك مجدداً! إليك نظرة عامة على نفقاتك لهذا الشهر.",
   "aiInsightTitle": "رؤية الذكاء الاصطناعي",
-
   "aiInsightMessage1": "لقد أنفقت 30% أكثر على الطعام هذا الشهر مقارنة بالشهر الماضي.",
   "aiInsightMessage2": "فكر في تحديد ميزانية للطعام لإدارة نفقاتك بشكل أفضل.",
   "totalSpend": "إجمالي الإنفاق",
@@ -320,9 +298,7 @@
   "topCategoryChange": "{{$892.45}} تم إنفاقها",
   "avgPerReceipt": "المتوسط لكل فاتورة",
   "avgPerReceiptChange": "↓ {{percent}} مقارنة بالشهر الماضي",
-
   "exportDataDesc": "تحميل الفواتير والتقارير",
-
   "spendingTrend": "اتجاه الإنفاق",
   "last7Days": "آخر 7 أيام",
   "categoryDistribution": "توزيع الفئات",
@@ -349,10 +325,8 @@
   "Last 14 days": "آخر 14 يوماً",
   "Last 30 days": "آخر 30 يوماً",
   "Last 90 days": "آخر 90 يوماً",
-
   "receiptDetails": "تفاصيل الفاتورة",
   "editReceipt": "تعديل الفاتورة",
-
   "pending": "قيد الانتظار",
   "updated": "تم التحديث",
   "deleted": "تم الحذف",
@@ -369,12 +343,10 @@
   "aiInsightSuggestion": "فكر في إطلاق حملة ترويجية تستهدف فئة النقل لزيادة التفاعل.",
   "totalUsers": "إجمالي المستخدمين",
   "totalUsersChange": "12% مقارنة بالشهر الماضي",
-
   "shoppingCategory": "التسوق",
   "shoppingChange": "$1,245.67 تم إنفاقها",
   "receiptsUploaded": "الفواتير المرفوعة",
   "receiptsUploadedChange": "$892.45 متوسط القيمة",
-
   "systemSpendTotal": "إجمالي إنفاق النظام",
   "systemSpendChange": "5% مقارنة بالشهر الماضي",
   "dashboard.activityTrend": "اتجاه نشاط المنصة",
@@ -517,12 +489,13 @@
     "Clothing": "الملابس",
     "Services": "الخدمات"
   },
-  "status": {
+
+  "sale_statuses_list": {
     "Completed": "مكتملة",
     "Pending": "قيد الانتظار",
     "Cancelled": "ملغاة"
   },
-  "actions": {
+  "admin_actions": {
     "generateReport": {
       "title": "إنشاء تقرير",
       "description": "إنشاء وتنزيل تقارير مالية مفصلة",

@@ -14,10 +14,10 @@ const receiptsDev = [
     merchant: "Starbucks Coffee",
     date: "Dec 15, 2024",
     categoryKey: "dining",
-    category: "Dining", 
+    category: "Dining",
     amount: "$12.45",
     statusKey: "processed",
-    status: "Processed", 
+    status: "Processed",
     icon: "S",
     iconBg: "bg-red-100",
     categoryColor: "bg-orange-100 text-orange-700",
@@ -62,8 +62,8 @@ const receiptsDev = [
 
 const RecentReceiptsTable = () => {
   const { toasts, showToast, removeToast } = useToast();
-  const [receipts, setReceipts] = useState(receiptsDev); 
-  
+  const [receipts, setReceipts] = useState(receiptsDev);
+
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
@@ -72,11 +72,10 @@ const RecentReceiptsTable = () => {
   const { theme } = useAppContext();
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language.startsWith("ar");
- 
 
   const formatCurrency = (amount) => {
-    const number = parseFloat(amount.replace(/[^0-9.-]+/g, "")); 
-    if (isNaN(number)) return amount; 
+    const number = parseFloat(amount.replace(/[^0-9.-]+/g, ""));
+    if (isNaN(number)) return amount;
 
     return new Intl.NumberFormat(i18n.language, {
       style: "currency",
@@ -85,43 +84,42 @@ const RecentReceiptsTable = () => {
   };
 
   const getCategoryLabel = (r) =>
-    r.categoryKey && t ? t(r.categoryKey) : r.category; 
-    
-  const getStatusLabel = (r) =>
-    r.statusKey && t ? t(r.statusKey) : r.status; 
-    
+    r.categoryKey && t ? t(r.categoryKey) : r.category;
+
+  const getStatusLabel = (r) => (r.statusKey && t ? t(r.statusKey) : r.status);
+
   const isStatusProcessed = (r) => {
     const label = getStatusLabel(r);
-    return label === t?.("processed") || label === "Processed"; 
+    return label === t?.("processed") || label === "Processed";
   };
 
   const handleView = (receipt) => {
     setSelectedReceipt(receipt);
     setShowDetailModal(true);
   };
-  
+
   const handleEdit = (receipt) => {
     setSelectedReceipt(receipt);
     setShowEditModal(true);
   };
-  
+
   const handleSaveEdit = (formData) => {
-    setReceipts(prevReceipts => 
-      prevReceipts.map(r => 
-        r === selectedReceipt 
-          ? { 
-              ...r, 
+    setReceipts((prevReceipts) =>
+      prevReceipts.map((r) =>
+        r === selectedReceipt
+          ? {
+              ...r,
               merchant: formData.merchant,
               amount: formData.amount,
               date: formData.date,
-              
-              category: formData.category, 
+
+              category: formData.category,
               status: formData.status,
-            } 
+            }
           : r
       )
     );
-    
+
     showToast(
       `${formData.merchant} ${t("updated") || "updated"}`,
       "success",
@@ -130,15 +128,15 @@ const RecentReceiptsTable = () => {
     setShowEditModal(false);
     setSelectedReceipt(null);
   };
-  
+
   const handleDelete = (receipt) => {
     setSelectedReceipt(receipt);
     setShowConfirmDialog(true);
   };
-  
+
   const confirmDelete = () => {
-    setReceipts(prevReceipts => 
-      prevReceipts.filter(r => r !== selectedReceipt)
+    setReceipts((prevReceipts) =>
+      prevReceipts.filter((r) => r !== selectedReceipt)
     );
 
     showToast(
@@ -149,7 +147,7 @@ const RecentReceiptsTable = () => {
     setShowConfirmDialog(false);
     setSelectedReceipt(null);
   };
-  
+
   const handleViewAll = () => {
     showToast(
       t("navigatingToAllReceipts") || "Navigating to all receipts...",
@@ -162,8 +160,8 @@ const RecentReceiptsTable = () => {
     { key: "date", label: t("date") || "Date" },
     { key: "category", label: t("category") || "Category" },
     { key: "amount", label: t("amount") || "Amount" },
-    { key: "status", label: t("status") || "Status" }, 
-    { key: "actions", label: t("actions") || "Actions" }, 
+    { key: "status", label: t("status") || "Status" },
+    { key: "actions", label: t("actions") || "Actions" },
   ];
 
   return (
@@ -225,8 +223,9 @@ const RecentReceiptsTable = () => {
             {
               name: "category",
               label: t("category") || "Category",
-            
-              value: selectedReceipt.category || getCategoryLabel(selectedReceipt),
+
+              value:
+                selectedReceipt.category || getCategoryLabel(selectedReceipt),
               type: "select",
               options: [
                 t("dining") || "Dining",
@@ -307,8 +306,8 @@ const RecentReceiptsTable = () => {
             <thead>
               <tr className="border-b border-slate-500">
                 {headers.map((header) => (
-                  <th 
-                    key={header.key} 
+                  <th
+                    key={header.key}
                     className={`text-xs font-semibold text-slate-400 uppercase tracking-wider px-4 py-3 whitespace-nowrap ${
                       header.className
                     } ${isRTL ? "text-right" : "text-left"}`}
@@ -319,7 +318,7 @@ const RecentReceiptsTable = () => {
               </tr>
             </thead>
             <tbody>
-              {receipts.map((receipt, index) => ( 
+              {receipts.map((receipt, index) => (
                 <tr
                   key={`${index}-${receipt.merchant}`}
                   className="border-b border-slate-500 last:border-0 "
@@ -327,7 +326,11 @@ const RecentReceiptsTable = () => {
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3 whitespace-nowrap">
                       <div
-                        className={`flex h-10 w-10 items-center justify-center rounded-full ${receipt.iconBg} font-semibold text-sm shrink-0`}
+                        className={`flex h-10 w-10 items-center justify-center rounded-full ${
+                          receipt.iconBg
+                        } ${
+                          theme === "light" ? "text-slate-900" : "text-black"
+                        } font-semibold text-sm shrink-0`}
                       >
                         {receipt.icon}
                       </div>
@@ -364,7 +367,6 @@ const RecentReceiptsTable = () => {
                     {receipt.amount}
                   </td>
 
-                  {/* Status */}
                   <td className="px-4 py-3">
                     <Badge
                       variant="secondary"
@@ -403,10 +405,6 @@ const RecentReceiptsTable = () => {
                       >
                         <Trash2 className="h-4 w-4" />
                       </Button>
-
-                      <button className="hidden sm:inline-flex items-center p-2 rounded-md hover:bg-muted/50">
-                        <MoreHorizontal className="h-5 w-5" />
-                      </button>
                     </div>
                   </td>
                 </tr>
