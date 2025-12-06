@@ -16,16 +16,28 @@ export default function BusinessDashboard() {
   const isDark = theme === "dark";
 
   return (
-    <div className={`${isDark ? "bg-dark-gray text-white" : "bg-white text-slate-900"} min-h-screen`}>
-      <DashboardHeader theme={theme} />
+    <div
+      className={`min-h-screen ${
+        theme === "light" ? "bg-slate-50" : "bg-dark-gray"
+      } pt-[5em] md:pt-[8em]`}
+    >
+      {/* <DashboardHeader theme={theme} /> */}
 
       <main className="max-w-7xl mx-auto px-6 py-8 space-y-6">
         {/* Page Title */}
         <div>
-          <h1 className={`${isDark ? "text-white" : "text-slate-900"} text-2xl font-bold`}>
+          <h1
+            className={`${
+              isDark ? "text-white" : "text-slate-900"
+            } text-2xl font-bold`}
+          >
             {t("businessDashboard.title")}
           </h1>
-          <p className={`${isDark ? "text-slate-300" : "text-slate-500"} text-sm mt-1`}>
+          <p
+            className={`${
+              isDark ? "text-slate-300" : "text-slate-500"
+            } text-sm mt-1`}
+          >
             {t("businessDashboard.subtitle")}
           </p>
         </div>
@@ -38,7 +50,9 @@ export default function BusinessDashboard() {
           <MetricCard
             title={t("businessDashboard.metrics.totalRevenue.title")}
             value="$124,580.00"
-            change={t("businessDashboard.metrics.totalRevenue.change", { percent: "24%" })}
+            change={t("businessDashboard.metrics.totalRevenue.change", {
+              percent: "24%",
+            })}
             changeType="positive"
             icon={DollarSign}
             iconBg="blue"
@@ -48,7 +62,9 @@ export default function BusinessDashboard() {
           <MetricCard
             title={t("businessDashboard.metrics.monthlySales.title")}
             value="1,847"
-            change={t("businessDashboard.metrics.monthlySales.change", { percent: "12%" })}
+            change={t("businessDashboard.metrics.monthlySales.change", {
+              percent: "12%",
+            })}
             changeType="positive"
             icon={ShoppingCart}
             iconBg="green"
@@ -58,7 +74,9 @@ export default function BusinessDashboard() {
           <MetricCard
             title={t("businessDashboard.metrics.activeCustomers.title")}
             value="3,429"
-            change={t("businessDashboard.metrics.activeCustomers.change", { value: "3,429" })}
+            change={t("businessDashboard.metrics.activeCustomers.change", {
+              value: "3,429",
+            })}
             changeType="neutral"
             icon={Users}
             iconBg="purple"
@@ -68,7 +86,9 @@ export default function BusinessDashboard() {
           <MetricCard
             title={t("businessDashboard.metrics.avgOrderValue.title")}
             value="$42,180.00"
-            change={t("businessDashboard.metrics.avgOrderValue.change", { percent: "8%" })}
+            change={t("businessDashboard.metrics.avgOrderValue.change", {
+              percent: "8%",
+            })}
             changeType="positive"
             icon={TrendingUp}
             iconBg="amber"
