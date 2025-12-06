@@ -76,7 +76,11 @@ export function RecentSalesTable() {
 
   const handleSaveEdit = (formData) => {
     // feature/updateDashboard
-    showToast(t("recentSales.updated", { customer: formData.customer }), "success", 3000);
+    showToast(
+      t("recentSales.updated", { customer: formData.customer }),
+      "success",
+      3000
+    );
 
     setShowEditModal(false);
     setSelectedSale(null);
@@ -89,7 +93,11 @@ export function RecentSalesTable() {
 
   const confirmDelete = () => {
     // feature/updateDashboard
-    showToast(t("recentSales.deleted", { customer: selectedSale.customer }), "delete", 4000);
+    showToast(
+      t("recentSales.deleted", { customer: selectedSale.customer }),
+      "delete",
+      4000
+    );
 
     // dev version (keep logging as well)
     console.log("Delete sale:", selectedSale);
@@ -122,9 +130,15 @@ export function RecentSalesTable() {
           details={[
             { label: t("recentSales.customer"), value: selectedSale.customer },
             { label: t("recentSales.amount"), value: selectedSale.amount },
-            { label: t("recentSales.category"), value: t(`categories.${selectedSale.category}`) },
+            {
+              label: t("recentSales.category"),
+              value: t(`categories.${selectedSale.category}`),
+            },
             { label: t("recentSales.date"), value: selectedSale.date },
-            { label: t("recentSales.status"), value: t(`status.${selectedSale.status}`) },
+            {
+              label: t("recentSales.status"),
+              value: t(`status.${selectedSale.status}`),
+            },
           ]}
           onClose={() => {
             setShowDetailModal(false);
@@ -139,11 +153,43 @@ export function RecentSalesTable() {
           title={t("recentSales.editTitle")}
           fields={[
             // merged version includes localization & labels
-            { name: "customer", label: t("recentSales.customer"), value: selectedSale.customer, type: "text", required: true },
-            { name: "amount", label: t("recentSales.amount"), value: selectedSale.amount, type: "text", required: true },
-            { name: "category", label: t("recentSales.category"), value: selectedSale.category, type: "select", options: ["Electronics", "Software", "Clothing", "Services"], required: true },
-            { name: "date", label: t("recentSales.date"), value: selectedSale.date, type: "text", required: true },
-            { name: "status", label: t("recentSales.status"), value: selectedSale.status, type: "select", options: ["Completed", "Pending", "Cancelled"], required: true },
+            {
+              name: "customer",
+              label: t("recentSales.customer"),
+              value: selectedSale.customer,
+              type: "text",
+              required: true,
+            },
+            {
+              name: "amount",
+              label: t("recentSales.amount"),
+              value: selectedSale.amount,
+              type: "text",
+              required: true,
+            },
+            {
+              name: "category",
+              label: t("recentSales.category"),
+              value: selectedSale.category,
+              type: "select",
+              options: ["Electronics", "Software", "Clothing", "Services"],
+              required: true,
+            },
+            {
+              name: "date",
+              label: t("recentSales.date"),
+              value: selectedSale.date,
+              type: "text",
+              required: true,
+            },
+            {
+              name: "status",
+              label: t("recentSales.status"),
+              value: selectedSale.status,
+              type: "select",
+              options: ["Completed", "Pending", "Cancelled"],
+              required: true,
+            },
           ]}
           onSave={handleSaveEdit}
           onClose={() => {
@@ -156,7 +202,10 @@ export function RecentSalesTable() {
       {/* Delete Confirm Dialog */}
       {showConfirmDialog && selectedSale && (
         <ConfirmDialog
-          message={t("recentSales.confirmDelete", { customer: selectedSale.customer, amount: selectedSale.amount })}
+          message={t("recentSales.confirmDelete", {
+            customer: selectedSale.customer,
+            amount: selectedSale.amount,
+          })}
           onConfirm={confirmDelete}
           onCancel={() => {
             setShowConfirmDialog(false);
@@ -166,9 +215,19 @@ export function RecentSalesTable() {
       )}
 
       {/* Combined UI (dark mode + localization) */}
-      <div className={`${theme === "light" ? "bg-white text-black border border-slate-200" : "bg-dark-gray text-white border border-slate-500"} rounded-xl shadow-sm`}>
+      <div
+        className={`${
+          theme === "light"
+            ? "bg-white text-black border border-slate-200"
+            : "bg-dark-gray text-white border border-slate-500"
+        } rounded-xl shadow-sm`}
+      >
         <div className="flex items-center justify-between p-5 border-b border-slate-200">
-          <h3 className={`${theme === "light" ? "text-slate-900" : "text-white"} text-lg font-semibold`}>
+          <h3
+            className={`${
+              theme === "light" ? "text-slate-900" : "text-white"
+            } text-lg font-semibold`}
+          >
             {t("recentSales.title")}
           </h3>
 
@@ -207,54 +266,81 @@ export function RecentSalesTable() {
 
             <tbody>
               {sales.map((sale) => (
-                <tr key={sale.id} className="border-b border-slate-200 last:border-0 hover:bg-slate-50 transition-colors">
+                <tr
+                  key={sale.id}
+                  className="border-b border-slate-200 last:border-0 hover:bg-slate-50 transition-colors"
+                >
                   <td className="px-5 py-4">
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center">
-                        <span className="text-sm font-medium text-indigo-600">
+                        <span className="text-sm font-medium text-indigo-600 h-10 w-10 flex justify-center items-center rounded-full">
                           {sale.customer.charAt(0)}
                         </span>
                       </div>
-                      <span className={`${theme === "light" ? "text-slate-900" : "text-white"} font-medium`}>
+                      <span
+                        className={`${
+                          theme === "light" ? "text-slate-900" : "text-white"
+                        } font-medium`}
+                      >
                         {sale.customer}
                       </span>
                     </div>
                   </td>
 
-                  <td className="px-5 py-4 text-sm text-slate-500">{sale.date}</td>
+                  <td className="px-5 py-4 text-sm text-slate-500">
+                    {sale.date}
+                  </td>
 
                   <td className="px-5 py-4">
-                    <Badge variant="secondary" className={categoryColors[sale.category]}>
+                    <Badge
+                      variant="secondary"
+                      className={categoryColors[sale.category]}
+                    >
                       {t(`categories.${sale.category}`)}
                     </Badge>
                   </td>
 
-                  <td className={`${theme === "light" ? "text-slate-900" : "text-white"} px-5 py-4 font-semibold`}>
+                  <td
+                    className={`${
+                      theme === "light" ? "text-slate-900" : "text-white"
+                    } px-5 py-4 font-semibold`}
+                  >
                     {sale.amount}
                   </td>
 
                   <td className="px-5 py-4">
-                    <Badge variant="secondary" className={statusColors[sale.status]}>
+                    <Badge
+                      variant="secondary"
+                      className={statusColors[sale.status]}
+                    >
                       {t(`status.${sale.status}`)}
                     </Badge>
                   </td>
 
                   <td className="px-5 py-4">
                     <div className="flex items-center gap-2">
-                      <button onClick={() => handleView(sale)} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition-colors">
+                      <button
+                        onClick={() => handleView(sale)}
+                        className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition-colors"
+                      >
                         <Eye className="w-4 h-4" />
                       </button>
 
-                      <button onClick={() => handleEdit(sale)} className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition-colors">
+                      <button
+                        onClick={() => handleEdit(sale)}
+                        className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500 hover:text-slate-900 transition-colors"
+                      >
                         <Edit className="w-4 h-4" />
                       </button>
 
-                      <button onClick={() => handleDelete(sale)} className="p-1.5 rounded-lg hover:bg-red-50 text-slate-500 hover:text-red-600 transition-colors">
+                      <button
+                        onClick={() => handleDelete(sale)}
+                        className="p-1.5 rounded-lg hover:bg-red-50 text-slate-500 hover:text-red-600 transition-colors"
+                      >
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
                   </td>
-
                 </tr>
               ))}
             </tbody>
