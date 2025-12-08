@@ -158,11 +158,11 @@ export default function About() {
               </div>
             </div>
           </div>
-          <div className="rounded-xl overflow-hidden shadow-lg bg-black h-72 flex items-center justify-center">
-            <span className="text-white opacity-80">
-              {t("about_analytics_dashboard")}
-            </span>
-          </div>
+          <img
+            className="rounded-xl overflow-hidden shadow-lg bg-black h-72 flex  items-center justify-center"
+            src="../../public/analytics.jpg"
+            alt="analytics"
+          />
         </div>
       </section>
 

@@ -2,6 +2,8 @@ import React, { useMemo, useState, useRef } from "react";
 import SmartFinancilelAdvisor from "../components/SmartFinancialAdvisor.jsx";
 import { useAppContext } from "../contexts/useAppContext";
 import { useTranslation } from "react-i18next";
+import jsPDF from "jspdf";
+import * as XLSX from "xlsx";
 // Receipts.jsx - Functional TailwindCSS page
 // Self-contained mock implementation with filtering, pagination and computed stats.
 
@@ -272,6 +274,131 @@ ID: ${receipt.id}`);
     setPage(Math.max(1, Math.min(totalPages, n)));
   }
 
+  function downloadPDF() {
+    const doc = new jsPDF();
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 10;
+    let yPosition = margin;
+
+    // Header
+    doc.setFontSize(16);
+    doc.text("Receipt Report", margin, yPosition);
+    yPosition += 10;
+
+    // Date range info
+    doc.setFontSize(10);
+    doc.text(
+      `Generated: ${new Date().toLocaleDateString()}`,
+      margin,
+      yPosition
+    );
+    yPosition += 5;
+    doc.text(
+      `Date Range: ${dateRangeLabel(dateRange)} | Category: ${categoryLabel(
+        category
+      )}`,
+      margin,
+      yPosition
+    );
+    yPosition += 10;
+
+    // Table headers
+    doc.setFontSize(9);
+    doc.setTextColor(100);
+    const headers = ["Merchant", "Description", "Date", "Category", "Amount"];
+    const columnWidth = (pageWidth - 2 * margin) / headers.length;
+
+    headers.forEach((header, i) => {
+      doc.text(header, margin + i * columnWidth, yPosition, { align: "left" });
+    });
+    yPosition += 7;
+
+    // Table data
+    doc.setTextColor(0);
+    doc.setFontSize(8);
+    filtered.forEach((receipt) => {
+      if (yPosition > pageHeight - margin - 5) {
+        doc.addPage();
+        yPosition = margin;
+      }
+
+      doc.text(receipt.merchant, margin, yPosition);
+      doc.text(receipt.desc, margin + columnWidth, yPosition);
+      doc.text(
+        new Date(receipt.date).toLocaleDateString(),
+        margin + 2 * columnWidth,
+        yPosition
+      );
+      doc.text(receipt.category, margin + 3 * columnWidth, yPosition);
+      doc.text(
+        formatCurrency(receipt.total),
+        margin + 4 * columnWidth,
+        yPosition
+      );
+
+      yPosition += 6;
+    });
+
+    // Total
+    yPosition += 5;
+    doc.setFontSize(10);
+    doc.setTextColor(100);
+    const totalAmount = filtered.reduce((sum, r) => sum + r.total, 0);
+    doc.text(
+      `Total: ${formatCurrency(totalAmount)}`,
+      pageWidth - margin - 40,
+      yPosition
+    );
+
+    doc.save(
+      `receipts-${dateRange.replace(/ /g, "-")}-${new Date().getTime()}.pdf`
+    );
+  }
+
+  function downloadExcel() {
+    // Prepare data
+    const data = filtered.map((receipt) => ({
+      Merchant: receipt.merchant,
+      Description: receipt.desc,
+      Date: new Date(receipt.date).toLocaleDateString(),
+      Category: receipt.category,
+      Amount: receipt.total,
+    }));
+
+    // Add summary row
+    const totalAmount = filtered.reduce((sum, r) => sum + r.total, 0);
+    data.push({
+      Merchant: "",
+      Description: "",
+      Date: "",
+      Category: "TOTAL",
+      Amount: totalAmount,
+    });
+
+    // Create worksheet
+    const worksheet = XLSX.utils.json_to_sheet(data);
+
+    // Set column widths
+    worksheet["!cols"] = [
+      { wch: 20 },
+      { wch: 20 },
+      { wch: 15 },
+      { wch: 18 },
+      { wch: 12 },
+    ];
+
+    // Create workbook
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, `Receipts-${dateRange}`);
+
+    // Download
+    XLSX.writeFile(
+      workbook,
+      `receipts-${dateRange.replace(/ /g, "-")}-${new Date().getTime()}.xlsx`
+    );
+  }
+
   return (
     <div
       className={`min-h-screen p-8 ${
@@ -296,7 +423,7 @@ ID: ${receipt.id}`);
               {t("receipts_subtitle")}
             </p>
           </div>
-          <div className="flex items-center gap-4 mt-40 p-5 overflow-x-hidden">
+          <div className="flex items-center gap-4 mt-40 p-5 overflow-x-hidden ">
             <button
               onClick={handleUploadClick}
               className="inline-flex items-center gap-2 bg-purple-600 text-white px-4 py-2 rounded-lg shadow hover:bg-purple-700"
@@ -316,6 +443,46 @@ ID: ${receipt.id}`);
                 />
               </svg>
               {t("upload_receipt")}
+            </button>
+            <button
+              onClick={downloadPDF}
+              className="inline-flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg shadow hover:bg-red-700"
+              title="Download receipts as PDF"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#ffffff"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12.8V2.5" />
+              </svg>
+              {t("downloadPDF")}
+            </button>
+            <button
+              onClick={downloadExcel}
+              className="inline-flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg shadow hover:bg-green-700"
+              title="Download receipts as Excel"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#ffffff"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12.8V2.5" />
+              </svg>
+              {t("downloadExcel")}
             </button>
             <input
               ref={fileInputRef}
