@@ -30,7 +30,6 @@ Users should be able to:
 
 ### Screenshot
 <img width="1887" height="983" alt="homescreen" src="https://github.com/user-attachments/assets/da017f85-7d0f-4368-8780-02d69e9f2f40" />
-<img width="1855" height="878" alt="dashboard" src="https://github.com/user-attachments/assets/9599c45a-7863-451c-87db-1501e9ba0362" />
 <img width="1879" height="980" alt="organizemoney" src="https://github.com/user-attachments/assets/b1d63ab9-dbd8-4c44-8244-bce4eda50a63" />
 
 
